@@ -39,7 +39,7 @@ public class index {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Bienvenue");
+		JLabel lblNewLabel = new JLabel("sdfdez");
 		lblNewLabel.setBounds(138, 47, 110, 37);
 		frame.getContentPane().add(lblNewLabel);
 	}
