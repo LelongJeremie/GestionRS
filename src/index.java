@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class index {
 
@@ -36,6 +37,10 @@ public class index {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Bienvenue");
+		lblNewLabel.setBounds(138, 47, 110, 37);
+		frame.getContentPane().add(lblNewLabel);
 	}
-
 }
