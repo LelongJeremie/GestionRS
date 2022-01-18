@@ -74,6 +74,22 @@ public class index {
 		frame.getContentPane().add(btnInscription);
 		
 		JButton btnConnexion = new JButton("Connexion");
+		btnConnexion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				connexion g=new connexion();
+				g.run();
+				frame.setVisible(false);
+				this.dispose();
+				
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		btnConnexion.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		btnConnexion.setBounds(133, 351, 457, 78);
 		frame.getContentPane().add(btnConnexion);
