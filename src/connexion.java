@@ -94,6 +94,8 @@ public class connexion {
 
 		JButton btnSeConnecter = new JButton("Connexion");
 		btnSeConnecter.addActionListener(new ActionListener() {
+			private String role;
+
 			public void actionPerformed(ActionEvent e) {
 				Connection cnx = null;
 				int id = 0;
