@@ -202,7 +202,7 @@ public class connexion {
 	}
 	
 	public static String envoiemail(){
-		System.out.println(email);
+		
 		return email;
 	}
 	
@@ -210,6 +210,7 @@ public class connexion {
 		System.out.println(nom);
 		return nom;
 	}
+	
 
 	public void run() {
 		try {
