@@ -95,14 +95,14 @@ public class index {
 		btnConnexion.setBounds(133, 351, 457, 78);
 		frame.getContentPane().add(btnConnexion);
 		
-		JButton btnmdpoublie = new JButton("");
-		btnmdpoublie.setForeground(Color.BLUE);
+		JButton btnmdpoublie = new JButton("Cliquer ici :");
+		btnmdpoublie.setForeground(Color.WHITE);
 		btnmdpoublie.setBackground(Color.BLUE);
 		btnmdpoublie.setFont(new Font("Calibri Light", Font.PLAIN, 11));
-		btnmdpoublie.setBounds(469, 475, 121, 34);
+		btnmdpoublie.setBounds(385, 476, 121, 34);
 		frame.getContentPane().add(btnmdpoublie);
 		
-		JLabel lblmdpoublie = new JLabel("Mot de passe oubli\u00E9? Cliquer ici :");
+		JLabel lblmdpoublie = new JLabel("Mot de passe oubli\u00E9? ");
 		lblmdpoublie.setFont(new Font("Calibri Light", Font.PLAIN, 17));
 		lblmdpoublie.setBounds(213, 475, 245, 34);
 		frame.getContentPane().add(lblmdpoublie);
