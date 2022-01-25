@@ -6,6 +6,8 @@ public class administrateur {
 
 	private JFrame frame;
 	private int id;
+	private String nom;
+	private String email;
 
 	/**
 	 * Launch the application.
@@ -37,6 +39,8 @@ public class administrateur {
 		
 		connexion unid = new connexion();
 		id = connexion.envoieid();
+		nom = connexion.envoinom();
+		email = connexion.envoiemail();
 		
 		System.out.println(id);
 		
