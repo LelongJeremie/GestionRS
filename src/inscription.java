@@ -161,6 +161,8 @@ public class inscription {
 		
 		JButton btnValidezinscription = new JButton("Validez");
 		btnValidezinscription.addActionListener(new ActionListener() {
+			private int tests;
+
 			public void actionPerformed(ActionEvent e) {
 				Connection cnx = null; 
 				int id = 0;
@@ -205,11 +207,43 @@ public class inscription {
 					String pseudo = textFieldpseudo.getText();
 					String confirmation = textFieldconfirmation.getText();
 					
-					int insert = stm.executeUpdate("INSERT INTO utilisateur(`id`, `nom`, `prenom`, `date_naissance`, `role`, `classe`, `id_famille`, `mail`, `username`, `password`, `validation`, `token`) VALUES ('" + id +"','" + nom +"','" + prenom +"','" + date_naissance +"','" + null +"','" + null + "', '" + mail + "','" + pseudo + "','" + mdp + "','" + "0" + "','" + null + ")"); 
+					if(rdbtnparent.isSelected()) {
+						String role = "4";
+					}
+					else if(rdbtnProfesseur.isSelected()) {
+						String role = "3";
+					}
+
+					System.out.println(mdp);
+					System.out.println(confirmation);
+					
+					if(mdp.equals(confirmation)) {
+						System.out.println("mdp confirmé");
+					 tests = 1;
+					}
+					
+					System.out.println(tests);
+					if(tests == 1) {
+					
+					int insert = stm.executeUpdate("INSERT INTO utilisateur(id,nom,prenom,date_naissance, role, mail, username, password, validation) VALUES ('" + id +"','" + nom +"','" + prenom +"','" + date_naissance +"','" + 1 +"', '" + mail + "','" + pseudo + "','" + mdp + "','" + "0" + "')");
+					
+					
+					Popup_inscription g=new Popup_inscription();
+					g.run();
+					frame.setVisible(false);
+					this.dispose();
+					}
+					
+					
 				} catch (SQLException e2) { 
 					// TODO Auto-generated catch block
 					e2.printStackTrace(); 
 				}	 
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		btnValidezinscription.setFont(new Font("Calibri Light", Font.PLAIN, 15));
