@@ -12,7 +12,7 @@ import javax.swing.Box;
 
 public class inscription {
 
-	private JFrame frame;
+	JFrame frame;
 
 	/**
 	 * Launch the application.
