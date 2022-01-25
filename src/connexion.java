@@ -22,7 +22,7 @@ public class connexion {
 
 
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField emailField;
 	private JTextField mdpField;
 	private Throwable e1;
@@ -34,7 +34,7 @@ public class connexion {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					inscription window = new inscription();
+					connexion window = new connexion();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

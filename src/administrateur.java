@@ -39,8 +39,14 @@ public class administrateur {
 	}
 
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		try {
+			administrateur window = new administrateur();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+
+
+
+		}
 	}
 
 }
