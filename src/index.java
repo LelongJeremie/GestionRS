@@ -96,6 +96,13 @@ public class index {
 		frame.getContentPane().add(btnConnexion);
 		
 		JButton btnmdpoublie = new JButton("Cliquer ici :");
+		btnmdpoublie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
 		btnmdpoublie.setForeground(Color.WHITE);
 		btnmdpoublie.setBackground(Color.BLUE);
 		btnmdpoublie.setFont(new Font("Calibri Light", Font.PLAIN, 11));

@@ -58,6 +58,12 @@ public class connexion {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		
+		manager man = new manager();
+		
+		
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,69 +104,33 @@ public class connexion {
 		JButton btnSeConnecter = new JButton("Connexion");
 		btnSeConnecter.addActionListener(new ActionListener() {
 			private String role;
-
+			private String res;
 			public void actionPerformed(ActionEvent e) {
-				Connection cnx = null;
+				Utilisateur user = new Utilisateur();
 				
-				String prenom = null;
+				user.setMail(emailField.getText());
+				user.setPassword(mdpField.getText());
 				
-				String age = null;
 				
-				Scanner scan = new Scanner(System.in);
-				// On stock dans des variables l'URL de connexion � la base de donn�es avec les identifiants
-				 String url="jdbc:mysql://localhost/siteschuman?serverTimezone=UTC";
-		        String user="root";
-		        String password="";
-		        // Test pour v�rifier si nous arrivons � nous connecter
-		        try {
-		       	 // On cr�� une variable cnx de type Connection
-		       	 // cnx contiendra la connextion � la base de donn�es
-		        	cnx = DriverManager.getConnection(url,  user, password);
-		            System.out.println("Etat de la connexion :");
-				// Forme ternaire du if. Si la condition � �chou� alors on affiche � ferm� � sinon on affiche � ouverte �
-		            System.out.println(cnx.isClosed()?"ferm�e":"ouverte");
+				manager man = new manager();
+				
+				res = man.connexion(user);
+				
+				System.out.println("res= "+res);
+				
+				if(res !="") { 
+					
+					
+				
+				 administrateur g=new administrateur();
+					g.run();
+					frame.setVisible(false);
+					this.dispose();
+			
 
-		        }
-		        // Si on arrive pas � se connetcer on attrape l'erreur pour l'afficher ensuite
-					catch (SQLException e1) {
-		            System.out.println("Une erreur est survenue lors de la connexion � la base de donn�es");
-		            e1.printStackTrace();
-		        }
-		        try {
-		        	// Pr�paration de la requ�te
-					java.sql.Statement stm = cnx.createStatement();
+				}
 
-					String mail1 = emailField.getText();
-					String password1 = mdpField.getText();
-
-					ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where mail = '" + mail1 + "' AND password = '" +password1+ "'");
-					// On parcours toute les lignes de la requ�te tant qu'il y a des lignes
-
-					  while(resultat.next()){
-					         //R�cup�rer par nom de colonne
-						  id = resultat.getInt("id");
-						  nom = resultat.getString("Nom");
-						  prenom = resultat.getString("Prenom");
-						  role = resultat.getString("role");
-						  
-
-
-
-					      }
-
-		if(role.equals("1")) {
-
-			 System.out.print("Bienvenue M/Mme " + nom +" "+ prenom );
-
-			 administrateur g=new administrateur();
-				g.run();
-				frame.setVisible(false);
-				this.dispose();
-
-
-
-		}
-
+		
 		else {
 
 
@@ -174,11 +144,6 @@ public class connexion {
 			frame.repaint();
 		}
 
-
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 
 
 			}

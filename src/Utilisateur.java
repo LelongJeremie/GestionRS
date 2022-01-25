@@ -4,14 +4,34 @@ import java.util.Scanner;
 
 public class Utilisateur {
 	
-	private String nom;
-	private String prenom;
+	protected String nom;
+	protected String prenom;
+	protected String mail;
+	protected String password;
 
-	private String id;
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	protected String id;
 	
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
 	@Override
 	public String toString() {
-		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", id=" + id + "]";
+		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", id="
+				+ id + "]";
 	}
 	
 //Liste des getters
@@ -53,7 +73,7 @@ public Utilisateur() {
 		this.setadresse();
 		this.getpersonne(tableau);
 		//user.getpersonne(tableau1);
-		//System.out.println("Le nombre est "+ nombre*nombre);
+		//System.out.println("Le nombre est "+ nombre*ombre);
 		*/
 	}
 

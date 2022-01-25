@@ -10,7 +10,7 @@ public class Bdd {
 		
 		Connection cnx = null;
 		// On stock dans des variables l'URL de connexion à la base de données avec les identifiants  
-		String url="jdbc:mysql://localhost/poouser?serverTimezone=UTC";  
+		String url="jdbc:mysql://localhost/siteschuman?serverTimezone=UTC";  
         String user="root";  
         String password="";  
         // Test pour vérifier si nous arrivons à nous connecter
