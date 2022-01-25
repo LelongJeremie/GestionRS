@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class administrateur {
 
@@ -66,6 +68,19 @@ public class administrateur {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("Creation profil");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				creaprofiladmin g=new creaprofiladmin();
+				g.run();
+				frame.setVisible(false);
+				this.dispose();
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		btnNewButton_2.setBounds(216, 185, 303, 69);
 		frame.getContentPane().add(btnNewButton_2);
 		
