@@ -22,6 +22,9 @@ public class connexion {
 
 
 
+	private static int id;
+	private static String nom;
+	private static String email;
 	JFrame frame;
 	private JTextField emailField;
 	private JTextField mdpField;
@@ -98,11 +101,11 @@ public class connexion {
 
 			public void actionPerformed(ActionEvent e) {
 				Connection cnx = null;
-				int id = 0;
+				
 				String prenom = null;
-				String nom = null;
+				
 				String age = null;
-				String mail = null;
+				
 				Scanner scan = new Scanner(System.in);
 				// On stock dans des variables l'URL de connexion � la base de donn�es avec les identifiants
 				 String url="jdbc:mysql://localhost/siteschuman?serverTimezone=UTC";
@@ -139,6 +142,7 @@ public class connexion {
 						  nom = resultat.getString("Nom");
 						  prenom = resultat.getString("Prenom");
 						  role = resultat.getString("role");
+						  
 
 
 
@@ -190,6 +194,21 @@ public class connexion {
 		frame.getContentPane().add(btnSeConnecter);
 
 
+	}
+	
+	public static int envoieid(){
+		System.out.println(id);
+		return id;
+	}
+	
+	public static String envoiemail(){
+		System.out.println(email);
+		return email;
+	}
+	
+	public static String envoinom(){
+		System.out.println(nom);
+		return nom;
 	}
 
 	public void run() {
