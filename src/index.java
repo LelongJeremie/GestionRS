@@ -63,6 +63,7 @@ public class index {
 				frame.setVisible(false);
 				this.dispose();
 			}
+			
 
 			private void dispose() {
 				// TODO Auto-generated method stub
