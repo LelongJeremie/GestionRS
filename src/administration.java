@@ -8,7 +8,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class administration {
+public class Administration {
 
 	private JFrame frame;
 
@@ -19,7 +19,7 @@ public class administration {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					administration window = new administration();
+					Administration window = new Administration();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +31,7 @@ public class administration {
 	/**
 	 * Create the application.
 	 */
-	public administration() {
+	public Administration() {
 		initialize();
 	}
 

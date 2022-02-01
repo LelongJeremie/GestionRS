@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
-public class inscription {
+public class Inscription {
 
 	private JFrame frame;
 	private JTextField textFieldentreznom;
@@ -41,7 +41,7 @@ public class inscription {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					inscription window = new inscription();
+					Inscription window = new Inscription();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class inscription {
 	/**
 	 * Create the application.
 	 */
-	public inscription() {
+	public Inscription() {
 		initialize();
 	}
 
@@ -232,7 +232,7 @@ public class inscription {
 
 	public void run() {
 		try {
-			inscription window = new inscription();
+			Inscription window = new Inscription();
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

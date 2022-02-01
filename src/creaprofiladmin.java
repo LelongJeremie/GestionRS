@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class creaprofiladmin {
+public class Creaprofiladmin {
 
 	private JFrame frame;
 	private JTextField textFieldconfirmation;
@@ -33,7 +33,7 @@ public class creaprofiladmin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					creaprofiladmin window = new creaprofiladmin();
+					Creaprofiladmin window = new Creaprofiladmin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class creaprofiladmin {
 	/**
 	 * Create the application.
 	 */
-	public creaprofiladmin() {
+	public Creaprofiladmin() {
 		initialize();
 	}
 
@@ -180,7 +180,7 @@ public class creaprofiladmin {
 
 	public void run() {
 		try {
-			creaprofiladmin window = new creaprofiladmin();
+			Creaprofiladmin window = new Creaprofiladmin();
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

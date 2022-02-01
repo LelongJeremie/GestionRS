@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class administrateur {
+public class Administrateur {
 
 	private JFrame frame;
 	private int id;
@@ -22,7 +22,7 @@ public class administrateur {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					administrateur window = new administrateur();
+					Administrateur window = new Administrateur();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +34,7 @@ public class administrateur {
 	/**
 	 * Create the application.
 	 */
-	public administrateur() {
+	public Administrateur() {
 		initialize();
 	}
 
@@ -43,10 +43,10 @@ public class administrateur {
 	 */
 	private void initialize() {
 		
-		connexion unid = new connexion();
-		id = connexion.envoieid();
-		nom = connexion.envoinom();
-		email = connexion.envoiemail();
+		Connexion unid = new Connexion();
+		id = Connexion.envoieid();
+		nom = Connexion.envoinom();
+		email = Connexion.envoiemail();
 		
 		System.out.println(id);
 		
@@ -70,7 +70,7 @@ public class administrateur {
 		JButton btnNewButton_2 = new JButton("Creation profil");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				creaprofiladmin g=new creaprofiladmin();
+				Creaprofiladmin g=new Creaprofiladmin();
 				g.run();
 				frame.setVisible(false);
 				this.dispose();
@@ -95,7 +95,7 @@ public class administrateur {
 
 	public void run() {
 		try {
-			administrateur window = new administrateur();
+			Administrateur window = new Administrateur();
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 

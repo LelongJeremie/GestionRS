@@ -9,7 +9,7 @@ import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class prof {
+public class Prof {
 
 	private JFrame frame;
 
@@ -20,7 +20,7 @@ public class prof {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					prof window = new prof();
+					Prof window = new Prof();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class prof {
 	/**
 	 * Create the application.
 	 */
-	public prof() {
+	public Prof() {
 		initialize();
 	}
 

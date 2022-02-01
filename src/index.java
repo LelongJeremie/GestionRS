@@ -58,7 +58,7 @@ public class index {
 		JButton btnInscription = new JButton("Inscription");
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inscription g=new inscription();
+				Inscription g=new Inscription();
 				g.run();
 				frame.setVisible(false);
 				this.dispose();
@@ -79,7 +79,7 @@ public class index {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				connexion g=new connexion();
+				Connexion g=new Connexion();
 				g.run();
 				frame.setVisible(false);
 				this.dispose();
@@ -99,7 +99,16 @@ public class index {
 		btnmdpoublie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				Motdepasse g=new Motdepasse();
+				g.run();
+				frame.setVisible(false);
+				this.dispose();
+
 				
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
 				
 			}
 		});
