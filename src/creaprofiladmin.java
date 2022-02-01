@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JFormattedTextField;
 
 public class creaprofiladmin {
 
@@ -134,7 +135,7 @@ public class creaprofiladmin {
 		lblrole.setBounds(567, 331, 142, 25);
 		frame.getContentPane().add(lblrole);
 
-		JRadioButton rdbtnparent = new JRadioButton("Parent");
+		JRadioButton rdbtnparent = new JRadioButton("administratif");
 		rdbtnparent.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnparent.setBounds(660, 409, 142, 26);
 		frame.getContentPane().add(rdbtnparent);

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class motdepasse {
 
@@ -47,6 +49,10 @@ public class motdepasse {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("valider");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnNewButton.setBounds(472, 247, 120, 35);
 		frame.getContentPane().add(btnNewButton);
 		

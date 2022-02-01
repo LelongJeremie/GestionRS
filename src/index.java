@@ -63,7 +63,6 @@ public class index {
 				frame.setVisible(false);
 				this.dispose();
 			}
-			
 
 			private void dispose() {
 				// TODO Auto-generated method stub
@@ -75,41 +74,23 @@ public class index {
 		frame.getContentPane().add(btnInscription);
 		
 		JButton btnConnexion = new JButton("Connexion");
-		btnConnexion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				connexion g=new connexion();
-				g.run();
-				frame.setVisible(false);
-				this.dispose();
-				
-			}
-
-			private void dispose() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		btnConnexion.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		btnConnexion.setBounds(133, 351, 457, 78);
 		frame.getContentPane().add(btnConnexion);
 		
-		JButton btnmdpoublie = new JButton("Cliquer ici :");
+		JButton btnmdpoublie = new JButton("mot de passe oubli\u00E9e ?");
 		btnmdpoublie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
+			public void actionPerformed(ActionEvent arg0) {
 				
 			}
 		});
-		btnmdpoublie.setForeground(Color.WHITE);
+		btnmdpoublie.setForeground(Color.BLUE);
 		btnmdpoublie.setBackground(Color.BLUE);
 		btnmdpoublie.setFont(new Font("Calibri Light", Font.PLAIN, 11));
-		btnmdpoublie.setBounds(385, 476, 121, 34);
+		btnmdpoublie.setBounds(469, 475, 144, 34);
 		frame.getContentPane().add(btnmdpoublie);
 		
-		JLabel lblmdpoublie = new JLabel("Mot de passe oubli\u00E9? ");
+		JLabel lblmdpoublie = new JLabel("Mot de passe oubli\u00E9? Cliquer ici :");
 		lblmdpoublie.setFont(new Font("Calibri Light", Font.PLAIN, 17));
 		lblmdpoublie.setBounds(213, 475, 245, 34);
 		frame.getContentPane().add(lblmdpoublie);
@@ -117,15 +98,5 @@ public class index {
 		Component verticalStrut = Box.createVerticalStrut(20);
 		verticalStrut.setBounds(350, 0, 20, 182);
 		frame.getContentPane().add(verticalStrut);
-	}
-
-
-	public void run() {
-		try {
-			index window = new index();
-			window.frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
