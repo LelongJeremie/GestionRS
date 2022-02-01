@@ -148,10 +148,10 @@ public class inscription {
 		lblrole.setBounds(567, 331, 142, 25);
 		frame.getContentPane().add(lblrole);
 
-		JRadioButton rdbtnparent = new JRadioButton("Parent");
-		rdbtnparent.setFont(new Font("Calibri Light", Font.PLAIN, 15));
-		rdbtnparent.setBounds(475, 409, 142, 26);
-		frame.getContentPane().add(rdbtnparent);
+		JRadioButton rdbtnadministratif = new JRadioButton("Administratif");
+		rdbtnadministratif.setFont(new Font("Calibri Light", Font.PLAIN, 15));
+		rdbtnadministratif.setBounds(475, 409, 142, 26);
+		frame.getContentPane().add(rdbtnadministratif);
 
 		JRadioButton rdbtnProfesseur = new JRadioButton("Professeur");
 		rdbtnProfesseur.setHorizontalAlignment(SwingConstants.CENTER);
@@ -162,42 +162,15 @@ public class inscription {
 		JButton btnValidezinscription = new JButton("Validez");
 		btnValidezinscription.addActionListener(new ActionListener() {
 			private int tests;
-
+			private String res;
 			public void actionPerformed(ActionEvent e) {
-				Connection cnx = null;
+				Utilisateur user = new Utilisateur();
+				
+				
+				manager man = new manager();
 				int id = 0;
-				Scanner scan = new Scanner(System.in);
-				// On stock dans des variables l'URL de connexion � la base de donn�es avec les identifiants
-				 String url="jdbc:mysql://localhost/siteschuman?serverTimezone=UTC";
-		        String user="root";
-		        String password="";
-		        // Test pour v�rifier si nous arrivons � nous connecter
-		        try {
-		       	 // On cr�� une variable cnx de type Connection
-		       	 // cnx contiendra la connextion � la base de donn�es
-		        	cnx = DriverManager.getConnection(url,  user, password);
-		            System.out.println("Etat de la connexion :");
-				// Forme ternaire du if. Si la condition � �chou� alors on affiche � ferm� � sinon on affiche � ouverte �
-		            System.out.println(cnx.isClosed()?"ferm�e":"ouverte");
-
-		        }
-		        // Si on arrive pas � se connetcer on attrape l'erreur pour l'afficher ensuite
-					catch (SQLException e2) {
-		            System.out.println("Une erreur est survenue lors de la connexion � la base de donn�es");
-		            e2.printStackTrace();
-		        }
-		        try {
-		        	// Pr�paration de la requ�te
-					java.sql.Statement stm = cnx.createStatement();
-
-
-					ResultSet resultat = stm.executeQuery("SELECT *  FROM utilisateur");
-					// On parcours toute les lignes de la requ�te tant qu'il y a des lignes
-					while(resultat.next()){
-					// Affichage des lignes � la colonne "id"
-					id = resultat.getInt("id");
-					id++;
-				}
+				
+		        
 
 					String nom = textFieldentreznom.getText();
 					String prenom = textFieldprenom.getText();
@@ -206,16 +179,25 @@ public class inscription {
 					String date_naissance = textFieldentreznaissance.getText();
 					String pseudo = textFieldpseudo.getText();
 					String confirmation = textFieldconfirmation.getText();
+					
+					user.setMail(mail);
+					user.setPassword(mdp);
+					user.setNom(nom);
+					user.setPrenom(prenom);
+					user.setDate_naissance(date_naissance);
+					user.setPseudo(pseudo);
 
-					if(rdbtnparent.isSelected()) {
+					if(rdbtnadministratif.isSelected()) {
 						String role = "4";
+						user.setRole(role);
+						
 					}
 					else if(rdbtnProfesseur.isSelected()) {
 						String role = "3";
+						user.setRole(role);
 					}
 
-					System.out.println(mdp);
-					System.out.println(confirmation);
+					
 
 					if(mdp.equals(confirmation)) {
 						System.out.println("mdp confirm�");
@@ -224,8 +206,8 @@ public class inscription {
 
 					System.out.println(tests);
 					if(tests == 1) {
-
-					int insert = stm.executeUpdate("INSERT INTO utilisateur(id,nom,prenom,date_naissance, role, mail, username, password, validation) VALUES ('" + id +"','" + nom +"','" + prenom +"','" + date_naissance +"','" + 1 +"', '" + mail + "','" + pseudo + "','" + mdp + "','" + "0" + "')");
+					
+					res = man.inscription(user);
 
 
 					Popup_inscription g=new Popup_inscription();
@@ -235,10 +217,7 @@ public class inscription {
 					}
 
 
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
+				
 			}
 
 			private void dispose() {

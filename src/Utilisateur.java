@@ -8,6 +8,34 @@ public class Utilisateur {
 	protected String prenom;
 	protected String mail;
 	protected String password;
+	protected String id;
+	protected String role;
+	protected String pseudo;
+	protected String date_naissance;
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
+	public String getDate_naissance() {
+		return date_naissance;
+	}
+
+	public void setDate_naissance(String date_naissance) {
+		this.date_naissance = date_naissance;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public String getPassword() {
 		return password;
@@ -18,7 +46,6 @@ public class Utilisateur {
 	}
 
 
-	protected String id;
 	
 	public String getMail() {
 		return mail;

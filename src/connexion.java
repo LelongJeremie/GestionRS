@@ -116,9 +116,11 @@ public class connexion {
 				
 				res = man.connexion(user);
 				
-				System.out.println("res= "+res);
+				System.out.println(user);
 				
-				if(res !="") { 
+				System.out.println(res);
+				
+				if(res.equals("1")) { 
 					
 					
 				
