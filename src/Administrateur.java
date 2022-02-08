@@ -78,8 +78,8 @@ public class Administrateur {
 		JButton btnNewButton_2 = new JButton("Creation profil");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Creaprofiladmin g=new Creaprofiladmin();
-				g.run();
+				Creaprofiladmin g=new Creaprofiladmin(user);
+				g.run(user);
 				frame.setVisible(false);
 				this.dispose();
 			}

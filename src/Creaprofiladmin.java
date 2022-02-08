@@ -32,28 +32,35 @@ public class Creaprofiladmin {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run(Utilisateur user) {
 				try {
-					Creaprofiladmin window = new Creaprofiladmin();
+					Creaprofiladmin window = new Creaprofiladmin(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public Creaprofiladmin() {
-		initialize();
+	public Creaprofiladmin(Utilisateur user) {
+		initialize(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Utilisateur user) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 863, 725);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -182,7 +189,7 @@ public class Creaprofiladmin {
 			private int tests;
 			private String res;
 			public void actionPerformed(ActionEvent e) {
-				Utilisateur user = new Utilisateur();
+				
 				
 				
 				manager man = new manager();
@@ -271,9 +278,9 @@ public class Creaprofiladmin {
 		
 	}
 
-	public void run() {
+	public void run(Utilisateur user) {
 		try {
-			Creaprofiladmin window = new Creaprofiladmin();
+			Creaprofiladmin window = new Creaprofiladmin(user);
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
