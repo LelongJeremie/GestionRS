@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 
 public class Administrateur {
 
-	private JFrame frame;
+	JFrame frame;
 	private int id;
 	private String nom;
 	private String email;
@@ -20,28 +20,36 @@ public class Administrateur {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run(Utilisateur user) {
 				try {
-					Administrateur window = new Administrateur();
+					Administrateur window = new Administrateur(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public Administrateur() {
-		initialize();
+	public Administrateur(Utilisateur user) {
+		initialize(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param user 
 	 */
-	private void initialize() {
+	private void initialize(Utilisateur user) {
 		
 		Connexion unid = new Connexion();
 		id = Connexion.envoieid();
@@ -85,6 +93,26 @@ public class Administrateur {
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Mon profil");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			
+				
+				
+				userprofil g=new userprofil(user);
+				g.run(user);
+				frame.setVisible(false);
+				this.dispose();
+
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+
+			
+				
+			}
+		});
 		btnNewButton_3.setBounds(26, 47, 160, 52);
 		frame.getContentPane().add(btnNewButton_3);
 		
@@ -93,9 +121,9 @@ public class Administrateur {
 		frame.getContentPane().add(btnNewButton_1);
 	}
 
-	public void run() {
+	public void run(Utilisateur user) {
 		try {
-			Administrateur window = new Administrateur();
+			Administrateur window = new Administrateur(user);
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 
