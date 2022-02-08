@@ -135,10 +135,10 @@ public class Creaprofiladmin {
 		lblrole.setBounds(567, 331, 142, 25);
 		frame.getContentPane().add(lblrole);
 
-		JRadioButton rdbtnparent = new JRadioButton("administratif");
-		rdbtnparent.setFont(new Font("Calibri Light", Font.PLAIN, 15));
-		rdbtnparent.setBounds(660, 409, 142, 26);
-		frame.getContentPane().add(rdbtnparent);
+		JRadioButton rdbtnadministratif = new JRadioButton("administratif");
+		rdbtnadministratif.setFont(new Font("Calibri Light", Font.PLAIN, 15));
+		rdbtnadministratif.setBounds(660, 409, 142, 26);
+		frame.getContentPane().add(rdbtnadministratif);
 
 		JRadioButton rdbtnprofesseur = new JRadioButton("Professeur");
 		rdbtnprofesseur.setHorizontalAlignment(SwingConstants.CENTER);
@@ -150,15 +150,6 @@ public class Creaprofiladmin {
 		textFieldentreznom.setBounds(250, 179, 142, 33);
 		frame.getContentPane().add(textFieldentreznom);
 		textFieldentreznom.setColumns(10);
-		
-		JButton btnValidercrea = new JButton("Valider la creation");
-		btnValidercrea.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnValidercrea.setFont(new Font("Calibri Light", Font.PLAIN, 15));
-		btnValidercrea.setBounds(547, 506, 189, 33);
-		frame.getContentPane().add(btnValidercrea);
 		
 		JRadioButton rdbtnadmin = new JRadioButton("Admin");
 		rdbtnadmin.setHorizontalAlignment(SwingConstants.CENTER);
@@ -175,8 +166,109 @@ public class Creaprofiladmin {
 		JRadioButton rdbtnetudiant = new JRadioButton("Etudiant");
 		rdbtnetudiant.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnetudiant.setFont(new Font("Calibri Light", Font.PLAIN, 15));
-		rdbtnetudiant.setBounds(567, 448, 111, 23);
+		rdbtnetudiant.setBounds(644, 455, 111, 23);
 		frame.getContentPane().add(rdbtnetudiant);
+		
+		JRadioButton rdbtnparent = new JRadioButton("Parent");
+		rdbtnparent.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnparent.setFont(new Font("Calibri Light", Font.PLAIN, 15));
+		rdbtnparent.setBounds(479, 455, 122, 23);
+		frame.getContentPane().add(rdbtnparent);
+		
+
+		
+		JButton btnValidercrea = new JButton("Valider la creation");
+		btnValidercrea.addActionListener(new ActionListener() {
+			private int tests;
+			private String res;
+			public void actionPerformed(ActionEvent e) {
+				Utilisateur user = new Utilisateur();
+				
+				
+				manager man = new manager();
+				int id = 0;
+				
+		        
+
+					String nom = textFieldentreznom.getText();
+					String prenom = textFieldprenom.getText();
+					String mail = textFieldmail.getText();
+					String mdp = textFieldmdp.getText();
+					String date_naissance = textFieldentreznaissance.getText();
+					String pseudo = textFieldpseudo.getText();
+					String confirmation = textFieldconfirmation.getText();
+					
+					user.setMail(mail);
+					user.setPassword(mdp);
+					user.setNom(nom);
+					user.setPrenom(prenom);
+					user.setDate_naissance(date_naissance);
+					user.setPseudo(pseudo);
+
+					if(rdbtnadmin.isSelected()) {
+						String role = "1";
+						user.setRole(role);
+						
+					}
+					else if(rdbtnprofesseurprincipal.isSelected()) {
+						String role = "2";
+						user.setRole(role);
+					}
+					
+					else if(rdbtnprofesseur.isSelected()) {
+						String role = "3";
+						user.setRole(role);
+					}
+					
+					else if(rdbtnadministratif.isSelected()) {
+						String role = "4";
+						user.setRole(role);
+					}
+					
+					else if(rdbtnparent.isSelected()) {
+						String role = "5";
+						user.setRole(role);
+					}
+					
+					else if(rdbtnetudiant.isSelected()) {
+						String role = "6";
+						user.setRole(role);
+					}
+
+					
+
+					if(mdp.equals(confirmation)) {
+						System.out.println("mdp confirm�");
+					 tests = 1;
+					}
+
+					System.out.println(tests);
+					if(tests == 1) {
+					
+					res = man.admincreaprofil(user);
+
+
+					Popup_inscription g=new Popup_inscription();
+					g.run();
+					frame.setVisible(false);
+					this.dispose();
+					}
+
+
+				
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+
+			}
+			
+		});
+		btnValidercrea.setFont(new Font("Calibri Light", Font.PLAIN, 15));
+		btnValidercrea.setBounds(547, 506, 189, 33);
+		frame.getContentPane().add(btnValidercrea);
+		
+		
 	}
 
 	public void run() {
