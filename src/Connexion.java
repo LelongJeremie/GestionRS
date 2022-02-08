@@ -122,9 +122,7 @@ public class Connexion {
 				
 				if(res.equals("1")) { 
 					
-					
-					
-					System.out.println(user.getNom()); 
+			
 				
 					 Administrateur u=new Administrateur(user);
 						u.run(user);

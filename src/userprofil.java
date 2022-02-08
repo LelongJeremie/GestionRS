@@ -1,10 +1,31 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class userprofil {
 
 	private JFrame frame;
+	private JTextField fieldprenom;
+	private JTextField fieldnom;
+	private JButton btnChangerLeNom;
+	private JLabel lblNom;
+	private JTextField fieldrole;
+	private JButton btndatenaissance;
+	private JLabel lbldatenaissance;
+	private JTextField fieldmail;
+	private JButton btnPrenom_3;
+	private JLabel lblmail;
+	private JTextField fieldusername;
+	private JButton btnusername;
+	private JLabel lblusername;
+	private JTextField textField_5;
+	private JButton btnMotdepasse;
+	private JLabel lblPassword;
 
 	/**
 	 * Launch the application.
@@ -36,6 +57,7 @@ public class userprofil {
 	 */
 	public userprofil(Utilisateur user) {
 		initialize();
+		initialize(user);
 		
 		
 		
@@ -48,9 +70,7 @@ public class userprofil {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
