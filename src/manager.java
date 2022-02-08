@@ -26,10 +26,10 @@ public class manager extends Utilisateur {
 			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
 
 			while(resultat.next()) {
-				user.setConnecterid(resultat.getString("id"));
-				user.setConnecternom(resultat.getString("Nom"));
-				user.setConnecterprenom(resultat.getString("Prenom"));
-				user.setConnecterrole(resultat.getString("role"));
+				user.setId(resultat.getString("id"));
+				user.setNom(resultat.getString("Nom"));
+				user.setPrenom(resultat.getString("Prenom"));
+				user.setRole(resultat.getString("role"));
 				
 				System.out.println("Vous etes connect�, bonjour "+user.getNom()+"");
 				
