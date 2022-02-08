@@ -117,12 +117,14 @@ public class Connexion {
 				res = man.connexion(user);
 				
 				System.out.println(user);
-				
+				System.out.println("aaa");
 				System.out.println(res);
 				
 				if(res.equals("1")) { 
 					
-			
+					
+					
+					System.out.println(user.getNom()); 
 				
 					 Administrateur u=new Administrateur(user);
 						u.run(user);

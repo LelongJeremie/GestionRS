@@ -51,12 +51,9 @@ public class userprofil {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 * @param a 
-	 */
+
 	public userprofil(Utilisateur user) {
-		initialize();
+	
 		initialize(user);
 		
 		
