@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 public class manager extends Utilisateur {
 
 	Bdd co = new Bdd();
@@ -117,6 +118,8 @@ public class manager extends Utilisateur {
 		}
 		}
 	}
+	
+
 	public void supprimer (Utilisateur user) {
 		try {
 			java.sql.Statement stm = cnx.createStatement();
@@ -146,6 +149,41 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 		}
 		}
+	}
+
+	public String admincreaprofil(Utilisateur user2) {
+		try {
+        	// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where nom='" + user.getNom() +"' AND prenom='" + user.getPrenom() +"'");
+
+			while(resultat.next()) {
+				user.setId(this.id = resultat.getString("id"));
+				System.out.println("Erreur votre utilisateur est d�j� existant");
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(user.getId() == null) {
+		try {
+		System.out.println(user);
+		java.sql.Statement stm = cnx.createStatement();
+		int insert = stm.executeUpdate("INSERT INTO utilisateur(nom,prenom,date_naissance, role, mail, username, password, validation) VALUES ('" + user.getNom() +"','" + user.getPrenom() +"','" + user.getDate_naissance() +"','" + user.getRole() +"', '" + user.getMail() + "','" + user.getPseudo() + "','" + user.getPassword() + "','" + "0" + "')");
+		System.out.println("Utilisateur ajout�");
+		}
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		String result = "gg";
+		return result;
 	}
 
 }
