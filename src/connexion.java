@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 
-public class connexion {
+public class Connexion {
 
 
 
@@ -37,7 +37,7 @@ public class connexion {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					connexion window = new connexion();
+					Connexion window = new Connexion();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class connexion {
 	 * Create the application.
 	 * @wbp.parser.entryPoint
 	 */
-	public connexion() {
+	public Connexion() {
 		initialize();
 	}
 
@@ -124,7 +124,7 @@ public class connexion {
 					
 					
 				
-				 administrateur g=new administrateur();
+				 Administrateur g=new Administrateur();
 					g.run();
 					frame.setVisible(false);
 					this.dispose();
@@ -181,7 +181,7 @@ public class connexion {
 
 	public void run() {
 		try {
-			connexion window = new connexion();
+			Connexion window = new Connexion();
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 

@@ -8,13 +8,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class motdepasse {
+public class Motdepasse {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField textFieldmdpmail;
 
 	/**
 	 * Launch the application.
@@ -23,7 +25,7 @@ public class motdepasse {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					motdepasse window = new motdepasse();
+					Motdepasse window = new Motdepasse();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +37,7 @@ public class motdepasse {
 	/**
 	 * Create the application.
 	 */
-	public motdepasse() {
+	public Motdepasse() {
 		initialize();
 	}
 
@@ -47,24 +49,38 @@ public class motdepasse {
 		frame.setBounds(100, 100, 679, 572);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JButton btnNewButton = new JButton("valider");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				Utilisateur user = new Utilisateur();
+
+				user.setMail(textFieldmdpmail.getText());
+				System.out.println(user.getMail());
+				manager man = new manager();
 			}
 		});
-		btnNewButton.setBounds(472, 247, 120, 35);
+		btnNewButton.setBounds(283, 350, 120, 35);
 		frame.getContentPane().add(btnNewButton);
-		
-		textField = new JTextField();
-		textField.setBounds(38, 247, 436, 35);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JTextPane txtpnModifierVotreMot = new JTextPane();
-		txtpnModifierVotreMot.setFont(new Font("Calibri Light", Font.PLAIN, 30));
-		txtpnModifierVotreMot.setText("Modifier votre Mot de passe ");
-		txtpnModifierVotreMot.setBounds(155, 165, 362, 58);
-		frame.getContentPane().add(txtpnModifierVotreMot);
+
+		textFieldmdpmail = new JTextField();
+		textFieldmdpmail.setBounds(110, 239, 466, 35);
+		frame.getContentPane().add(textFieldmdpmail);
+		textFieldmdpmail.setColumns(10);
+
+		JLabel lblmdpmail = new JLabel("Entrez votre mail pour changer votre mot de passe");
+		lblmdpmail.setHorizontalAlignment(SwingConstants.CENTER);
+		lblmdpmail.setFont(new Font("Calibri Light", Font.PLAIN, 20));
+		lblmdpmail.setBounds(110, 129, 466, 35);
+		frame.getContentPane().add(lblmdpmail);
+	}
+
+	public void run() {
+		try {
+			Motdepasse window = new Motdepasse();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
