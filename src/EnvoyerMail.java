@@ -1,14 +1,10 @@
 
 
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.management.RuntimeErrorException;
+import java.util.*;
+import java.io.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
 
 
 
