@@ -126,4 +126,12 @@ public class index {
 		verticalStrut.setBounds(350, 0, 20, 182);
 		frame.getContentPane().add(verticalStrut);
 	}
-}
+
+	public void run() {
+		try {
+			index window = new index();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}}
