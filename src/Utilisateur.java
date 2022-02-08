@@ -12,6 +12,78 @@ public class Utilisateur {
 	protected String role;
 	protected String pseudo;
 	protected String date_naissance;
+	protected String connecternom;
+	protected String connecterprenom;
+	protected String connectermail;
+	protected String connecterpassword;
+	protected String connecterid;
+	protected String connecterrole;
+	protected String connecterpseudo;
+	protected String connecterdate_naissance;
+
+	public String getConnecternom() {
+		return connecternom;
+	}
+
+	public void setConnecternom(String connecternom) {
+		this.connecternom = connecternom;
+	}
+
+	public String getConnecterprenom() {
+		return connecterprenom;
+	}
+
+	public void setConnecterprenom(String connecterprenom) {
+		this.connecterprenom = connecterprenom;
+	}
+
+	public String getConnectermail() {
+		return connectermail;
+	}
+
+	public void setConnectermail(String connectermail) {
+		this.connectermail = connectermail;
+	}
+
+	public String getConnecterpassword() {
+		return connecterpassword;
+	}
+
+	public void setConnecterpassword(String connecterpassword) {
+		this.connecterpassword = connecterpassword;
+	}
+
+	public String getConnecterid() {
+		return connecterid;
+	}
+
+	public void setConnecterid(String connecterid) {
+		this.connecterid = connecterid;
+	}
+
+	public String getConnecterrole() {
+		return connecterrole;
+	}
+
+	public void setConnecterrole(String connecterrole) {
+		this.connecterrole = connecterrole;
+	}
+
+	public String getConnecterpseudo() {
+		return connecterpseudo;
+	}
+
+	public void setConnecterpseudo(String connecterpseudo) {
+		this.connecterpseudo = connecterpseudo;
+	}
+
+	public String getConnecterdate_naissance() {
+		return connecterdate_naissance;
+	}
+
+	public void setConnecterdate_naissance(String connecterdate_naissance) {
+		this.connecterdate_naissance = connecterdate_naissance;
+	}
 
 	public String getPseudo() {
 		return pseudo;
