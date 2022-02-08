@@ -123,11 +123,13 @@ public class Connexion {
 				if(res.equals("1")) { 
 					
 					
+					
+					System.out.println(user.getNom()); 
 				
-				 Administrateur g=new Administrateur();
-					g.run();
-					frame.setVisible(false);
-					this.dispose();
+					 Administrateur u=new Administrateur(user);
+						u.run(user);
+						frame.setVisible(false);
+						this.dispose();
 			
 
 				}
@@ -160,7 +162,7 @@ public class Connexion {
 		btnSeConnecter.setBounds(257, 456, 227, 55);
 		frame.getContentPane().add(btnSeConnecter);
 
-
+		   
 	}
 	
 	public static int envoieid(){
