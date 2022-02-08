@@ -14,7 +14,9 @@ public class manager extends Utilisateur {
 
 	public String connexion (Utilisateur user) {
 		id="";
-
+		
+		System.out.println(user.getMail());
+		
 		try {
         	// Pr�paration de la requ�te
 			java.sql.Statement stm = cnx.createStatement();
@@ -25,16 +27,19 @@ public class manager extends Utilisateur {
 			while(resultat.next()) {
 				user.setId(resultat.getString("id"));
 				user.setNom(resultat.getString("Nom"));
+				user.setPrenom(resultat.getString("Prenom"));
+				user.setRole(resultat.getString("role"));
 				
 				System.out.println("Vous etes connect�, bonjour "+user.getNom()+"");
-				System.out.println(user.toString());
+				
+				String prole = user.getRole();
 				
 				
+				return prole;
 				
 				
 			}
-			idd = getId();
-			System.out.println("id = "+id);
+			
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -45,7 +50,7 @@ public class manager extends Utilisateur {
 		return id;
 		}
 
-	public void inscription (Utilisateur user) {
+	public String inscription (Utilisateur user) {
 		try {
         	// Pr�paration de la requ�te
 			java.sql.Statement stm = cnx.createStatement();
@@ -65,9 +70,9 @@ public class manager extends Utilisateur {
 
 		if(user.getId() == null) {
 		try {
-
+		System.out.println(user);
 		java.sql.Statement stm = cnx.createStatement();
-		int insert = stm.executeUpdate("INSERT INTO utilisateur(nom,prenom) VALUES ('" + user.getNom() +"','" + user.getPrenom() +"')");
+		int insert = stm.executeUpdate("INSERT INTO utilisateur(nom,prenom,date_naissance, role, mail, username, password, validation) VALUES ('" + user.getNom() +"','" + user.getPrenom() +"','" + user.getDate_naissance() +"','" + user.getRole() +"', '" + user.getMail() + "','" + user.getPseudo() + "','" + user.getPassword() + "','" + "0" + "')");
 		System.out.println("Utilisateur ajout�");
 		}
 
@@ -76,6 +81,8 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 		}
 		}
+		String result = "gg";
+		return result;
 	}
 	public void modification (Utilisateur user, String nnom, String nprenom) {
 		try {
@@ -139,11 +146,6 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 		}
 		}
-	}
-	public void mdpoublie (Utilisateur mdp) {
-		
-		"SELECT * from utilisateur where mail =:mail"
-				"UPDATE utilisateur SET password = :password WHERE mail =:mail"
 	}
 
 }
