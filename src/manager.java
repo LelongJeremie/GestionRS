@@ -29,6 +29,11 @@ public class manager extends Utilisateur {
 				user.setNom(resultat.getString("Nom"));
 				user.setPrenom(resultat.getString("Prenom"));
 				user.setRole(resultat.getString("role"));
+				user.setPseudo(resultat.getString("username"));
+				user.setPassword(resultat.getString("Password"));
+				user.setDate_naissance(resultat.getString("date_naissance"));
+				
+				
 				
 				System.out.println("Vous etes connect�, bonjour "+user.getNom()+"");
 				
@@ -84,39 +89,29 @@ public class manager extends Utilisateur {
 		String result = "gg";
 		return result;
 	}
-	public void modification (Utilisateur user, String nnom, String nprenom) {
+	public void modificationprofil (Utilisateur user) {
+		
+		
 		try {
 			java.sql.Statement stm = cnx.createStatement();
 
 
-			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where nom='" + user.getNom() +"' AND prenom='" + user.getPrenom() +"'");
-
-			while(resultat.next()) {
-				user.setId(this.id = resultat.getString("id"));
-				System.out.println("Utilisateur existant");
-			}
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(id != null) {
-		try {
-			java.sql.Statement stm = cnx.createStatement();
-
-
-			int resultat = stm.executeUpdate("UPDATE utilisateur SET nom ='" + nnom + "', prenom ='" + nprenom + "' WHERE nom ='" + nom +"' AND prenom ='" +prenom+"'");
+			int resultat = stm.executeUpdate("UPDATE utilisateur SET nom ='" + user.getNom() + "',  prenom ='" + 
+			user.getPrenom() + "', username ='" + user.getPseudo() + "' ,password ='" + 
+			user.getPassword() + "', mail ='" + user.getMail() + "', date_naissance ='" + 
+			user.getDate_naissance() + "' WHERE id ='" + user.getId() + "'");
 			System.out.println("Utilisateur mis � jour");
-			user.setNom(this.nom = nnom);
-			user.setPrenom(this.prenom = nprenom);
+			
 			System.out.println(user.toString());
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}
+		
 	}
+		
+		
 	public void supprimer (Utilisateur user) {
 		try {
 			java.sql.Statement stm = cnx.createStatement();

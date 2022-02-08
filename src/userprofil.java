@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class userprofil {
 
@@ -14,7 +16,7 @@ public class userprofil {
 	private JTextField fieldnom;
 	private JButton btnChangerLeNom;
 	private JLabel lblNom;
-	private JTextField fieldrole;
+	private JTextField fielddatenaissance;
 	private JButton btndatenaissance;
 	private JLabel lbldatenaissance;
 	private JTextField fieldmail;
@@ -71,6 +73,7 @@ public class userprofil {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Utilisateur user) {
+		manager man = new manager();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 625, 395);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,6 +89,14 @@ public class userprofil {
 		fieldprenom.setColumns(10);
 		
 		JButton btnPrenom = new JButton("Changer le prenom");
+		btnPrenom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String prenom = fieldprenom.getText();
+				user.setPrenom(prenom);
+				
+				man.modificationprofil(user);
+			}
+		});
 		btnPrenom.setBounds(20, 116, 158, 23);
 		frame.getContentPane().add(btnPrenom);
 		
@@ -95,6 +106,14 @@ public class userprofil {
 		frame.getContentPane().add(fieldnom);
 		
 		btnChangerLeNom = new JButton("Changer le nom");
+		btnChangerLeNom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nom = fieldnom.getText();
+				user.setNom(nom);
+				
+				man.modificationprofil(user);
+			}
+		});
 		btnChangerLeNom.setBounds(212, 116, 158, 23);
 		frame.getContentPane().add(btnChangerLeNom);
 		
@@ -102,12 +121,20 @@ public class userprofil {
 		lblNom.setBounds(212, 56, 148, 14);
 		frame.getContentPane().add(lblNom);
 		
-		fieldrole = new JTextField();
-		fieldrole.setColumns(10);
-		fieldrole.setBounds(412, 85, 165, 20);
-		frame.getContentPane().add(fieldrole);
+		fielddatenaissance = new JTextField();
+		fielddatenaissance.setColumns(10);
+		fielddatenaissance.setBounds(412, 85, 165, 20);
+		frame.getContentPane().add(fielddatenaissance);
 		
 		btndatenaissance = new JButton("Changer la date de naissance");
+		btndatenaissance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String datenaissance = fielddatenaissance.getText();
+				user.setDate_naissance(datenaissance);
+				
+				man.modificationprofil(user);
+			}
+		});
 		btndatenaissance.setBounds(412, 116, 165, 23);
 		frame.getContentPane().add(btndatenaissance);
 		
@@ -121,6 +148,14 @@ public class userprofil {
 		frame.getContentPane().add(fieldmail);
 		
 		btnPrenom_3 = new JButton("Changer le mail");
+		btnPrenom_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String mail = fieldmail.getText();
+				user.setMail(mail);
+				
+				man.modificationprofil(user);
+			}
+		});
 		btnPrenom_3.setBounds(412, 234, 165, 23);
 		frame.getContentPane().add(btnPrenom_3);
 		
@@ -134,6 +169,14 @@ public class userprofil {
 		frame.getContentPane().add(fieldusername);
 		
 		btnusername = new JButton("Changer le prenom");
+		btnusername.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nom = fieldnom.getText();
+				user.setNom(nom);
+				
+				man.modificationprofil(user);
+			}
+		});
 		btnusername.setBounds(20, 234, 158, 23);
 		frame.getContentPane().add(btnusername);
 		
@@ -147,6 +190,10 @@ public class userprofil {
 		frame.getContentPane().add(textField_5);
 		
 		btnMotdepasse = new JButton("Changer le mot de passe");
+		btnMotdepasse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnMotdepasse.setBounds(212, 234, 158, 23);
 		frame.getContentPane().add(btnMotdepasse);
 		
