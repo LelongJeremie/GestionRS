@@ -2,6 +2,8 @@ package vueprof;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class classe {
 
@@ -35,8 +37,14 @@ public class classe {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 672, 567);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Classe");
+		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		lblNewLabel.setBounds(276, 11, 90, 52);
+		frame.getContentPane().add(lblNewLabel);
 	}
 
 }

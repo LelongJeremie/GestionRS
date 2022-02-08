@@ -3,6 +3,8 @@ package vueamdinistration;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class Information {
 
@@ -36,8 +38,13 @@ public class Information {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 677, 569);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Information");
+		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		lblNewLabel.setBounds(258, 11, 161, 42);
+		frame.getContentPane().add(lblNewLabel);
 	}
-
 }
