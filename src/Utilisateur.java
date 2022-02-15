@@ -19,6 +19,8 @@ public class Utilisateur {
 	protected String prenommodif;
 	protected String mailmodif;
 	protected String passwordmodif;
+	
+	
 	public String getNommodif() {
 		return nommodif;
 	}
