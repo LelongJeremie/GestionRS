@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class userprofil {
 
@@ -175,6 +177,23 @@ public class userprofil {
 				user.setNom(nom);
 				
 				man.modificationprofil(user);
+				
+				System.out.println(user.getPopup());
+				
+				if(user.getPopup()=="modificationprofil") {
+					
+					
+					
+					JLabel lblmodificationprofil = new JLabel("Modification effectu\u00E9 sur votre profil!");
+					lblmodificationprofil.setForeground(new Color(255, 0, 0));
+					lblmodificationprofil.setFont(new Font("Calibri", Font.PLAIN, 16));
+					lblmodificationprofil.setBounds(166, 283, 374, 44);
+					frame.getContentPane().add(lblmodificationprofil);
+					
+					
+				}
+				
+				frame.repaint();
 			}
 		});
 		btnusername.setBounds(20, 234, 158, 23);
@@ -200,6 +219,8 @@ public class userprofil {
 		lblPassword = new JLabel("Mot de passe :"+ user.getPassword());
 		lblPassword.setBounds(212, 174, 158, 14);
 		frame.getContentPane().add(lblPassword);
+		
+		
 	}
 
 	public void run(Utilisateur user) {

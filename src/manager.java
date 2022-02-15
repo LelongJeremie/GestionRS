@@ -102,6 +102,8 @@ public class manager extends Utilisateur {
 			user.getDate_naissance() + "' WHERE id ='" + user.getId() + "'");
 			System.out.println("Utilisateur mis � jour");
 			
+			user.setPopup("modificationprofil");
+			
 			System.out.println(user.toString());
 		}
 		catch (SQLException e) {

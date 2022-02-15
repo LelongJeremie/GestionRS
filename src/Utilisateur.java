@@ -12,6 +12,15 @@ public class Utilisateur {
 	protected String role;
 	protected String pseudo;
 	protected String date_naissance;
+	protected String popup;
+
+	public String getPopup() {
+		return popup;
+	}
+
+	public void setPopup(String popup) {
+		this.popup = popup;
+	}
 
 	public String getPseudo() {
 		return pseudo;
@@ -54,11 +63,14 @@ public class Utilisateur {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", id="
-				+ id + "]";
+				+ id + ", role=" + role + ", pseudo=" + pseudo + ", date_naissance=" + date_naissance + ", popup="
+				+ popup + "]";
 	}
 	
 //Liste des getters
