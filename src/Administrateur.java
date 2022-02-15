@@ -117,6 +117,20 @@ public class Administrateur {
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_1 = new JButton("Deconnexion");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {Connexion u=new Connexion();
+			u.run();
+			frame.setVisible(false);
+			this.dispose();
+
+		}
+
+		private void dispose() {
+			// TODO Auto-generated method stub
+			
+		}
+			
+		});
 		btnNewButton_1.setBounds(586, 526, 160, 52);
 		frame.getContentPane().add(btnNewButton_1);
 	}

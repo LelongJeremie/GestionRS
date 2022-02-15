@@ -110,6 +110,27 @@ public class Creaprofiladmin {
 		lblentrezpseudo.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		lblentrezpseudo.setBounds(40, 490, 189, 25);
 		frame.getContentPane().add(lblentrezpseudo);
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Administrateur u=new Administrateur(user);
+				u.run(user);
+				frame.setVisible(false);
+				this.dispose();
+	
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
+		btnRetour.setBounds(10, 11, 107, 36);
+		frame.getContentPane().add(btnRetour);
+
 
 		textFieldpseudo = new JTextField();
 		textFieldpseudo.setBounds(250, 490, 142, 33);
@@ -277,6 +298,8 @@ public class Creaprofiladmin {
 		
 		
 	}
+	
+	
 
 	public void run(Utilisateur user) {
 		try {

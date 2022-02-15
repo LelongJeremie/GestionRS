@@ -216,6 +216,26 @@ public class userprofil {
 		lblPassword = new JLabel("Mot de passe :"+ user.getPassword());
 		lblPassword.setBounds(212, 174, 158, 14);
 		frame.getContentPane().add(lblPassword);
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Administrateur u=new Administrateur(user);
+				u.run(user);
+				frame.setVisible(false);
+				this.dispose();
+	
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
+		btnRetour.setBounds(10, 11, 107, 36);
+		frame.getContentPane().add(btnRetour);
 
 
 	}
