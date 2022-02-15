@@ -12,6 +12,12 @@ public class manager extends Utilisateur {
 	private Connection cnx = co.connexion();
 	Utilisateur user = new Utilisateur();
 
+	private ResultSet resultat;
+
+
+	
+	
+
 
 	public String connexion (Utilisateur user) {
 		id="";
@@ -180,5 +186,70 @@ public class manager extends Utilisateur {
 		String result = "gg";
 		return result;
 	}
+	
+	public ResultSet test () {
+		id="";
 
-}
+		System.out.println(user.getMail());
+
+		try {
+        	// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			 resultat = stm.executeQuery("SELECT * FROM utilisateur ");
+
+			
+
+			
+		}
+			 
+			
+
+		
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+		}
+	
+	public void selectmodifprofiladmin (Utilisateur user) {
+
+
+		try {
+			java.sql.Statement stm = cnx.createStatement();
+			
+		
+			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where id='" + user.getId()+"'");
+
+			while(resultat.next()) {
+				user.setId(resultat.getString("id"));
+				user.setNom(resultat.getString("Nom"));
+				user.setPrenom(resultat.getString("Prenom"));
+				user.setRole(resultat.getString("role"));
+				user.setPseudo(resultat.getString("username"));
+				user.setPassword(resultat.getString("Password"));
+				user.setDate_naissance(resultat.getString("date_naissance"));
+			}
+
+
+
+			int resultat1 = stm.executeUpdate("UPDATE utilisateur SET nom ='" + user.getNom() + "',  prenom ='" +
+			user.getPrenom() + "', username ='" + user.getPseudo() + "' ,password ='" +
+			user.getPassword() + "', mail ='" + user.getMail() + "', date_naissance ='" +
+			user.getDate_naissance() + "' WHERE id ='" + user.getId() + "'");
+			System.out.println("Utilisateur mis � jour");
+
+			user.setPopup("modificationprofil");
+
+			System.out.println(user.toString());
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+
+}}}

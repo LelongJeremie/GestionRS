@@ -33,6 +33,7 @@ public class Inscription {
 	private JTextField textFieldconfirmation;
 	private JLabel lblconfirmation;
 	private JLabel lblrole;
+	private JButton btnretour;
 
 	/**
 	 * Launch the application.
@@ -62,6 +63,7 @@ public class Inscription {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setFont(new Font("Calibri", Font.PLAIN, 14));
 		frame.setBounds(100, 100, 850, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -228,6 +230,26 @@ public class Inscription {
 		btnValidezinscription.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		btnValidezinscription.setBounds(567, 506, 142, 33);
 		frame.getContentPane().add(btnValidezinscription);
+		
+		btnretour = new JButton("Retour");
+		btnretour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			index u=new index();
+				u.run();
+				frame.setVisible(false);
+				this.dispose();
+
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+				
+			
+		});
+		btnretour.setBounds(10, 11, 113, 38);
+		frame.getContentPane().add(btnretour);
 	}
 
 	public void run() {

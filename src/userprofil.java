@@ -78,11 +78,9 @@ public class userprofil {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblPrenom = new JLabel("Prenom : "+ user.getPrenom());
-		lblPrenom.setBounds(20, 58, 165, 14);
-		frame.getContentPane().add(lblPrenom);
+		
 
-		fieldprenom = new JTextField();
+		fieldprenom = new JTextField(user.getPrenom());
 		fieldprenom.setBounds(20, 85, 158, 20);
 		frame.getContentPane().add(fieldprenom);
 		fieldprenom.setColumns(10);
@@ -99,7 +97,7 @@ public class userprofil {
 		btnPrenom.setBounds(20, 116, 158, 23);
 		frame.getContentPane().add(btnPrenom);
 
-		fieldnom = new JTextField();
+		fieldnom = new JTextField(user.getNom());
 		fieldnom.setColumns(10);
 		fieldnom.setBounds(212, 85, 158, 20);
 		frame.getContentPane().add(fieldnom);
@@ -116,11 +114,9 @@ public class userprofil {
 		btnChangerLeNom.setBounds(212, 116, 158, 23);
 		frame.getContentPane().add(btnChangerLeNom);
 
-		lblNom = new JLabel("Nom :"+user.getNom());
-		lblNom.setBounds(212, 56, 148, 14);
-		frame.getContentPane().add(lblNom);
+		
 
-		fielddatenaissance = new JTextField();
+		fielddatenaissance = new JTextField(user.getDate_naissance());
 		fielddatenaissance.setColumns(10);
 		fielddatenaissance.setBounds(412, 85, 165, 20);
 		frame.getContentPane().add(fielddatenaissance);
@@ -137,11 +133,8 @@ public class userprofil {
 		btndatenaissance.setBounds(412, 116, 165, 23);
 		frame.getContentPane().add(btndatenaissance);
 
-		lbldatenaissance = new JLabel("Date de naissance : "+ user.getDate_naissance());
-		lbldatenaissance.setBounds(412, 58, 165, 14);
-		frame.getContentPane().add(lbldatenaissance);
-
-		fieldmail = new JTextField();
+		
+		fieldmail = new JTextField(user.getMail());
 		fieldmail.setColumns(10);
 		fieldmail.setBounds(412, 203, 165, 20);
 		frame.getContentPane().add(fieldmail);
@@ -158,11 +151,9 @@ public class userprofil {
 		btnPrenom_3.setBounds(412, 234, 165, 23);
 		frame.getContentPane().add(btnPrenom_3);
 
-		lblmail = new JLabel("mail : "+user.getMail());
-		lblmail.setBounds(412, 184, 165, 14);
-		frame.getContentPane().add(lblmail);
+	
 
-		fieldusername = new JTextField();
+		fieldusername = new JTextField(user.getPseudo());
 		fieldusername.setColumns(10);
 		fieldusername.setBounds(20, 203, 158, 20);
 		frame.getContentPane().add(fieldusername);
@@ -196,9 +187,7 @@ public class userprofil {
 		btnusername.setBounds(20, 234, 158, 23);
 		frame.getContentPane().add(btnusername);
 
-		lblusername = new JLabel("Pseudo : "+user.getPseudo());
-		lblusername.setBounds(20, 174, 158, 14);
-		frame.getContentPane().add(lblusername);
+		
 
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);

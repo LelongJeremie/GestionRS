@@ -72,6 +72,21 @@ public class Administrateur {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Gerer utilisateurs");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				adminuserprofil g=new adminuserprofil(user);
+				g.run1(user);
+				frame.setVisible(false);
+				this.dispose();
+				
+				
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		btnNewButton.setBounds(216, 356, 303, 69);
 		frame.getContentPane().add(btnNewButton);
 		
@@ -118,7 +133,7 @@ public class Administrateur {
 		
 		JButton btnNewButton_1 = new JButton("Deconnexion");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {Connexion u=new Connexion();
+			public void actionPerformed(ActionEvent e) {index u=new index();
 			u.run();
 			frame.setVisible(false);
 			this.dispose();

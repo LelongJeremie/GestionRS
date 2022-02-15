@@ -29,6 +29,7 @@ public class Connexion {
 	private JTextField emailField;
 	private JTextField mdpField;
 	private Throwable e1;
+	private JButton btnretour;
 
 	/**
 	 * Launch the application.
@@ -90,6 +91,26 @@ public class Connexion {
 		frame.getContentPane().add(emailField);
 		emailField.setColumns(10);
 
+		btnretour = new JButton("Retour");
+		btnretour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			index u=new index();
+				u.run();
+				frame.setVisible(false);
+				this.dispose();
+
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+				
+			
+		});
+		btnretour.setBounds(10, 11, 113, 38);
+		frame.getContentPane().add(btnretour);
+		
 		mdpField = new JTextField();
 		mdpField.setFont(new Font("Calibri Light", Font.PLAIN, 27));
 		mdpField.setColumns(10);
