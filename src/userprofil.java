@@ -6,6 +6,10 @@ import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class userprofil {
 
@@ -14,7 +18,7 @@ public class userprofil {
 	private JTextField fieldnom;
 	private JButton btnChangerLeNom;
 	private JLabel lblNom;
-	private JTextField fieldrole;
+	private JTextField fielddatenaissance;
 	private JButton btndatenaissance;
 	private JLabel lbldatenaissance;
 	private JTextField fieldmail;
@@ -46,110 +50,174 @@ public class userprofil {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 	}
 
 
 	public userprofil(Utilisateur user) {
-	
+
 		initialize(user);
-		
-		
-		
-		
+
+
+
+
 		System.out.println(user.getPrenom()+user.getNom());
-		
-		
+
+
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Utilisateur user) {
+		manager man = new manager();
 		frame = new JFrame();
-		frame.setBounds(100, 100, 519, 349);
+		frame.setBounds(100, 100, 625, 395);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JLabel lblPrenom = new JLabel("Prenom : "+ user.getPrenom());
-		lblPrenom.setBounds(89, 58, 49, 14);
+		lblPrenom.setBounds(20, 58, 165, 14);
 		frame.getContentPane().add(lblPrenom);
-		
+
 		fieldprenom = new JTextField();
-		fieldprenom.setBounds(89, 85, 96, 20);
+		fieldprenom.setBounds(20, 85, 158, 20);
 		frame.getContentPane().add(fieldprenom);
 		fieldprenom.setColumns(10);
-		
+
 		JButton btnPrenom = new JButton("Changer le prenom");
-		btnPrenom.setBounds(89, 116, 89, 23);
+		btnPrenom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String prenom = fieldprenom.getText();
+				user.setPrenom(prenom);
+
+				man.modificationprofil(user);
+			}
+		});
+		btnPrenom.setBounds(20, 116, 158, 23);
 		frame.getContentPane().add(btnPrenom);
-		
+
 		fieldnom = new JTextField();
 		fieldnom.setColumns(10);
-		fieldnom.setBounds(212, 85, 96, 20);
+		fieldnom.setBounds(212, 85, 158, 20);
 		frame.getContentPane().add(fieldnom);
-		
+
 		btnChangerLeNom = new JButton("Changer le nom");
-		btnChangerLeNom.setBounds(212, 116, 89, 23);
+		btnChangerLeNom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nom = fieldnom.getText();
+				user.setNom(nom);
+
+				man.modificationprofil(user);
+			}
+		});
+		btnChangerLeNom.setBounds(212, 116, 158, 23);
 		frame.getContentPane().add(btnChangerLeNom);
-		
-		lblNom = new JLabel("Nom :");
-		lblNom.setBounds(212, 56, 49, 14);
+
+		lblNom = new JLabel("Nom :"+user.getNom());
+		lblNom.setBounds(212, 56, 148, 14);
 		frame.getContentPane().add(lblNom);
-		
-		fieldrole = new JTextField();
-		fieldrole.setColumns(10);
-		fieldrole.setBounds(329, 85, 96, 20);
-		frame.getContentPane().add(fieldrole);
-		
+
+		fielddatenaissance = new JTextField();
+		fielddatenaissance.setColumns(10);
+		fielddatenaissance.setBounds(412, 85, 165, 20);
+		frame.getContentPane().add(fielddatenaissance);
+
 		btndatenaissance = new JButton("Changer la date de naissance");
-		btndatenaissance.setBounds(329, 116, 89, 23);
+		btndatenaissance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String datenaissance = fielddatenaissance.getText();
+				user.setDate_naissance(datenaissance);
+
+				man.modificationprofil(user);
+			}
+		});
+		btndatenaissance.setBounds(412, 116, 165, 23);
 		frame.getContentPane().add(btndatenaissance);
-		
-		lbldatenaissance = new JLabel("Date de naissance : ");
-		lbldatenaissance.setBounds(329, 56, 49, 14);
+
+		lbldatenaissance = new JLabel("Date de naissance : "+ user.getDate_naissance());
+		lbldatenaissance.setBounds(412, 58, 165, 14);
 		frame.getContentPane().add(lbldatenaissance);
-		
+
 		fieldmail = new JTextField();
 		fieldmail.setColumns(10);
-		fieldmail.setBounds(329, 203, 96, 20);
+		fieldmail.setBounds(412, 203, 165, 20);
 		frame.getContentPane().add(fieldmail);
-		
+
 		btnPrenom_3 = new JButton("Changer le mail");
-		btnPrenom_3.setBounds(329, 234, 89, 23);
+		btnPrenom_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String mail = fieldmail.getText();
+				user.setMail(mail);
+
+				man.modificationprofil(user);
+			}
+		});
+		btnPrenom_3.setBounds(412, 234, 165, 23);
 		frame.getContentPane().add(btnPrenom_3);
-		
-		lblmail = new JLabel("mail : ");
-		lblmail.setBounds(329, 174, 63, 14);
+
+		lblmail = new JLabel("mail : "+user.getMail());
+		lblmail.setBounds(412, 184, 165, 14);
 		frame.getContentPane().add(lblmail);
-		
+
 		fieldusername = new JTextField();
 		fieldusername.setColumns(10);
-		fieldusername.setBounds(89, 203, 96, 20);
+		fieldusername.setBounds(20, 203, 158, 20);
 		frame.getContentPane().add(fieldusername);
-		
+
 		btnusername = new JButton("Changer le prenom");
-		btnusername.setBounds(89, 234, 89, 23);
+		btnusername.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nom = fieldnom.getText();
+				user.setNom(nom);
+
+				man.modificationprofil(user);
+
+				System.out.println(user.getPopup());
+
+				if(user.getPopup()=="modificationprofil") {
+
+
+
+					JLabel lblmodificationprofil = new JLabel("Modification effectu\u00E9 sur votre profil!");
+					lblmodificationprofil.setForeground(new Color(255, 0, 0));
+					lblmodificationprofil.setFont(new Font("Calibri", Font.PLAIN, 16));
+					lblmodificationprofil.setBounds(166, 283, 374, 44);
+					frame.getContentPane().add(lblmodificationprofil);
+
+
+				}
+
+				frame.repaint();
+			}
+		});
+		btnusername.setBounds(20, 234, 158, 23);
 		frame.getContentPane().add(btnusername);
-		
-		lblusername = new JLabel("Pseudo : ");
-		lblusername.setBounds(89, 174, 49, 14);
+
+		lblusername = new JLabel("Pseudo : "+user.getPseudo());
+		lblusername.setBounds(20, 174, 158, 14);
 		frame.getContentPane().add(lblusername);
-		
+
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(212, 203, 96, 20);
+		textField_5.setBounds(212, 203, 158, 20);
 		frame.getContentPane().add(textField_5);
-		
+
 		btnMotdepasse = new JButton("Changer le mot de passe");
-		btnMotdepasse.setBounds(212, 234, 89, 23);
+		btnMotdepasse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMotdepasse.setBounds(212, 234, 158, 23);
 		frame.getContentPane().add(btnMotdepasse);
-		
-		lblPassword = new JLabel("Mot de passe : ");
-		lblPassword.setBounds(212, 174, 49, 14);
+
+		lblPassword = new JLabel("Mot de passe :"+ user.getPassword());
+		lblPassword.setBounds(212, 174, 158, 14);
 		frame.getContentPane().add(lblPassword);
+
+
 	}
 
 	public void run(Utilisateur user) {
@@ -162,5 +230,5 @@ public class userprofil {
 
 		}
 
-	}	
+	}
 }
