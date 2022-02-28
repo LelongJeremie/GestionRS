@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -10,17 +11,29 @@ import java.awt.BorderLayout;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JCheckBox;
 
 public class adminuserprofil {
 
 	private JFrame frame;
 	private ResultSet resultat;
+	private ResultSet resultatclasse;
 	private JTextField FieldPrenom;
 	private JTextField Fieldprenom;
 	private JTextField FieldMail;
 	private JTextField fieldDatenaissance;
 	private JTextField fieldpassword;
 	private JTextField FieldPseudo;
+	private int i;
+	private Utilisateur Monuser= new Utilisateur();
+	private classe Userclasse = new classe(); 
+	private JComboBox comboboxvalidation;
+	private JComboBox comboBox_1;
+	private JLabel lblRole;
 
 	/**
 	 * Launch the application.
@@ -65,58 +78,42 @@ public class adminuserprofil {
 		
 		
 		
+		
+		
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 909, 601);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JComboBox<Utilisateur> comboBox = new JComboBox();
-		comboBox.setBounds(0, 11, 767, 98);
+		comboBox.setBounds(10, 25, 975, 78);
 		frame.getContentPane().add(comboBox);
 		
+	
 		
-		
-		
+	
 		try {
+			i=0;
 			while(resultat.next()){
 				
+				Utilisateur Monuser= new Utilisateur();
 
-
 				
-				user.setIdmodif(resultat.getString("id"));
-				user.setNommodif(resultat.getString("nom"));
-				user.setPrenommodif(resultat.getString("prenom"));
-				user.setMailmodif(resultat.getString("mail"));
-				user.setPasswordmodif(resultat.getString("password"));
-				user.setRolemodif(resultat.getString("role"));
-				user.setDate_naissancemodif(resultat.getString("date_naissance"));
-				user.setPseudomodif(resultat.getString("username"));
+				Monuser.setIdmodif(resultat.getString("id"));
+				Monuser.setNommodif(resultat.getString("nom"));
+				Monuser.setPrenommodif(resultat.getString("prenom"));
+				Monuser.setMailmodif(resultat.getString("mail"));
+				Monuser.setPasswordmodif(resultat.getString("password"));
+				Monuser.setRolemodif(resultat.getString("role"));
+				Monuser.setDate_naissancemodif(resultat.getString("date_naissance"));
+				Monuser.setPseudomodif(resultat.getString("username"));
+				System.out.println("ID = "+Monuser.getIdmodif()+"i= "+i);
+				i=i+1;
+				comboBox.addItem(Monuser);  
 				
 				
 				
-		       
-
-				comboBox.addItem(user);   
-				 
-				 comboBox.addActionListener(new ActionListener() {     
-				     public void actionPerformed(ActionEvent e) {
-				        System.out.println("Valeur: " + comboBox.getSelectedItem().toString());      
-				     }
-				   });
-				  
-				 	user.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
-					user.setNommodif(((Utilisateur) comboBox.getSelectedItem()).getNommodif());
-					user.setPrenommodif(((Utilisateur) comboBox.getSelectedItem()).getPrenommodif());
-					user.setMailmodif(((Utilisateur) comboBox.getSelectedItem()).getMailmodif());
-					user.setPasswordmodif(((Utilisateur) comboBox.getSelectedItem()).getPasswordmodif());
-					user.setRolemodif(((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
-					user.setDate_naissancemodif(((Utilisateur) comboBox.getSelectedItem()).getDate_naissancemodif());
-					user.setPseudomodif(((Utilisateur) comboBox.getSelectedItem()).getPseudomodif());
-			
-					
-				   frame.getContentPane().add(comboBox); 
-				   frame.setSize(250, 250); 
-				   frame.show();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -128,55 +125,119 @@ public class adminuserprofil {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				JButton btnSelect = new JButton("Selectionner");
-				btnSelect.addActionListener(new ActionListener() {
+				 comboBox.addActionListener(new ActionListener() {     
+				     public void actionPerformed(ActionEvent e) {
+				    	 
+				        System.out.println("Valeur: " + comboBox.getSelectedItem().toString());      
+				     }
+				   });
+				  
+				 
+				   frame.getContentPane().add(comboBox); 
+				   frame.setSize(1009, 450); 
+				   frame.show();
+				
+			
+			JButton btnSelect = new JButton("Selectionner");
+			btnSelect.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						resultatclasse = man.afficherclasse();
 						
-						man.selectmodifprofiladmin(user);
+						man.selectmodifprofiladmin(Monuser);
+						
+						Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+						Monuser.setNommodif(((Utilisateur) comboBox.getSelectedItem()).getNommodif());
+						Monuser.setPrenommodif(((Utilisateur) comboBox.getSelectedItem()).getPrenommodif());
+						Monuser.setMailmodif(((Utilisateur) comboBox.getSelectedItem()).getMailmodif());
+						Monuser.setPasswordmodif(((Utilisateur) comboBox.getSelectedItem()).getPasswordmodif());
+						Monuser.setRolemodif(((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
+						Monuser.setDate_naissancemodif(((Utilisateur) comboBox.getSelectedItem()).getDate_naissancemodif());
+						Monuser.setPseudomodif(((Utilisateur) comboBox.getSelectedItem()).getPseudomodif());
+						
+						
+				
+						
+						JComboBox<classe> comboBoxclasse = new JComboBox();
+						comboBoxclasse.setBounds(453, 280, 177, 25);
+						frame.getContentPane().add(comboBoxclasse);
+						
+						
+						try {
+							
+							while(resultatclasse.next()){ 
+								classe Userclasse = new classe(); 
+								
+							Userclasse.setIdclasse(resultatclasse.getString("id"));
+							Userclasse.setClasse(resultatclasse.getString("libelle"));
+							comboBoxclasse.addItem(Userclasse);
+								
+								
+							}
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} 
+
 						
 						
 						
-						
-						
-						
-						FieldPrenom = new JTextField(user.getPrenommodif());
-						FieldPrenom.setBounds(69, 156, 115, 27);
+						FieldPrenom = new JTextField(Monuser.getPrenommodif());
+						FieldPrenom.setBounds(286, 165, 115, 27);
 						frame.getContentPane().add(FieldPrenom);
 						FieldPrenom.setColumns(10);
 						
 						Fieldprenom = new JTextField();
 						Fieldprenom.setColumns(10);
-						Fieldprenom.setBounds(264, 159, 115, 27);
+						Fieldprenom.setBounds(481, 168, 115, 27);
 						frame.getContentPane().add(Fieldprenom);
 						
-						FieldMail = new JTextField(user.getMail());
+						FieldMail = new JTextField(Monuser.getMail());
 						FieldMail.setColumns(10);
-						FieldMail.setBounds(445, 159, 115, 27);
+						FieldMail.setBounds(662, 168, 115, 27);
 						frame.getContentPane().add(FieldMail);
 						
-						fieldDatenaissance = new JTextField(user.getPrenommodif());
+						fieldDatenaissance = new JTextField(Monuser.getPrenommodif());
 						fieldDatenaissance.setColumns(10);
-						fieldDatenaissance.setBounds(69, 234, 115, 27);
+						fieldDatenaissance.setBounds(286, 221, 115, 27);
 						frame.getContentPane().add(fieldDatenaissance);
 						
-						fieldpassword = new JTextField(user.getPasswordmodif());
+						fieldpassword = new JTextField(Monuser.getPasswordmodif());
 						fieldpassword.setColumns(10);
-						fieldpassword.setBounds(264, 237, 115, 27);
+						fieldpassword.setBounds(481, 221, 115, 27);
 						frame.getContentPane().add(fieldpassword);
 						
-						FieldPseudo = new JTextField(user.getPseudomodif());
+						FieldPseudo = new JTextField(Monuser.getPseudomodif());
 						FieldPseudo.setColumns(10);
-						FieldPseudo.setBounds(445, 237, 115, 27);
+						FieldPseudo.setBounds(662, 221, 115, 27);
 						frame.getContentPane().add(FieldPseudo);
 						
+						comboboxvalidation = new JComboBox();
+						comboboxvalidation.setModel(new DefaultComboBoxModel(new String[] {"D\u00E9savtiv\u00E9", "En cours d'activation", "Activ\u00E9"}));
+						comboboxvalidation.setBounds(662, 281, 115, 22);
+						frame.getContentPane().add(comboboxvalidation);
+						
+						JLabel lblValidation = new JLabel("Validation : ");
+						lblValidation.setBounds(661, 259, 93, 14);
+						frame.getContentPane().add(lblValidation);
+						
+						comboBox_1 = new JComboBox();
+						comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Prof. Principal", "Prof.", "Administration", "Parent", "Eleve"}));
+						comboBox_1.setBounds(241, 281, 160, 22);
+						frame.getContentPane().add(comboBox_1);
+						
+						lblRole = new JLabel("Role :");
+						lblRole.setBounds(241, 259, 49, 14);
+						frame.getContentPane().add(lblRole);
+						
+						
+					
 						frame.repaint();
-						
-						
 						
 					}
 				});
-				btnSelect.setBounds(777, 42, 108, 37);
+				btnSelect.setBounds(488, 114, 108, 37);
 				frame.getContentPane().add(btnSelect);
+				
 				
 				
 	}

@@ -367,4 +367,37 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 
 
-}}}
+}}
+
+	public ResultSet afficherclasse () {
+
+
+		System.out.println(user.getMail());
+
+		try {
+        	// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			 resultat = stm.executeQuery("SELECT * FROM classe ");
+
+
+
+
+		}
+
+
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+		}
+
+
+
+}
