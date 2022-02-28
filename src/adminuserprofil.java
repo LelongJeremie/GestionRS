@@ -66,12 +66,12 @@ public class adminuserprofil {
 		
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 782, 487);
+		frame.setBounds(100, 100, 909, 601);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JComboBox<Utilisateur> comboBox = new JComboBox();
-		comboBox.setBounds(0, 11, 519, 98);
+		comboBox.setBounds(0, 11, 767, 98);
 		frame.getContentPane().add(comboBox);
 		
 		
@@ -80,11 +80,20 @@ public class adminuserprofil {
 		try {
 			while(resultat.next()){
 				
-				Utilisateur monUser = new Utilisateur();
+
+
 				
-				monuser.setIdmodif(resultat.getString("id"));
+				user.setIdmodif(resultat.getString("id"));
 				user.setNommodif(resultat.getString("nom"));
 				user.setPrenommodif(resultat.getString("prenom"));
+				user.setMailmodif(resultat.getString("mail"));
+				user.setPasswordmodif(resultat.getString("password"));
+				user.setRolemodif(resultat.getString("role"));
+				user.setDate_naissancemodif(resultat.getString("date_naissance"));
+				user.setPseudomodif(resultat.getString("username"));
+				
+				
+				
 		       
 
 				comboBox.addItem(user);   
@@ -95,10 +104,16 @@ public class adminuserprofil {
 				     }
 				   });
 				  
-				 
-				user.setIdmodif(comboBox.getSelectedItem().toString());
-				System.out.println(user.getIdmodif());
-				
+				 	user.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+					user.setNommodif(((Utilisateur) comboBox.getSelectedItem()).getNommodif());
+					user.setPrenommodif(((Utilisateur) comboBox.getSelectedItem()).getPrenommodif());
+					user.setMailmodif(((Utilisateur) comboBox.getSelectedItem()).getMailmodif());
+					user.setPasswordmodif(((Utilisateur) comboBox.getSelectedItem()).getPasswordmodif());
+					user.setRolemodif(((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
+					user.setDate_naissancemodif(((Utilisateur) comboBox.getSelectedItem()).getDate_naissancemodif());
+					user.setPseudomodif(((Utilisateur) comboBox.getSelectedItem()).getPseudomodif());
+			
+					
 				   frame.getContentPane().add(comboBox); 
 				   frame.setSize(250, 250); 
 				   frame.show();
@@ -124,7 +139,7 @@ public class adminuserprofil {
 						
 						
 						
-						FieldPrenom = new JTextField();
+						FieldPrenom = new JTextField(user.getPrenommodif());
 						FieldPrenom.setBounds(69, 156, 115, 27);
 						frame.getContentPane().add(FieldPrenom);
 						FieldPrenom.setColumns(10);
@@ -134,22 +149,22 @@ public class adminuserprofil {
 						Fieldprenom.setBounds(264, 159, 115, 27);
 						frame.getContentPane().add(Fieldprenom);
 						
-						FieldMail = new JTextField();
+						FieldMail = new JTextField(user.getMail());
 						FieldMail.setColumns(10);
 						FieldMail.setBounds(445, 159, 115, 27);
 						frame.getContentPane().add(FieldMail);
 						
-						fieldDatenaissance = new JTextField();
+						fieldDatenaissance = new JTextField(user.getPrenommodif());
 						fieldDatenaissance.setColumns(10);
 						fieldDatenaissance.setBounds(69, 234, 115, 27);
 						frame.getContentPane().add(fieldDatenaissance);
 						
-						fieldpassword = new JTextField();
+						fieldpassword = new JTextField(user.getPasswordmodif());
 						fieldpassword.setColumns(10);
 						fieldpassword.setBounds(264, 237, 115, 27);
 						frame.getContentPane().add(fieldpassword);
 						
-						FieldPseudo = new JTextField();
+						FieldPseudo = new JTextField(user.getPseudomodif());
 						FieldPseudo.setColumns(10);
 						FieldPseudo.setBounds(445, 237, 115, 27);
 						frame.getContentPane().add(FieldPseudo);
@@ -160,7 +175,7 @@ public class adminuserprofil {
 						
 					}
 				});
-				btnSelect.setBounds(547, 42, 108, 37);
+				btnSelect.setBounds(777, 42, 108, 37);
 				frame.getContentPane().add(btnSelect);
 				
 				

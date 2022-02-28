@@ -188,7 +188,7 @@ public class manager extends Utilisateur {
 	}
 	
 	public ResultSet test () {
-		id="";
+	
 
 		System.out.println(user.getMail());
 
