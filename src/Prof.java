@@ -5,6 +5,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+
+import vueprof.classe;
+
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
@@ -53,46 +56,61 @@ public class Prof {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Planning");
-		btnNewButton.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnPlanning = new JButton("Planning");
+		btnPlanning.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		btnPlanning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(236, 197, 206, 59);
-		frame.getContentPane().add(btnNewButton);
+		btnPlanning.setBounds(202, 115, 275, 59);
+		frame.getContentPane().add(btnPlanning);
 		
 		JLabel lblNewLabel = new JLabel("Professeur");
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		lblNewLabel.setBounds(265, 51, 142, 35);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton_1 = new JButton("Absence et retard");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnAbsence = new JButton("Absence et retard");
+		btnAbsence.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnNewButton_1.setBounds(201, 116, 275, 70);
-		frame.getContentPane().add(btnNewButton_1);
+		btnAbsence.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		btnAbsence.setBounds(202, 255, 275, 70);
+		frame.getContentPane().add(btnAbsence);
 		
-		JButton btnNewButton_2 = new JButton("Classe");
-		btnNewButton_2.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnClasse = new JButton("Classe");
+		btnClasse.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		btnClasse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_2.setBounds(255, 267, 170, 59);
-		frame.getContentPane().add(btnNewButton_2);
+				 classe v=new classe(user);
+					v.run(user);
+					frame.setVisible(false);
+					this.dispose();
 		
-		JButton btnNewButton_3 = new JButton("Sanction ");
-		btnNewButton_3.addActionListener(new ActionListener() {
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btnClasse.setBounds(202, 185, 275, 59);
+		frame.getContentPane().add(btnClasse);
+		
+		JButton btnSanction = new JButton("Sanction");
+		btnSanction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnNewButton_3.setBounds(265, 337, 153, 59);
-		frame.getContentPane().add(btnNewButton_3);
+		btnSanction.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		btnSanction.setBounds(202, 336, 275, 59);
+		frame.getContentPane().add(btnSanction);
+		
+		JButton btnFourniture = new JButton("Fourniture");
+		btnFourniture.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		btnFourniture.setBounds(202, 406, 275, 59);
+		frame.getContentPane().add(btnFourniture);
 	}
 
 	public void run(Utilisateur user) {

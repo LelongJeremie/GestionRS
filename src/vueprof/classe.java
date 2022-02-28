@@ -14,21 +14,28 @@ public class classe {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run(Utilisateur user) {
 				try {
-					classe window = new classe();
+					classe window = new classe(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public classe() {
+	public classe(Utilisateur user) {
 		initialize();
 	}
 
@@ -45,6 +52,11 @@ public class classe {
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		lblNewLabel.setBounds(276, 11, 90, 52);
 		frame.getContentPane().add(lblNewLabel);
+	}
+
+	public void run(Utilisateur user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
