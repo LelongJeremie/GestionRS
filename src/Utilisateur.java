@@ -12,6 +12,15 @@ public class Utilisateur {
 	protected String role;
 	protected String pseudo;
 	protected String date_naissance;
+	protected String connecternom;
+	protected String connecterprenom;
+	protected String connectermail;
+	protected String connecterpassword;
+	protected String connecterid;
+	protected String connecterrole;
+	protected String connecterpseudo;
+	protected String connecterdate_naissance;
+	protected String Token;
 	protected String popup;
 	protected String idmodif;
 	
@@ -23,6 +32,14 @@ public class Utilisateur {
 	
 	public String getNommodif() {
 		return nommodif;
+	}
+
+	public String getToken() {
+		return Token;
+	}
+
+	public void setToken(String token) {
+		Token = token;
 	}
 
 	public void setNommodif(String nommodif) {
@@ -82,7 +99,7 @@ public class Utilisateur {
 	protected String pseudomodif;
 	protected String date_naissancemodif;
 
-	
+
 
 	public String getIdmodif() {
 		return idmodif;

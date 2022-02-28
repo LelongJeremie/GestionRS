@@ -58,6 +58,18 @@ public class Motdepasse {
 				user.setMail(textFieldmdpmail.getText());
 				System.out.println(user.getMail());
 				manager man = new manager();
+				man.envoyermail(user.getMail());
+				
+				Motdepassevalide g=new Motdepassevalide();
+				g.run();
+				frame.setVisible(false);
+				this.dispose();
+
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		btnNewButton.setBounds(283, 350, 120, 35);

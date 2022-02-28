@@ -34,7 +34,7 @@ public class EnvoyerMail {
 			message.setFrom(new InternetAddress("phpmailerdugny@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("jeremie.lelong77@gmail.com"));
 			message.setSubject("Test javaMail API");
-			message.setText("Test");
+			message.setText("Voici votre numero de securite a ecrire sur la page :" );
 			
 			Transport.send(message);
 			System.out.println("Message envoyé");
