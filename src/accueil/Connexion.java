@@ -1,3 +1,4 @@
+package accueil;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;

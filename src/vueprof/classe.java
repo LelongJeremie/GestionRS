@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import accueil.Utilisateur;
+
 import java.awt.Font;
 
 public class classe {

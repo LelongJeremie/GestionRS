@@ -1,3 +1,4 @@
+package vueadmin;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,9 @@ import java.awt.BorderLayout;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import accueil.Utilisateur;
+import accueil.manager;
 
 public class adminuserprofil {
 

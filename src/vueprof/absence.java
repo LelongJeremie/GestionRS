@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import accueil.Utilisateur;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,21 +19,28 @@ public class absence {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run(Utilisateur user) {
 				try {
-					absence window = new absence();
+					absence window = new absence(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public absence() {
+	public absence(Utilisateur user) {
 		initialize();
 	}
 

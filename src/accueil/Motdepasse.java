@@ -1,3 +1,4 @@
+package accueil;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;

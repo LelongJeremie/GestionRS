@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import accueil.Utilisateur;
+
 public class planning {
 
 	private JFrame frame;
@@ -12,21 +14,28 @@ public class planning {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run(Utilisateur user) {
 				try {
-					planning window = new planning();
+					planning window = new planning(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public planning() {
+	public planning(Utilisateur user) {
 		initialize();
 	}
 

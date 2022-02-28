@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import accueil.Utilisateur;
+
 import java.awt.Font;
 
 public class sanction {
@@ -14,21 +17,28 @@ public class sanction {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run(Utilisateur user) {
 				try {
-					sanction window = new sanction();
+					sanction window = new sanction(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public sanction() {
+	public sanction(Utilisateur user) {
 		initialize();
 	}
 
