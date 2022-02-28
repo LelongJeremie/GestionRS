@@ -73,6 +73,25 @@ public class Administration {
 				
 			}
 		});
+		
+		JButton btnNewButton_1 = new JButton("Deconnexion");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {index u=new index();
+			u.run();
+			frame.setVisible(false);
+			this.dispose();
+
+		}
+
+		private void dispose() {
+			// TODO Auto-generated method stub
+			
+		}
+			
+		});
+		btnNewButton_1.setBounds(490, 465, 160, 52);
+		frame.getContentPane().add(btnNewButton_1);
+		
 		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnNewButton_3.setBounds(111, 245, 442, 55);
 		frame.getContentPane().add(btnNewButton_3);

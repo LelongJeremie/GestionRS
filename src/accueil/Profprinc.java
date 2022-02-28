@@ -50,6 +50,23 @@ public class Profprinc {
 		frame.setBounds(100, 100, 660, 555);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		JButton btnNewButton_1 = new JButton("Deconnexion");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {index u=new index();
+			u.run();
+			frame.setVisible(false);
+			this.dispose();
+
+		}
+
+		private void dispose() {
+			// TODO Auto-generated method stub
+			
+		}
+			
+		});
+		btnNewButton_1.setBounds(476, 455, 160, 52);
+		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("Planning");
 		btnNewButton.setFont(new Font("Calibri Light", Font.PLAIN, 31));
@@ -65,14 +82,15 @@ public class Profprinc {
 		lblNewLabel.setBounds(265, 51, 142, 35);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton_1 = new JButton("Absence et retard");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		
+		JButton btnNewButton_11 = new JButton("Absence et retard");
+		btnNewButton_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnNewButton_1.setBounds(201, 116, 275, 70);
-		frame.getContentPane().add(btnNewButton_1);
+		btnNewButton_11.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		btnNewButton_11.setBounds(201, 116, 275, 70);
+		frame.getContentPane().add(btnNewButton_11);
 		
 		JButton btnNewButton_2 = new JButton("Classee");
 		btnNewButton_2.setFont(new Font("Calibri Light", Font.PLAIN, 31));
@@ -91,6 +109,7 @@ public class Profprinc {
 		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnNewButton_3.setBounds(265, 337, 153, 59);
 		frame.getContentPane().add(btnNewButton_3);
+		
 	}
 	
 

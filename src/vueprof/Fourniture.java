@@ -1,19 +1,17 @@
 package vueprof;
+
 import java.awt.EventQueue;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
-import accueil.Administrateur;
 import accueil.Prof;
 import accueil.Utilisateur;
 
-import java.awt.Font;
-import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class sanction {
+public class Fourniture {
 
 	private JFrame frame;
 
@@ -24,7 +22,7 @@ public class sanction {
 		EventQueue.invokeLater(new Runnable() {
 			public void run(Utilisateur user) {
 				try {
-					sanction window = new sanction(user);
+					Fourniture window = new Fourniture(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,9 +39,8 @@ public class sanction {
 
 	/**
 	 * Create the application.
-	 * @param user 
 	 */
-	public sanction(Utilisateur user) {
+	public Fourniture(Utilisateur user) {
 		initialize(user);
 	}
 
@@ -52,24 +49,17 @@ public class sanction {
 	 */
 	private void initialize(Utilisateur user) {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 676, 570);
+		frame.setBounds(100, 100, 709, 595);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Sanction");
-		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(267, 11, 123, 67);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				Prof u=new Prof(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
-	
 			}
 
 			private void dispose() {
@@ -77,15 +67,13 @@ public class sanction {
 				
 			}
 		});
-		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
-		btnRetour.setBounds(10, 11, 107, 36);
-		frame.getContentPane().add(btnRetour);
-
+		btnNewButton.setBounds(10, 11, 107, 36);
+		frame.getContentPane().add(btnNewButton);
 	}
 
 	public void run(Utilisateur user) {
 		try {
-			sanction window = new sanction(user);
+			Fourniture window = new Fourniture(user);
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
