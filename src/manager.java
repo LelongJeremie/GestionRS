@@ -166,8 +166,8 @@ public class manager extends Utilisateur {
 
 			}
 
-			java.sql.Statement stm = cnx.createStatement();
-			int insert = stm.executeUpdate("UPDATE utilisateur SET mail='" + textFieldValidermdp.getText() + "' where token='"+user.getToken()+"'");
+		
+			int insert = stm.executeUpdate("UPDATE utilisateur SET Password='" + user.getPasswordmodif() + "' where token='"+user.getToken()+"'");
 
 		}
 		catch (SQLException e) {
@@ -368,4 +368,37 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 
 
-}}}
+}}
+	
+	public ResultSet afficherclasse () {
+
+
+		System.out.println(user.getMail());
+
+		try {
+        	// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			 resultat = stm.executeQuery("SELECT * FROM classe ");
+
+
+
+
+		}
+
+
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+		}
+
+
+
+}
