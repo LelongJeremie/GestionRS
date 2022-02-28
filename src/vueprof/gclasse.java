@@ -8,7 +8,7 @@ import accueil.Utilisateur;
 
 import java.awt.Font;
 
-public class classe {
+public class gclasse {
 
 	private JFrame frame;
 
@@ -19,7 +19,7 @@ public class classe {
 		EventQueue.invokeLater(new Runnable() {
 			public void run(Utilisateur user) {
 				try {
-					classe window = new classe(user);
+					gclasse window = new gclasse(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,14 +38,15 @@ public class classe {
 	 * Create the application.
 	 * @param user 
 	 */
-	public classe(Utilisateur user) {
-		initialize();
+	public gclasse(Utilisateur user) {
+		initialize(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param user 
 	 */
-	private void initialize() {
+	private void initialize(Utilisateur user) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 672, 567);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
 import vueprof.classe;
+import vueprof.gclasse;
 
 import java.awt.Font;
 import java.awt.Component;
@@ -84,7 +85,7 @@ public class Prof {
 		btnClasse.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnClasse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 classe v=new classe(user);
+				 gclasse v=new gclasse(user);
 					v.run(user);
 					frame.setVisible(false);
 					this.dispose();

@@ -20,7 +20,7 @@ import javax.swing.JCheckBox;
 
 import accueil.Utilisateur;
 import accueil.manager;
-import vueprof.classe;
+
 
 public class adminuserprofil {
 
@@ -170,7 +170,7 @@ public class adminuserprofil {
 						try {
 							
 							while(resultatclasse.next()){ 
-								classe Userclasse = new classe(user); 
+								classe Userclasse = new classe(); 
 								
 							Userclasse.setIdclasse(resultatclasse.getString("id"));
 							Userclasse.setClasse(resultatclasse.getString("libelle"));
