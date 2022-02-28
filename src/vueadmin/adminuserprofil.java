@@ -20,6 +20,7 @@ import javax.swing.JCheckBox;
 
 import accueil.Utilisateur;
 import accueil.manager;
+import vueprof.classe;
 
 public class adminuserprofil {
 
@@ -169,7 +170,7 @@ public class adminuserprofil {
 						try {
 							
 							while(resultatclasse.next()){ 
-								classe Userclasse = new classe(); 
+								classe Userclasse = new classe(user); 
 								
 							Userclasse.setIdclasse(resultatclasse.getString("id"));
 							Userclasse.setClasse(resultatclasse.getString("libelle"));
@@ -247,7 +248,12 @@ public class adminuserprofil {
 	}
 
 	public void run(Utilisateur user) {
-		// TODO Auto-generated method stub
+		try {
+			adminuserprofil window = new adminuserprofil(user);
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
