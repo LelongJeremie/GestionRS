@@ -272,4 +272,33 @@ public class manager extends Utilisateur {
 		
 	}
 
+	public void validercode(Utilisateur user) {
+		try {
+        	// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+			
+			ResultSet resultat = stm.executeQuery("SELECT id FROM utilisateur where token='" + user.getToken() +"'");
+
+			while(resultat.next()) {
+				
+				
+				System.out.println("Token existant");
+				
+				
+				
+			}
+			
+			java.sql.Statement stm = cnx.createStatement();
+			int insert = stm.executeUpdate("UPDATE utilisateur SET mail='" + textFieldValidermdp.getText() + "' where token='"+user.getToken()+"'");
+			
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+		}
+		
+	}
+
 }

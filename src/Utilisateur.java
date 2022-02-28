@@ -20,6 +20,15 @@ public class Utilisateur {
 	protected String connecterrole;
 	protected String connecterpseudo;
 	protected String connecterdate_naissance;
+	protected String Token;
+
+	public String getToken() {
+		return Token;
+	}
+
+	public void setToken(String token) {
+		Token = token;
+	}
 
 	public String getConnecternom() {
 		return connecternom;
