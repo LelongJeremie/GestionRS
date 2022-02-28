@@ -61,6 +61,111 @@ public class manager extends Utilisateur {
 		
 		return id;
 		}
+	
+	public void envoyermail(String mail) {
+		
+
+		Random randopass = new Random();
+
+		int randpass = randopass.nextInt(99999);
+		
+		try {
+        	// Prï¿½paration de la requï¿½te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where mail='" + mail +"'");
+
+			while(resultat.next()) {
+				user.setId(this.id = resultat.getString("id"));
+				System.out.println("Utilisateur existant");
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(user.getId() != null) {
+		try {
+		System.out.println(user);
+		java.sql.Statement stm = cnx.createStatement();
+		int insert = stm.executeUpdate("UPDATE utilisateur SET token='" + randpass + "' where mail='"+mail+"'");
+		System.out.println("Token modif");
+		}
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		
+		
+		  
+		//Creation de session
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		
+		Session session = Session.getInstance(props,
+				new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username,password);
+			}
+		});
+		
+		System.out.println(session);
+		try {
+			Message message = new MimeMessage(session);
+			
+			message.setFrom(new InternetAddress("phpmailerdugny@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
+			message.setSubject("Test javaMail API");
+			message.setText("Voici le code que vous devez entrer dans la page JAVA : "+ randpass);
+			
+			Transport.send(message);
+			System.out.println("Message envoyé");
+			
+			
+			
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+			
+		
+		
+	}
+
+	public void validercode(Utilisateur user) {
+		try {
+        	// Prï¿½paration de la requï¿½te
+			java.sql.Statement stm = cnx.createStatement();
+
+			
+			ResultSet resultat = stm.executeQuery("SELECT id FROM utilisateur where token='" + user.getToken() +"'");
+
+			while(resultat.next()) {
+				
+				
+				System.out.println("Token existant");
+				
+				
+				
+			}
+			
+			java.sql.Statement stm = cnx.createStatement();
+			int insert = stm.executeUpdate("UPDATE utilisateur SET mail='" + textFieldValidermdp.getText() + "' where token='"+user.getToken()+"'");
+			
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+		}
+		
+	}
 
 	public String inscription (Utilisateur user) {
 		try {
@@ -196,109 +301,6 @@ public class manager extends Utilisateur {
 		String result = "gg";
 		return result;
 	}
-	public void envoyermail(String mail) {
-		
 
-		Random randopass = new Random();
-
-		int randpass = randopass.nextInt(99999);
-		
-		try {
-        	// Prï¿½paration de la requï¿½te
-			java.sql.Statement stm = cnx.createStatement();
-
-
-			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where mail='" + mail +"'");
-
-			while(resultat.next()) {
-				user.setId(this.id = resultat.getString("id"));
-				System.out.println("Utilisateur existant");
-			}
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		if(user.getId() != null) {
-		try {
-		System.out.println(user);
-		java.sql.Statement stm = cnx.createStatement();
-		int insert = stm.executeUpdate("UPDATE utilisateur SET token='" + randpass + "' where mail='"+mail+"'");
-		System.out.println("Token modif");
-		}
-
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-		
-		
-		  
-		//Creation de session
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
-		
-		Session session = Session.getInstance(props,
-				new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username,password);
-			}
-		});
-		
-		System.out.println(session);
-		try {
-			Message message = new MimeMessage(session);
-			
-			message.setFrom(new InternetAddress("phpmailerdugny@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
-			message.setSubject("Test javaMail API");
-			message.setText("Voici le code que vous devez entrer dans la page JAVA : "+ randpass);
-			
-			Transport.send(message);
-			System.out.println("Message envoyé");
-			
-			
-			
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}
-			
-		
-		
-	}
-
-	public void validercode(Utilisateur user) {
-		try {
-        	// Prï¿½paration de la requï¿½te
-			java.sql.Statement stm = cnx.createStatement();
-
-			
-			ResultSet resultat = stm.executeQuery("SELECT id FROM utilisateur where token='" + user.getToken() +"'");
-
-			while(resultat.next()) {
-				
-				
-				System.out.println("Token existant");
-				
-				
-				
-			}
-			
-			java.sql.Statement stm = cnx.createStatement();
-			int insert = stm.executeUpdate("UPDATE utilisateur SET mail='" + textFieldValidermdp.getText() + "' where token='"+user.getToken()+"'");
-			
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			
-			e.printStackTrace();
-		}
-		
-	}
 
 }
