@@ -64,9 +64,19 @@ public class Motdepassevalide {
 			public void actionPerformed(ActionEvent e) {
 				Utilisateur user = new Utilisateur();
 				user.setToken(textFieldValider.getText());
-				
+				user.setPasswordmodif(textFieldValidermdp.getText());
 				manager man = new manager();
 				man.validercode(user);
+				
+				index u=new index();
+				u.run();
+				frame.setVisible(false);
+				this.dispose();
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		btnValider.setBounds(301, 413, 113, 42);

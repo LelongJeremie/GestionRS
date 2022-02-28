@@ -166,8 +166,7 @@ public class manager extends Utilisateur {
 
 			}
 
-			java.sql.Statement stm = cnx.createStatement();
-			int insert = stm.executeUpdate("UPDATE utilisateur SET mail='" + textFieldValidermdp.getText() + "' where token='"+user.getToken()+"'");
+			int insert = stm.executeUpdate("UPDATE utilisateur SET password='" + user.getPasswordmodif() + "' where token='"+user.getToken()+"'");
 
 		}
 		catch (SQLException e) {
