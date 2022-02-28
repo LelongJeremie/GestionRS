@@ -11,6 +11,7 @@ public class Utilisateur {
 	protected String password;
 	protected String id;
 	protected String role;
+	protected String idclasse;
 	protected String pseudo;
 	protected String date_naissance;
 	protected String connecternom;
@@ -29,8 +30,89 @@ public class Utilisateur {
 	protected String prenommodif;
 	protected String mailmodif;
 	protected String passwordmodif;
+	protected String classe;
 	
 	
+	public String getIdclasse() {
+		return idclasse;
+	}
+
+	public void setIdclasse(String idclasse) {
+		this.idclasse = idclasse;
+	}
+
+	public String getConnecternom() {
+		return connecternom;
+	}
+
+	public void setConnecternom(String connecternom) {
+		this.connecternom = connecternom;
+	}
+
+	public String getConnecterprenom() {
+		return connecterprenom;
+	}
+
+	public void setConnecterprenom(String connecterprenom) {
+		this.connecterprenom = connecterprenom;
+	}
+
+	public String getConnectermail() {
+		return connectermail;
+	}
+
+	public void setConnectermail(String connectermail) {
+		this.connectermail = connectermail;
+	}
+
+	public String getConnecterpassword() {
+		return connecterpassword;
+	}
+
+	public void setConnecterpassword(String connecterpassword) {
+		this.connecterpassword = connecterpassword;
+	}
+
+	public String getConnecterid() {
+		return connecterid;
+	}
+
+	public void setConnecterid(String connecterid) {
+		this.connecterid = connecterid;
+	}
+
+	public String getConnecterrole() {
+		return connecterrole;
+	}
+
+	public void setConnecterrole(String connecterrole) {
+		this.connecterrole = connecterrole;
+	}
+
+	public String getConnecterpseudo() {
+		return connecterpseudo;
+	}
+
+	public void setConnecterpseudo(String connecterpseudo) {
+		this.connecterpseudo = connecterpseudo;
+	}
+
+	public String getConnecterdate_naissance() {
+		return connecterdate_naissance;
+	}
+
+	public void setConnecterdate_naissance(String connecterdate_naissance) {
+		this.connecterdate_naissance = connecterdate_naissance;
+	}
+
+	public String getClasse() {
+		return classe;
+	}
+
+	public void setClasse(String classe) {
+		this.classe = classe;
+	}
+
 	public String getNommodif() {
 		return nommodif;
 	}
@@ -165,9 +247,13 @@ public class Utilisateur {
 	@Override
 	public String toString() {
 		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", id="
-				+ id + ", role=" + role + ", pseudo=" + pseudo + ", date_naissance=" + date_naissance + ", popup="
-				+ popup + ", idmodif=" + idmodif + ", nommodif=" + nommodif + ", prenommodif=" + prenommodif
-				+ ", mailmodif=" + mailmodif + ", passwordmodif=" + passwordmodif + ", rolemodif=" + rolemodif
+				+ id + ", role=" + role + ", idclasse=" + idclasse + ", pseudo=" + pseudo + ", date_naissance="
+				+ date_naissance + ", connecternom=" + connecternom + ", connecterprenom=" + connecterprenom
+				+ ", connectermail=" + connectermail + ", connecterpassword=" + connecterpassword + ", connecterid="
+				+ connecterid + ", connecterrole=" + connecterrole + ", connecterpseudo=" + connecterpseudo
+				+ ", connecterdate_naissance=" + connecterdate_naissance + ", Token=" + Token + ", popup=" + popup
+				+ ", idmodif=" + idmodif + ", nommodif=" + nommodif + ", prenommodif=" + prenommodif + ", mailmodif="
+				+ mailmodif + ", passwordmodif=" + passwordmodif + ", classe=" + classe + ", rolemodif=" + rolemodif
 				+ ", pseudomodif=" + pseudomodif + ", date_naissancemodif=" + date_naissancemodif + "]";
 	}
 
