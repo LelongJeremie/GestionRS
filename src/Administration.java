@@ -17,21 +17,28 @@ public class Administration {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run(Utilisateur user) {
 				try {
-					Administration window = new Administration();
+					Administration window = new Administration(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public Administration() {
+	public Administration(Utilisateur user) {
 		initialize();
 	}
 
@@ -68,5 +75,15 @@ public class Administration {
 		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnNewButton_3.setBounds(111, 245, 442, 55);
 		frame.getContentPane().add(btnNewButton_3);
+	}
+
+	public void run(Utilisateur user) {
+		try {
+			Administration window = new Administration(user);
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

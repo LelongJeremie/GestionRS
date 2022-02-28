@@ -1,15 +1,13 @@
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Component;
-import javax.swing.Box;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Prof {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Profprinc {
 
 	private JFrame frame;
 
@@ -20,7 +18,7 @@ public class Prof {
 		EventQueue.invokeLater(new Runnable() {
 			public void run(Utilisateur user) {
 				try {
-					Prof window = new Prof(user);
+					Profprinc window = new Profprinc(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,17 +35,16 @@ public class Prof {
 
 	/**
 	 * Create the application.
+	 * @param user 
 	 */
-	public Prof(Utilisateur user) {
-		initialize(user);
+	public Profprinc(Utilisateur user) {
+		initialize();
 	}
-	
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @param user 
 	 */
-	private void initialize(Utilisateur user) {
+	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 660, 555);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,7 +73,7 @@ public class Prof {
 		btnNewButton_1.setBounds(201, 116, 275, 70);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Classe");
+		JButton btnNewButton_2 = new JButton("Classee");
 		btnNewButton_2.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,14 +91,16 @@ public class Prof {
 		btnNewButton_3.setBounds(265, 337, 153, 59);
 		frame.getContentPane().add(btnNewButton_3);
 	}
+	
 
 	public void run(Utilisateur user) {
 		try {
-			Prof window = new Prof(user);
+			Profprinc window = new Profprinc(user);
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
+
 }

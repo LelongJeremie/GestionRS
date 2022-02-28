@@ -154,7 +154,32 @@ public class Connexion {
 			
 
 				}
+				else if(res.equals("2")) {
+					 Profprinc v=new Profprinc(user);
+						v.run(user);
+						frame.setVisible(false);
+						this.dispose();
+			
+				}
 
+				
+				else if(res.equals("3")) {
+					 Prof v=new Prof(user);
+						v.run(user);
+						frame.setVisible(false);
+						this.dispose();
+			
+				}
+				
+				else if(res.equals("4")) {
+					 Administration v=new Administration(user);
+						v.run(user);
+						frame.setVisible(false);
+						this.dispose();
+			
+				}
+				
+				
 		
 		else {
 
