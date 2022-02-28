@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
-import vueprof.classe;
 import vueprof.gclasse;
 
 import java.awt.Font;
