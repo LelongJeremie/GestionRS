@@ -154,9 +154,13 @@ public class Inscription {
 		
 		JRadioButton rdbtnProfesseur = new JRadioButton("Professeur");
 		JRadioButton rdbtnadministratif = new JRadioButton("Administratif");
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnadministratif);
+		group.add(rdbtnProfesseur);
 		rdbtnadministratif.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rdbtnProfesseur.setSelected(false);
+				
 			}
 		});
 		rdbtnadministratif.setHorizontalAlignment(SwingConstants.CENTER);
@@ -167,7 +171,7 @@ public class Inscription {
 		
 		rdbtnProfesseur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rdbtnadministratif.setSelected(false);
+				
 			}
 		});
 		rdbtnProfesseur.setHorizontalAlignment(SwingConstants.CENTER);
