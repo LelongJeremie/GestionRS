@@ -142,7 +142,7 @@ public class Connexion {
 				System.out.println("aaa");
 				System.out.println(res);
 				
-				if(res.equals("1")) { 
+				if(res.equals("Admin")) { 
 					
 					
 					

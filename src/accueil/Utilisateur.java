@@ -25,7 +25,35 @@ public class Utilisateur {
 	protected String Token;
 	protected String popup;
 	protected String idmodif;
-	
+	protected String classemodif;
+	public String getValidationmodif() {
+		return validationmodif;
+	}
+
+	public void setValidationmodif(String validationmodif) {
+		this.validationmodif = validationmodif;
+	}
+
+
+	protected String validation;
+	protected String validationmodif;
+	public String getValidation() {
+		return validation;
+	}
+
+	public void setValidation(String validation) {
+		this.validation = validation;
+	}
+
+	public String getClassemodif() {
+		return classemodif;
+	}
+
+	public void setClassemodif(String classemodif) {
+		this.classemodif = classemodif;
+	}
+
+
 	protected String nommodif;
 	protected String prenommodif;
 	protected String mailmodif;
@@ -246,15 +274,9 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", id="
-				+ id + ", role=" + role + ", idclasse=" + idclasse + ", pseudo=" + pseudo + ", date_naissance="
-				+ date_naissance + ", connecternom=" + connecternom + ", connecterprenom=" + connecterprenom
-				+ ", connectermail=" + connectermail + ", connecterpassword=" + connecterpassword + ", connecterid="
-				+ connecterid + ", connecterrole=" + connecterrole + ", connecterpseudo=" + connecterpseudo
-				+ ", connecterdate_naissance=" + connecterdate_naissance + ", Token=" + Token + ", popup=" + popup
-				+ ", idmodif=" + idmodif + ", nommodif=" + nommodif + ", prenommodif=" + prenommodif + ", mailmodif="
-				+ mailmodif + ", passwordmodif=" + passwordmodif + ", classe=" + classe + ", rolemodif=" + rolemodif
-				+ ", pseudomodif=" + pseudomodif + ", date_naissancemodif=" + date_naissancemodif + "]";
+		return "Nom : " + nommodif + " || Prenom : " + prenommodif + " || Mail : "
+				+ mailmodif + " || Classe : " + classemodif + " || Role : " + rolemodif
+				+ " || Pseudo : " + pseudomodif + " || date de naissance : " + date_naissancemodif + " || validation :"+validationmodif;
 	}
 
 //Liste des getters

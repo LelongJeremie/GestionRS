@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 
+import accueil.Administrateur;
 import accueil.Utilisateur;
 import accueil.manager;
 
@@ -28,7 +29,6 @@ public class adminuserprofil {
 	private ResultSet resultat;
 	private ResultSet resultatclasse;
 	private JTextField FieldPrenom;
-	private JTextField Fieldprenom;
 	private JTextField FieldMail;
 	private JTextField fieldDatenaissance;
 	private JTextField fieldpassword;
@@ -37,7 +37,7 @@ public class adminuserprofil {
 	private Utilisateur Monuser= new Utilisateur();
 	private classe Userclasse = new classe(); 
 	private JComboBox comboboxvalidation;
-	private JComboBox comboBox_1;
+	private JComboBox comboBoxrole;
 	private JLabel lblRole;
 	private JTextField Fieldnom;
 
@@ -48,7 +48,7 @@ public class adminuserprofil {
 	public void run1(Utilisateur user) {
 		try {
 			adminuserprofil window = new adminuserprofil(user);
-			window.frame.setVisible(true);
+			window.frame.setVisible(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,24 +79,16 @@ public class adminuserprofil {
 
 		resultat = man.test();
 
-
-
-
-
-
-
-
-
 		frame = new JFrame();
 		frame.setBounds(100, 100, 909, 601);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JComboBox<Utilisateur> comboBox = new JComboBox();
-		comboBox.setBounds(10, 25, 975, 78);
+		comboBox.setBounds(10, 49, 975, 54);
 		frame.getContentPane().add(comboBox);
 
-
+		JComboBox<classe> comboBoxclasse = new JComboBox();
 
 
 		try {
@@ -112,8 +104,11 @@ public class adminuserprofil {
 				Monuser.setMailmodif(resultat.getString("mail"));
 				Monuser.setPasswordmodif(resultat.getString("password"));
 				Monuser.setRolemodif(resultat.getString("role"));
+				Monuser.setClassemodif(resultat.getString("classe"));
 				Monuser.setDate_naissancemodif(resultat.getString("date_naissance"));
 				Monuser.setPseudomodif(resultat.getString("username"));
+				Monuser.setValidationmodif(resultat.getString("Validation"));
+
 				System.out.println("ID = "+Monuser.getIdmodif()+"i= "+i);
 				i=i+1;
 				comboBox.addItem(Monuser);  
@@ -218,57 +213,113 @@ public class adminuserprofil {
 				frame.getContentPane().add(FieldPseudo);
 
 				comboboxvalidation = new JComboBox();
-				comboboxvalidation.setModel(new DefaultComboBoxModel(new String[] {"D\u00E9savtiv\u00E9", "En cours d'activation", "Activ\u00E9"}));
+				comboboxvalidation.setModel(new DefaultComboBoxModel(new String[] {"Desactive", "En cours d'activation", "Active"}));
 				comboboxvalidation.setBounds(662, 281, 115, 22);
 				frame.getContentPane().add(comboboxvalidation);
 
-				JLabel lblValidation = new JLabel("Validation : ");
+				JLabel lblValidation = new JLabel("Validation: "+((Utilisateur) comboBox.getSelectedItem()).getValidationmodif());
 				lblValidation.setBounds(661, 259, 93, 14);
 				frame.getContentPane().add(lblValidation);
 
-				comboBox_1 = new JComboBox();
-				comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Prof. Principal", "Prof.", "Administration", "Parent", "Eleve"}));
-				comboBox_1.setBounds(241, 281, 160, 22);
-				frame.getContentPane().add(comboBox_1);
+				comboBoxrole = new JComboBox();
+				comboBoxrole.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Prof. Principal", "Prof.", "Administration", "Parent", "Eleve"}));
+				comboBoxrole.setBounds(241, 281, 160, 22);
+				frame.getContentPane().add(comboBoxrole);
 
-				lblRole = new JLabel("Role :");
-				lblRole.setBounds(241, 259, 49, 14);
+				lblRole = new JLabel("Role: "+((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
+				lblRole.setBounds(241, 259, 147, 14);
 				frame.getContentPane().add(lblRole);
 
 				JButton btnModificationadmin = new JButton("Modification");
 				btnModificationadmin.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
-					Monuser.setNommodif(""+Fieldnom);
-					Monuser.setPrenommodif(""+FieldPrenom);
-					Monuser.setMailmodif(""+FieldMail);
-					Monuser.setDate_naissance(""+fieldDatenaissance);
-					Monuser.setPseudomodif(""+FieldPseudo);
-					Monuser.setPasswordmodif(""+fieldpassword);
-					Monuser.setRole(((Utilisateur) comboBoxclasse.getSelectedItem()).getPasswordmodif());
-					
-					
-					
-					
-					
-					
-						
-						
+
+						Monuser.setNommodif(""+Fieldnom.getText());
+						Monuser.setPrenommodif(""+FieldPrenom.getText());
+						Monuser.setMailmodif(""+FieldMail.getText());
+						Monuser.setDate_naissance(""+fieldDatenaissance.getText());
+						Monuser.setPseudomodif(""+FieldPseudo.getText());
+						Monuser.setPasswordmodif(""+fieldpassword.getText());
+						Monuser.setClassemodif(((classe) comboBoxclasse.getSelectedItem()).getIdclasse());
+						Monuser.setRolemodif(comboBoxrole.getSelectedItem().toString());
+						Monuser.setValidationmodif(comboboxvalidation.getSelectedItem().toString());
+
+						man.selectmodifprofiladmin(Monuser);
 
 
 
+
+
+						PopupAdmin u=new PopupAdmin(user);
+						u.run(user);
+						frame.setVisible(false);
+						this.dispose();
 
 					}
+
+					private void dispose() {
+						// TODO Auto-generated method stub
+
+					}
+
+
+
+
+
+
 				});
 				btnModificationadmin.setBounds(488, 337, 108, 37);
 				frame.getContentPane().add(btnModificationadmin);
+
+				JLabel lblclasse = new JLabel("Classe : "+((Utilisateur) comboBox.getSelectedItem()).getClassemodif());
+				lblclasse.setBounds(453, 259, 160, 14);
+				frame.getContentPane().add(lblclasse);
 
 				frame.repaint();
 
 			}
 		});
-		btnSelect.setBounds(488, 114, 108, 37);
+		btnSelect.setBounds(488, 114, 147, 37);
 		frame.getContentPane().add(btnSelect);
+
+		JButton btnretour = new JButton("retour");
+		btnretour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Administrateur u=new Administrateur(user);
+				u.run(user);
+				frame.setVisible(false);
+				this.dispose();
+
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+		btnretour.setBounds(0, 0, 89, 38);
+		frame.getContentPane().add(btnretour);
+		
+		JButton btnRefresh = new JButton("Deselectionner");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				adminuserprofil u=new adminuserprofil(user);
+				u.run(user);
+				frame.setVisible(false);
+				this.dispose();
+				
+				
+				
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btnRefresh.setBounds(331, 114, 147, 38);
+		frame.getContentPane().add(btnRefresh);
 
 
 
@@ -279,7 +330,7 @@ public class adminuserprofil {
 	public void run(Utilisateur user) {
 		try {
 			adminuserprofil window = new adminuserprofil(user);
-			window.frame.setVisible(true);
+			window.frame.setVisible(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

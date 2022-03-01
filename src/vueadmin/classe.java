@@ -4,6 +4,7 @@ public class classe {
 	
 	protected String classe;
 	protected String idclasse;
+	
 	public String getClasse() {
 		return classe;
 	}
@@ -18,7 +19,7 @@ public class classe {
 	}
 	@Override
 	public String toString() {
-		return "classe=" + classe + ", idclasse=" + idclasse;
+		return "" + classe;
 	}
 
 }
