@@ -151,14 +151,25 @@ public class Inscription {
 		lblrole.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		lblrole.setBounds(567, 331, 142, 25);
 		frame.getContentPane().add(lblrole);
-
+		
+		JRadioButton rdbtnProfesseur = new JRadioButton("Professeur");
 		JRadioButton rdbtnadministratif = new JRadioButton("Administratif");
+		rdbtnadministratif.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnProfesseur.setSelected(false);
+			}
+		});
 		rdbtnadministratif.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnadministratif.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnadministratif.setBounds(475, 409, 142, 26);
 		frame.getContentPane().add(rdbtnadministratif);
 
-		JRadioButton rdbtnProfesseur = new JRadioButton("Professeur");
+		
+		rdbtnProfesseur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnadministratif.setSelected(false);
+			}
+		});
 		rdbtnProfesseur.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnProfesseur.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnProfesseur.setBounds(631, 409, 142, 26);
@@ -173,9 +184,7 @@ public class Inscription {
 				
 				
 				manager man = new manager();
-				int id = 0;
-				
-		               	
+				int id = 0;           	
 
 					String nom = textFieldentreznom.getText();
 					String prenom = textFieldprenom.getText();
