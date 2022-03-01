@@ -10,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -152,6 +153,7 @@ public class Inscription {
 		frame.getContentPane().add(lblrole);
 
 		JRadioButton rdbtnadministratif = new JRadioButton("Administratif");
+		rdbtnadministratif.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnadministratif.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnadministratif.setBounds(475, 409, 142, 26);
 		frame.getContentPane().add(rdbtnadministratif);
@@ -173,7 +175,7 @@ public class Inscription {
 				manager man = new manager();
 				int id = 0;
 				
-		        
+		               	
 
 					String nom = textFieldentreznom.getText();
 					String prenom = textFieldprenom.getText();
