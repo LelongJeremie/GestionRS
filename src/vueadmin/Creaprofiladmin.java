@@ -186,7 +186,6 @@ public class Creaprofiladmin {
 		group.add(rdbtnprofesseur);
 		group.add(rdbtnadministratif);
 		
-		
 		rdbtnadministratif.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

@@ -21,15 +21,9 @@ import java.awt.Color;
 
 public class Connexion {
 
-
-
-	private static int id;
-	private static String nom;
-	private static String email;
 	JFrame frame;
 	private JTextField emailField;
 	private JTextField mdpField;
-	private Throwable e1;
 	private JButton btnretour;
 
 	/**
@@ -211,22 +205,7 @@ public class Connexion {
 
 		   
 	}
-	
-	public static int envoieid(){
-		System.out.println(id);
-		return id;
-	}
-	
-	public static String envoiemail(){
-		
-		return email;
-	}
-	
-	public static String envoinom(){
-		System.out.println(nom);
-		return nom;
-	}
-	
+
 
 	public void run() {
 		try {
