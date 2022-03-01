@@ -15,6 +15,7 @@ import accueil.Popup_inscription;
 import accueil.Utilisateur;
 import accueil.manager;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -169,13 +170,36 @@ public class Creaprofiladmin {
 		lblrole.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		lblrole.setBounds(567, 331, 142, 25);
 		frame.getContentPane().add(lblrole);
-
+		
+		JRadioButton rdbtnadmin = new JRadioButton("Admin");
+		JRadioButton rdbtnprofesseurprincipal = new JRadioButton("Professeur Principal");
+		JRadioButton rdbtnetudiant = new JRadioButton("Etudiant");
+		JRadioButton rdbtnparent = new JRadioButton("Parent");
+		JRadioButton rdbtnprofesseur = new JRadioButton("Professeur");
 		JRadioButton rdbtnadministratif = new JRadioButton("administratif");
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnadmin);
+		group.add(rdbtnprofesseurprincipal);
+		group.add(rdbtnetudiant);
+		group.add(rdbtnparent);
+		group.add(rdbtnprofesseur);
+		group.add(rdbtnadministratif);
+		
+		
+		rdbtnadministratif.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rdbtnadministratif.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnadministratif.setBounds(660, 409, 142, 26);
 		frame.getContentPane().add(rdbtnadministratif);
 
-		JRadioButton rdbtnprofesseur = new JRadioButton("Professeur");
+		
+		rdbtnprofesseur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rdbtnprofesseur.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnprofesseur.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnprofesseur.setBounds(475, 409, 142, 26);
@@ -186,28 +210,44 @@ public class Creaprofiladmin {
 		frame.getContentPane().add(textFieldentreznom);
 		textFieldentreznom.setColumns(10);
 		
-		JRadioButton rdbtnadmin = new JRadioButton("Admin");
+
+		rdbtnadmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rdbtnadmin.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnadmin.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnadmin.setBounds(478, 363, 111, 23);
 		frame.getContentPane().add(rdbtnadmin);
 		
-		JRadioButton rdbtnprofesseurprincipal = new JRadioButton("Professeur Principal");
+		
+		rdbtnprofesseurprincipal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rdbtnprofesseurprincipal.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnprofesseurprincipal.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnprofesseurprincipal.setBounds(660, 363, 149, 25);
 		frame.getContentPane().add(rdbtnprofesseurprincipal);
 		
-		JRadioButton rdbtnetudiant = new JRadioButton("Etudiant");
+		
+		rdbtnetudiant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rdbtnetudiant.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnetudiant.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnetudiant.setBounds(644, 455, 111, 23);
 		frame.getContentPane().add(rdbtnetudiant);
 		
-		JRadioButton rdbtnparent = new JRadioButton("Parent");
+		
+		rdbtnparent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		rdbtnparent.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnparent.setFont(new Font("Calibri Light", Font.PLAIN, 15));
-		rdbtnparent.setBounds(479, 455, 122, 23);
+		rdbtnparent.setBounds(475, 455, 122, 23);
 		frame.getContentPane().add(rdbtnparent);
 		
 

@@ -10,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -150,13 +151,29 @@ public class Inscription {
 		lblrole.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		lblrole.setBounds(567, 331, 142, 25);
 		frame.getContentPane().add(lblrole);
-
+		
+		JRadioButton rdbtnProfesseur = new JRadioButton("Professeur");
 		JRadioButton rdbtnadministratif = new JRadioButton("Administratif");
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnadministratif);
+		group.add(rdbtnProfesseur);
+		rdbtnadministratif.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		rdbtnadministratif.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnadministratif.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnadministratif.setBounds(475, 409, 142, 26);
 		frame.getContentPane().add(rdbtnadministratif);
 
-		JRadioButton rdbtnProfesseur = new JRadioButton("Professeur");
+		
+		rdbtnProfesseur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		rdbtnProfesseur.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnProfesseur.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		rdbtnProfesseur.setBounds(631, 409, 142, 26);
@@ -171,9 +188,7 @@ public class Inscription {
 				
 				
 				manager man = new manager();
-				int id = 0;
-				
-		        
+				int id = 0;           	
 
 					String nom = textFieldentreznom.getText();
 					String prenom = textFieldprenom.getText();
