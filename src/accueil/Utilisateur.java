@@ -25,7 +25,17 @@ public class Utilisateur {
 	protected String Token;
 	protected String popup;
 	protected String idmodif;
-	
+	protected String validation;
+	public String getValidation() {
+		return validation;
+	}
+
+
+	public void setValidation(String validation) {
+		this.validation = validation;
+	}
+
+
 	protected String nommodif;
 	protected String prenommodif;
 	protected String mailmodif;

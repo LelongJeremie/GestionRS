@@ -130,13 +130,13 @@ public class Connexion {
 				
 				manager man = new manager();
 				
-				res = man.connexion(user);
+				user = man.connexion(user);
 				
 				System.out.println(user);
 				System.out.println("aaa");
 				System.out.println(res);
 				
-				if(res.equals("1")) { 
+				if(user.getRole().equals("1")) { 
 					
 					
 					
