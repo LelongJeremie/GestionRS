@@ -38,35 +38,51 @@ class Connexiontest {
 		teste = new Utilisateur("test@test.com","test");
 		teste2 = new Utilisateur(null,"test");
 		Monuser = new Utilisateur();
-		Monuser.setMail("test@test.com");
-		Monuser.setPassword("test");
-		Monuser.setNom("test");
-		Monuser.setPrenom("test");
-		Monuser.setDate_naissance("2021-12-01");
-		Monuser.setRole("Admin");
-		Monuser.setPseudo("test");
-		Monuser.setValidation("Active");
-
+		Utilisateur contexte = new Utilisateur();
+		contexte.setMail("test@test.com");
+		contexte.setPassword("test");
+		contexte.setNom("test");
+		contexte.setPrenom("test");
+		contexte.setDate_naissance("2021-12-01");
+		contexte.setRole("Admin");
+		contexte.setPseudo("test");
+		contexte.setValidation("Active");
 
 		manager man = new manager();
 		
-		man.inscription(Monuser);
+		man.inscription(contexte);
 		
 		
 	}
-	
-	
 	@Test @Order(1)
-	void seConnecte() {	
-		assertNotNull("Test mail de la connexion Utilisateur", teste.getMail());
-		assertNotNull("Test mdp de la connexion Utilisateur", teste.getPassword());
-	}
-	
-	@Test @Order(2)
-	void seConnecteVide() {	
-		assertNull("Test vide initiale du TextField", teste2.getMail());
+	void nepasSeConnectebddpass() throws SQLException {
+		Monuser = new Utilisateur();
+		Monuser.setMail("test@test.com");
+		Monuser.setPassword("mauvais_mpd");
+
+		manager man = new manager();
+		
+		Monuser = man.connexion(Monuser);
+       assertEquals("test@test.com",Monuser.getMail(),"Test de mail non vide mais password vide");
+       assertNotEquals("test",Monuser.getPassword(),"Test de mail non vide mais password vide");
+
 		
 	}
+	@Test @Order(2)
+	void nepasSeConnectebddmail() throws SQLException {
+		Monuser.setMail("mauvais@mail.com");
+		Monuser.setPassword("test");
+
+		manager man = new manager();
+		
+		Monuser = man.connexion(Monuser);
+       assertNotEquals("test@test.com",Monuser.getMail(),"Test de mail vide mais password non vide");
+       assertEquals("test",Monuser.getPassword(),"Test de mail vide mais password non vide");
+
+
+		
+}
+
 	
 	@Test @Order(3)
 	void seConnectebdd() throws SQLException {
@@ -83,33 +99,7 @@ class Connexiontest {
 		
 	}
 		
-		@Test @Order(4)
-		void nepasSeConnectebddmail() throws SQLException {
-			Monuser.setMail("");
-			Monuser.setPassword("test");
-
-			manager man = new manager();
-			
-			Monuser = man.connexion(Monuser);
-	       assertNotEquals("test@test.com",Monuser.getMail(),"Test de mail vide mais password non vide");
-	       assertEquals("test",Monuser.getPassword(),"Test de mail vide mais password non vide");
-
-	
-			
-	}
-		@Test @Order(5)
-		void nepasSeConnectebddpass() throws SQLException {
-			Monuser.setMail("test@test.com");
-			Monuser.setPassword("");
-
-			manager man = new manager();
-			
-			Monuser = man.connexion(Monuser);
-	       assertEquals("test@test.com",Monuser.getMail(),"Test de mail non vide mais password vide");
-	       assertNotEquals("test",Monuser.getPassword(),"Test de mail non vide mais password vide");
-
-			
-		}
+		
 			
 	
 		
@@ -142,14 +132,16 @@ class Connexiontest {
 
 			manager man = new manager();
 			man.modificationprofil(Monuser);
-			assertEquals("test@testmodif.com",Monuser.getMail(),"Test de mail mis à jour");
-			assertEquals("testmodif",Monuser.getPassword(),"Test de password mis à jour");
-			assertEquals("testmodif",Monuser.getNom(),"Test de nom mis à jour");
-			assertEquals("testmodif",Monuser.getPrenom(),"Test de prenom mis à jour");
-			assertEquals("2021-12-02",Monuser.getDate_naissance(),"Test de date de naissance mis à jour");
-			assertEquals("Prof",Monuser.getRole(),"Test de role mis à jour");
-			assertEquals("testmodif",Monuser.getPseudo(),"Test de pseudo mis à jour");
-			assertEquals("Desactive",Monuser.getValidation(),"Test de validation mis à jour");
+			Utilisateur verifModif = man.connexion(Monuser);
+			verifModif.equals(Monuser);
+			assertEquals("test@testmodif.com",verifModif.getMail(),"Test de mail mis à jour");
+			assertEquals("testmodif",verifModif.getPassword(),"Test de password mis à jour");
+			assertEquals("testmodif",verifModif.getNom(),"Test de nom mis à jour");
+			assertEquals("testmodif",verifModif.getPrenom(),"Test de prenom mis à jour");
+			assertEquals("2021-12-02",verifModif.getDate_naissance(),"Test de date de naissance mis à jour");
+			assertEquals("Prof",verifModif.getRole(),"Test de role mis à jour");
+			assertEquals("testmodif",verifModif.getPseudo(),"Test de pseudo mis à jour");
+			assertEquals("Desactive",verifModif.getValidation(),"Test de validation mis à jour");
 			
 	}
 		@AfterAll public static void supprimer() throws SQLException{
