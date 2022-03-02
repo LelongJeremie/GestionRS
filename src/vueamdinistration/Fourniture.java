@@ -5,10 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JTree;
 
-public class Information {
+public class Fourniture {
 
 	private JFrame frame;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -17,7 +20,7 @@ public class Information {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Information window = new Information();
+					Fourniture window = new Fourniture();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +32,7 @@ public class Information {
 	/**
 	 * Create the application.
 	 */
-	public Information() {
+	public Fourniture() {
 		initialize();
 	}
 
@@ -38,13 +41,17 @@ public class Information {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 677, 569);
+		frame.setBounds(100, 100, 1039, 672);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Information");
-		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(258, 11, 161, 42);
+		JLabel lblNewLabel = new JLabel("GERER LES FOURNITURES");
+		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 28));
+		lblNewLabel.setBounds(367, 11, 297, 41);
 		frame.getContentPane().add(lblNewLabel);
+		
+		table = new JTable();
+		table.setBounds(85, 63, 847, 470);
+		frame.getContentPane().add(table);
 	}
 }
