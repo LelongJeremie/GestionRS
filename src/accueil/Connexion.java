@@ -21,15 +21,9 @@ import java.awt.Color;
 
 public class Connexion {
 
-
-
-	private static int id;
-	private static String nom;
-	private static String email;
 	JFrame frame;
 	private JTextField emailField;
 	private JTextField mdpField;
-	private Throwable e1;
 	private JButton btnretour;
 
 	/**
@@ -60,12 +54,12 @@ public class Connexion {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		
+
+
 		manager man = new manager();
-		
-		
-		
+
+
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,14 +98,14 @@ public class Connexion {
 
 			private void dispose() {
 				// TODO Auto-generated method stub
-				
+
 			}
-				
-			
+
+
 		});
 		btnretour.setBounds(10, 11, 113, 38);
 		frame.getContentPane().add(btnretour);
-		
+
 		mdpField = new JTextField();
 		mdpField.setFont(new Font("Calibri Light", Font.PLAIN, 27));
 		mdpField.setColumns(10);
@@ -129,30 +123,30 @@ public class Connexion {
 			private String res;
 			public void actionPerformed(ActionEvent e) {
 				Utilisateur user = new Utilisateur();
-				
+
 				user.setMail(emailField.getText());
 				user.setPassword(mdpField.getText());
-				
-				
+
+
 				manager man = new manager();
-				
-				res = man.connexion(user);
-				
+
+				user = man.connexion(user);
+
 				System.out.println(user);
 				System.out.println("aaa");
 				System.out.println(res);
-				
-				if(res.equals("Admin")) { 
-					
-					
-					
-					System.out.println(user.getNom()); 
-				
+
+				if(res.equals("Admin")) {
+
+
+
+					System.out.println(user.getNom());
+
 					 Administrateur u=new Administrateur(user);
 						u.run(user);
 						frame.setVisible(false);
 						this.dispose();
-			
+
 
 				}
 				else if(res.equals("2")) {
@@ -160,28 +154,28 @@ public class Connexion {
 						v.run(user);
 						frame.setVisible(false);
 						this.dispose();
-			
+
 				}
 
-				
+
 				else if(res.equals("3")) {
 					 Prof v=new Prof(user);
 						v.run(user);
 						frame.setVisible(false);
 						this.dispose();
-			
+
 				}
-				
+
 				else if(res.equals("4")) {
 					 Administration v=new Administration(user);
 						v.run(user);
 						frame.setVisible(false);
 						this.dispose();
-			
+
 				}
-				
-				
-		
+
+
+
 		else {
 
 
@@ -209,24 +203,9 @@ public class Connexion {
 		btnSeConnecter.setBounds(257, 456, 227, 55);
 		frame.getContentPane().add(btnSeConnecter);
 
-		   
+
 	}
-	
-	public static int envoieid(){
-		System.out.println(id);
-		return id;
-	}
-	
-	public static String envoiemail(){
-		
-		return email;
-	}
-	
-	public static String envoinom(){
-		System.out.println(nom);
-		return nom;
-	}
-	
+
 
 	public void run() {
 		try {

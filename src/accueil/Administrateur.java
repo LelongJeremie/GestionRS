@@ -56,15 +56,6 @@ public class Administrateur {
 	 */
 	private void initialize(Utilisateur user) {
 		
-		Connexion unid = new Connexion();
-		id = Connexion.envoieid();
-		nom = Connexion.envoinom();
-		email = Connexion.envoiemail();
-		
-		System.out.println(id);
-		
-		
-		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 770, 640);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

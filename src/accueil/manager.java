@@ -20,7 +20,6 @@ public class manager extends Utilisateur {
 	private String password = "Mailer1234";
 
 	Bdd co = new Bdd();
-
 	private Connection cnx = co.connexion();
 	Utilisateur user = new Utilisateur();
 
@@ -31,7 +30,7 @@ public class manager extends Utilisateur {
 
 
 
-	public String connexion (Utilisateur user) {
+	public Utilisateur connexion (Utilisateur user) {
 		id="";
 
 		System.out.println(user.getMail());
@@ -57,13 +56,6 @@ public class manager extends Utilisateur {
 
 
 
-				System.out.println("Vous etes connectï¿½, bonjour "+user.getNom()+"");
-
-				String prole = user.getRole();
-
-
-				return prole;
-
 
 			}
 
@@ -73,9 +65,9 @@ public class manager extends Utilisateur {
 
 			e.printStackTrace();
 		}
+		return user;
 
-		return id;
-	}
+		}
 
 	public void envoyermail(String mail) {
 
@@ -349,7 +341,7 @@ public class manager extends Utilisateur {
 					user.getPasswordmodif() + "', mail ='" + user.getMailmodif() + "', date_naissance ='" +
 					user.getDate_naissancemodif() + "',  validation = '"+user.getValidationmodif()+"', role ='"+user.getRolemodif()+
 					"', classe= (select id from classe where id ="+user.getClassemodif()+") WHERE id ='" + user.getIdmodif() + "'");
-			System.out.println("Utilisateur mis à jour");
+			System.out.println("Utilisateur mis ï¿½ jour");
 
 			user.setPopup("modificationprofil");
 
@@ -390,6 +382,8 @@ public class manager extends Utilisateur {
 
 		return resultat;
 	}
+
+
 
 
 

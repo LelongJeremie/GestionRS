@@ -59,8 +59,13 @@ public class Utilisateur {
 	protected String mailmodif;
 	protected String passwordmodif;
 	protected String classe;
-	
-	
+
+	public Utilisateur(String mail,String password) {
+		this.mail = mail;
+		this.password = password;
+	}
+
+
 	public String getIdclasse() {
 		return idclasse;
 	}
