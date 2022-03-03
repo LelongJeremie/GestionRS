@@ -20,25 +20,27 @@ import org.junit.jupiter.api.Test;
 
 class Connexiontest {
 	
-	private static Utilisateur mdp;
-	private static Utilisateur mail;
-	private static Utilisateur teste;
-	private static Utilisateur teste2;
+
 	static Connection connexion;
 	private static Utilisateur Monuser;
-	private static Connexion user;
-	private static Connexion url;
-	private static Connexion password;
+	private static Utilisateur contexte;
 	private static Connection cnx;
 	private static String testmodif;
+
 	
     
 	@BeforeAll
 	static void initUtilisateur() throws SQLException {
-		teste = new Utilisateur("test@test.com","test");
-		teste2 = new Utilisateur(null,"test");
 		Monuser = new Utilisateur();
-		Utilisateur contexte = new Utilisateur();
+		contexte = new Utilisateur();
+		
+		
+	}
+	
+
+	@Test @Order(1)
+	void InscriptionTest() throws SQLException {
+
 		contexte.setMail("test@test.com");
 		contexte.setPassword("test");
 		contexte.setNom("test");
@@ -51,20 +53,18 @@ class Connexiontest {
 		manager man = new manager();
 		
 		man.inscription(contexte);
-		
-		
 	}
-	@Test @Order(1)
+	
+	
+	
+	@Test @Order(2)
 	void nepasSeConnectebddpass() throws SQLException {
-		Monuser = new Utilisateur();
 		Monuser.setMail("test@test.com");
-		Monuser.setPassword("mauvais_mpd");
+		Monuser.setPassword("mauvais_mdp");
 
 		manager man = new manager();
-		
-		Monuser = man.connexion(Monuser);
-       assertEquals("test@test.com",Monuser.getMail(),"Test de mail non vide mais password vide");
-       assertNotEquals("test",Monuser.getPassword(),"Test de mail non vide mais password vide");
+       assertEquals(contexte.getMail(),Monuser.getMail(),"Test mauvais mdp");
+       assertNotEquals(contexte.getPassword(),Monuser.getPassword(),"Test mauvais mdp");
 
 		
 	}
@@ -76,8 +76,8 @@ class Connexiontest {
 		manager man = new manager();
 		
 		Monuser = man.connexion(Monuser);
-       assertNotEquals("test@test.com",Monuser.getMail(),"Test de mail vide mais password non vide");
-       assertEquals("test",Monuser.getPassword(),"Test de mail vide mais password non vide");
+       assertNotEquals(contexte.getMail(),Monuser.getMail(),"Test mauvais mail");
+       assertEquals(contexte.getPassword(),Monuser.getPassword(),"Test mauvais mail");
 
 
 		
@@ -94,8 +94,8 @@ class Connexiontest {
 		
 		Monuser = man.connexion(Monuser);
 		
-       assertEquals("test@test.com",Monuser.getMail(),"Test de mail identique");
-       assertEquals("test",Monuser.getPassword(),"Test de password identique");
+       assertEquals(contexte.getMail(),Monuser.getMail(),"Test de mail identique");
+       assertEquals(contexte.getPassword(),Monuser.getPassword(),"Test de password identique");
 		
 	}
 		
@@ -111,8 +111,8 @@ class Connexiontest {
 			manager man = new manager();
 			
 			Monuser = man.connexion(Monuser);
-	       assertEquals("",Monuser.getMail(),"Test de mail vide et password vide");
-	       assertEquals("",Monuser.getPassword(),"Test de mail vide et password vide");
+	       assertNotEquals(contexte.getMail(),Monuser.getMail(),"Test de mail vide et password vide");
+	       assertNotEquals(contexte.getPassword(),Monuser.getPassword(),"Test de mail vide et password vide");
 
 			
 		
@@ -133,15 +133,14 @@ class Connexiontest {
 			manager man = new manager();
 			man.modificationprofil(Monuser);
 			Utilisateur verifModif = man.connexion(Monuser);
-			verifModif.equals(Monuser);
-			assertEquals("test@testmodif.com",verifModif.getMail(),"Test de mail mis à jour");
-			assertEquals("testmodif",verifModif.getPassword(),"Test de password mis à jour");
-			assertEquals("testmodif",verifModif.getNom(),"Test de nom mis à jour");
-			assertEquals("testmodif",verifModif.getPrenom(),"Test de prenom mis à jour");
-			assertEquals("2021-12-02",verifModif.getDate_naissance(),"Test de date de naissance mis à jour");
-			assertEquals("Prof",verifModif.getRole(),"Test de role mis à jour");
-			assertEquals("testmodif",verifModif.getPseudo(),"Test de pseudo mis à jour");
-			assertEquals("Desactive",verifModif.getValidation(),"Test de validation mis à jour");
+			assertEquals(Monuser.getMail(),verifModif.getMail(),"Test de mail mis à jour");
+			assertEquals(Monuser.getPassword(),verifModif.getPassword(),"Test de password mis à jour");
+			assertEquals(Monuser.getNom(),verifModif.getNom(),"Test de nom mis à jour");
+			assertEquals(Monuser.getPrenom(),verifModif.getPrenom(),"Test de prenom mis à jour");
+			assertEquals(Monuser.getDate_naissance(),verifModif.getDate_naissance(),"Test de date de naissance mis à jour");
+			assertEquals(Monuser.getRole(),verifModif.getRole(),"Test de role mis à jour");
+			assertEquals(Monuser.getPseudo(),verifModif.getPseudo(),"Test de pseudo mis à jour");
+			assertEquals(Monuser.getValidation(),verifModif.getValidation(),"Test de validation mis à jour");
 			
 	}
 		@AfterAll public static void supprimer() throws SQLException{
