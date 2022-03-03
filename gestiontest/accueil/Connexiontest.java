@@ -17,9 +17,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
+@TestMethodOrder(OrderAnnotation.class)
 class Connexiontest {
-	
+
 
 	static Connection connexion;
 	private static Utilisateur Monuser;
@@ -27,16 +30,17 @@ class Connexiontest {
 	private static Connection cnx;
 	private static String testmodif;
 
-	
-    
+
+
 	@BeforeAll
 	static void initUtilisateur() throws SQLException {
 		Monuser = new Utilisateur();
 		contexte = new Utilisateur();
-		
-		
+
+
 	}
-	
+	private String iddelete;
+
 
 	@Test @Order(1)
 	void InscriptionTest() throws SQLException {
@@ -51,106 +55,106 @@ class Connexiontest {
 		contexte.setValidation("Active");
 
 		manager man = new manager();
-		
+
 		man.inscription(contexte);
 	}
-	
-	
-	
+
+
+
 	@Test @Order(2)
 	void nepasSeConnectebddpass() throws SQLException {
 		Monuser.setMail("test@test.com");
 		Monuser.setPassword("mauvais_mdp");
 
 		manager man = new manager();
-       assertEquals(contexte.getMail(),Monuser.getMail(),"Test mauvais mdp");
-       assertNotEquals(contexte.getPassword(),Monuser.getPassword(),"Test mauvais mdp");
+		Monuser = man.connexion(Monuser);
+		assertEquals(null,Monuser.getId()," N'as pas reussi a se connecter");
 
-		
 	}
-	@Test @Order(2)
+	@Test @Order(3)
 	void nepasSeConnectebddmail() throws SQLException {
-		Monuser.setMail("mauvais@mail.com");
-		Monuser.setPassword("test");
+		
+		contexte.setMail("mauvais@mail.com");
+		contexte.setPassword("test");
 
 		manager man = new manager();
-		
-		Monuser = man.connexion(Monuser);
-       assertNotEquals(contexte.getMail(),Monuser.getMail(),"Test mauvais mail");
-       assertEquals(contexte.getPassword(),Monuser.getPassword(),"Test mauvais mail");
+		Monuser= man.connexion(contexte);
+		assertEquals(null,Monuser.getId()," N'as pas reussi a se connecter");
 
 
-		
-}
+	}
 
-	
-	@Test @Order(3)
+
+	@Test @Order(5)
 	void seConnectebdd() throws SQLException {
-		
+
 		Monuser.setMail("test@test.com");
 		Monuser.setPassword("test");
 
+
 		manager man = new manager();
-		
-		Monuser = man.connexion(Monuser);
-		
-       assertEquals(contexte.getMail(),Monuser.getMail(),"Test de mail identique");
-       assertEquals(contexte.getPassword(),Monuser.getPassword(),"Test de password identique");
+		Monuser= man.connexion(Monuser);
+		assertNotEquals(null,Monuser.getId()," Connexion reussi ");
+		contexte.setId(Monuser.getId());
+	}
+
+
+
+
+
+	@Test @Order(4)
+	void nepasSeConnectebddvide() throws SQLException {
+		Monuser.setMail("");
+		Monuser.setPassword("");
+
+
+		manager man = new manager();
+		Monuser= man.connexion(Monuser);
+		assertEquals(null,Monuser.getId()," N'as pas reussi a se connecter");
 		
 	}
-		
-		
-			
-	
-		
-		@Test @Order(5)
-		void nepasSeConnectebddvide() throws SQLException {
-			Monuser.setMail("");
-			Monuser.setPassword("");
+	@Test @Order(6)
+	void Updatetest() throws SQLException {
+		contexte.setMail("test@testmodif.com");
+		contexte.setPassword("testmodif");
+		contexte.setNom("testmodif");
+		contexte.setPrenom("testmodif");
+		contexte.setDate_naissance("2021-12-02");
+		contexte.setRole("Prof");
+		contexte.setPseudo("testmodif");
+		contexte.setValidation("Desactive");
 
-			manager man = new manager();
-			
-			Monuser = man.connexion(Monuser);
-	       assertNotEquals(contexte.getMail(),Monuser.getMail(),"Test de mail vide et password vide");
-	       assertNotEquals(contexte.getPassword(),Monuser.getPassword(),"Test de mail vide et password vide");
 
-			
+		manager man = new manager();
+		contexte = man.modificationprofil(contexte);
 		
-			
+		contexte.setIdmodif(contexte.getId());
+		System.out.println("test"+contexte.getIdmodif());
+		
+		Utilisateur verifModif = man.connexion(contexte);
+		System.out.println("Id -->"+verifModif.getId());
+		System.out.println("Nom -->"+verifModif.getNom()+ " / "+ contexte.getNom());
+
+		assertEquals(contexte.getMail(),verifModif.getMail(),"Test de mail mis à jour");
+		assertEquals(contexte.getPassword(),verifModif.getPassword(),"Test de password mis à jour");
+		assertEquals(contexte.getNom(),verifModif.getNom(),"Test de nom mis à jour");
+		assertEquals(contexte.getPrenom(),verifModif.getPrenom(),"Test de prenom mis à jour");
+		assertEquals(contexte.getDate_naissance(),verifModif.getDate_naissance(),"Test de date de naissance mis à jour");
+		assertEquals(contexte.getRole(),verifModif.getRole(),"Test de role mis à jour");
+		assertEquals(contexte.getPseudo(),verifModif.getPseudo(),"Test de pseudo mis à jour");
+		assertEquals(contexte.getValidation(),verifModif.getValidation(),"Test de validation mis à jour");
+
 	}
-		@Test @Order(6)
-		void Updatetest() throws SQLException {
-			Monuser.setMail("test@testmodif.com");
-			Monuser.setPassword("testmodif");
-			Monuser.setNom("testmodif");
-			Monuser.setPrenom("testmodif");
-			Monuser.setDate_naissance("2021-12-02");
-			Monuser.setRole("Prof");
-			Monuser.setPseudo("testmodif");
-			Monuser.setValidation("Desactive");
+	@AfterAll public static void supprimer() throws SQLException{
+		Bdd co = new Bdd();
+		Connection cnx = co.connexion();
+		java.sql.Statement stm = cnx.createStatement();
+		//System.out.println("DELETE FROM utilisateur where id="+ Monuser.getIdmodif());
+		stm.executeUpdate("DELETE FROM utilisateur where id="+ contexte.getId());
 
-
-			manager man = new manager();
-			man.modificationprofil(Monuser);
-			Utilisateur verifModif = man.connexion(Monuser);
-			assertEquals(Monuser.getMail(),verifModif.getMail(),"Test de mail mis à jour");
-			assertEquals(Monuser.getPassword(),verifModif.getPassword(),"Test de password mis à jour");
-			assertEquals(Monuser.getNom(),verifModif.getNom(),"Test de nom mis à jour");
-			assertEquals(Monuser.getPrenom(),verifModif.getPrenom(),"Test de prenom mis à jour");
-			assertEquals(Monuser.getDate_naissance(),verifModif.getDate_naissance(),"Test de date de naissance mis à jour");
-			assertEquals(Monuser.getRole(),verifModif.getRole(),"Test de role mis à jour");
-			assertEquals(Monuser.getPseudo(),verifModif.getPseudo(),"Test de pseudo mis à jour");
-			assertEquals(Monuser.getValidation(),verifModif.getValidation(),"Test de validation mis à jour");
-			
 	}
-		@AfterAll public static void supprimer() throws SQLException{
-			Bdd co = new Bdd();
-			Connection cnx = co.connexion();
-			java.sql.Statement stm = cnx.createStatement();
-			stm.executeUpdate("DELETE FROM utilisateur where mail ='test@testmodif.com'");
-		
-		}
-		}
+
+}
 
 
 

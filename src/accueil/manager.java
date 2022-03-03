@@ -2,8 +2,10 @@ package accueil;
 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import java.io.*;
 import java.security.MessageDigest;
@@ -207,27 +209,42 @@ public class manager extends Utilisateur {
 		String result = "gg";
 		return result;
 	}
-	public void modificationprofil (Utilisateur user) {
+	public Utilisateur modificationprofil (Utilisateur user) throws SQLException {
 
+		String sql;
+		PreparedStatement stmp;
 
-		try {
-			java.sql.Statement stm = cnx.createStatement();
+		sql = "UPDATE utilisateur SET nom ='" + user.getNom() + "',  prenom ='" +
+				user.getPrenom() + "', username ='" + user.getPseudo() + "' ,password ='" +
+				user.getPassword() + "', mail ='" + user.getMail() + "', date_naissance ='" +
+				user.getDate_naissance() + "' WHERE id ='" + user.getId() + "'";
+		
+		stmp =  cnx.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		
+			
 
+			System.out.println(user.getNommodif());
+			System.out.println(user);
+			stmp.executeUpdate();
+			ResultSet rs = stmp.getGeneratedKeys();
+			 if(rs.next())
+	            {
+	                int last_inserted_id = rs.getInt(1);
+	                user.setIdmodif(Integer.toString(last_inserted_id));
+	            }
 
-			int resultat = stm.executeUpdate("UPDATE utilisateur SET nom ='" + user.getNom() + "',  prenom ='" +
-					user.getPrenom() + "', username ='" + user.getPseudo() + "' ,password ='" +
-					user.getPassword() + "', mail ='" + user.getMail() + "', date_naissance ='" +
-					user.getDate_naissance() + "' WHERE id ='" + user.getId() + "'");
+		
+			
+			
 			System.out.println("Utilisateur mis � jour");
 
 			user.setPopup("modificationprofil");
 
 			System.out.println(user.toString());
-		}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
+		
+		
+	return user;
 
 	}
 

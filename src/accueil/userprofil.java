@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
@@ -92,7 +93,12 @@ public class userprofil {
 				String prenom = fieldprenom.getText();
 				user.setPrenom(prenom);
 
+			 try {
 				man.modificationprofil(user);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			}
 		});
 		btnPrenom.setBounds(20, 116, 158, 23);
@@ -109,7 +115,12 @@ public class userprofil {
 				String nom = fieldnom.getText();
 				user.setNom(nom);
 
-				man.modificationprofil(user);
+				try {
+					man.modificationprofil(user);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnChangerLeNom.setBounds(212, 116, 158, 23);
@@ -128,7 +139,12 @@ public class userprofil {
 				String datenaissance = fielddatenaissance.getText();
 				user.setDate_naissance(datenaissance);
 
-				man.modificationprofil(user);
+				try {
+					man.modificationprofil(user);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btndatenaissance.setBounds(412, 116, 165, 23);
@@ -146,7 +162,12 @@ public class userprofil {
 				String mail = fieldmail.getText();
 				user.setMail(mail);
 
-				man.modificationprofil(user);
+				try {
+					man.modificationprofil(user);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnPrenom_3.setBounds(412, 234, 165, 23);
@@ -165,7 +186,12 @@ public class userprofil {
 				String nom = fieldnom.getText();
 				user.setNom(nom);
 
-				man.modificationprofil(user);
+				try {
+					man.modificationprofil(user);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 				System.out.println(user.getPopup());
 

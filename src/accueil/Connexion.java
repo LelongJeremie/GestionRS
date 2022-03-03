@@ -136,7 +136,7 @@ public class Connexion {
 				System.out.println("aaa");
 				System.out.println(res);
 
-				if(res.equals("Admin")) {
+				if((user.getRole()).equals("Admin")) {
 
 
 
@@ -149,7 +149,7 @@ public class Connexion {
 
 
 				}
-				else if(res.equals("2")) {
+				else if((user.getRole()).equals("2")) {
 					 Profprinc v=new Profprinc(user);
 						v.run(user);
 						frame.setVisible(false);
@@ -158,7 +158,7 @@ public class Connexion {
 				}
 
 
-				else if(res.equals("3")) {
+				else if((user.getRole()).equals("3")) {
 					 Prof v=new Prof(user);
 						v.run(user);
 						frame.setVisible(false);
@@ -166,7 +166,7 @@ public class Connexion {
 
 				}
 
-				else if(res.equals("4")) {
+				else if((user.getRole()).equals("4")) {
 					 Administration v=new Administration(user);
 						v.run(user);
 						frame.setVisible(false);
