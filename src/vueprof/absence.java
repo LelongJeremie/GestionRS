@@ -12,8 +12,11 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 
 public class absence {
 
@@ -63,17 +66,11 @@ public class absence {
 		lblNewLabel.setBounds(223, 11, 239, 47);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("en retard");
-		btnNewButton.setBounds(381, 130, 103, 32);
-		frame.getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("absent");
-		btnNewButton_1.setBounds(482, 130, 103, 32);
-		frame.getContentPane().add(btnNewButton_1);
-		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(159, 130, 223, 32);
+		comboBox.setBounds(223, 169, 223, 32);
 		frame.getContentPane().add(comboBox);
+		JRadioButton rdbtnAbsence = new JRadioButton("Absence");
+		JRadioButton rdbtnRetard = new JRadioButton("Retard");
 		
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.addActionListener(new ActionListener() {
@@ -94,6 +91,19 @@ public class absence {
 		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
 		btnRetour.setBounds(10, 11, 107, 36);
 		frame.getContentPane().add(btnRetour);
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnAbsence);
+		group.add(rdbtnRetard);
+
+		rdbtnAbsence.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		rdbtnAbsence.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnAbsence.setBounds(139, 99, 111, 23);
+		frame.getContentPane().add(rdbtnAbsence);
+
+		rdbtnRetard.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnRetard.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		rdbtnRetard.setBounds(407, 99, 111, 23);
+		frame.getContentPane().add(rdbtnRetard);
 
 	}
 
@@ -106,5 +116,4 @@ public class absence {
 		}
 		
 	}
-
 }

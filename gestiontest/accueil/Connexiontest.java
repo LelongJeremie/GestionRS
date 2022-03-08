@@ -39,7 +39,6 @@ class Connexiontest {
 
 
 	}
-	private String iddelete;
 
 
 	@Test @Order(1)
