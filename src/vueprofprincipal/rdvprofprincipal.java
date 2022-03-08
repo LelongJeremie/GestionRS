@@ -1,4 +1,4 @@
-package vueadmin;
+package vueprofprincipal;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,7 @@ import accueil.Utilisateur;
 import accueil.manager;
 
 
-public class adminuserprofil {
+public class rdvprofprincipal {
 
 	private JFrame frame;
 	private ResultSet resultat;
@@ -35,7 +35,7 @@ public class adminuserprofil {
 	private JTextField FieldPseudo;
 	private int i;
 	private Utilisateur Monuser= new Utilisateur();
-	private classe Userclasse = new classe(); 
+	private Rendez vous = new Rendez(); 
 	private JComboBox comboboxvalidation;
 	private JComboBox comboBoxrole;
 	private JLabel lblRole;
@@ -47,7 +47,7 @@ public class adminuserprofil {
 
 	public void run1(Utilisateur user) {
 		try {
-			adminuserprofil window = new adminuserprofil(user);
+			rdvprofprincipal window = new rdvprofprincipal(user);
 			window.frame.setVisible(false);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,7 +65,7 @@ public class adminuserprofil {
 	 * Create the application.
 	 * @param user 
 	 */
-	public adminuserprofil(Utilisateur user) {
+	public rdvprofprincipal(Utilisateur user) {
 		initialize(user);
 	}
 
@@ -77,7 +77,7 @@ public class adminuserprofil {
 
 		manager man = new manager();
 
-		resultat = man.toutlessusers();
+		resultat = man.eleveclasse();
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 909, 601);
@@ -88,8 +88,7 @@ public class adminuserprofil {
 		comboBox.setBounds(10, 49, 975, 54);
 		frame.getContentPane().add(comboBox);
 
-		JComboBox<classe> comboBoxclasse = new JComboBox();
-
+		
 
 		try {
 			i=0;
@@ -98,13 +97,13 @@ public class adminuserprofil {
 				Utilisateur Monuser= new Utilisateur();
 
 
-				Monuser.setIdmodif(resultat.getString("utilisateur.id"));
+				Monuser.setIdmodif(resultat.getString("id"));
 				Monuser.setNommodif(resultat.getString("nom"));
 				Monuser.setPrenommodif(resultat.getString("prenom"));
 				Monuser.setMailmodif(resultat.getString("mail"));
 				Monuser.setPasswordmodif(resultat.getString("password"));
 				Monuser.setRolemodif(resultat.getString("role"));
-				Monuser.setClassemodif(resultat.getString("libelle"));
+				Monuser.setClassemodif(resultat.getString("classe"));
 				Monuser.setDate_naissancemodif(resultat.getString("date_naissance"));
 				Monuser.setPseudomodif(resultat.getString("username"));
 				Monuser.setValidationmodif(resultat.getString("Validation"));
@@ -158,19 +157,12 @@ public class adminuserprofil {
 
 
 
-				JComboBox<classe> comboBoxclasse = new JComboBox();
-				comboBoxclasse.setBounds(453, 280, 177, 25);
-				frame.getContentPane().add(comboBoxclasse);
-
+				
 
 				try {
 
 					while(resultatclasse.next()){ 
-						classe Userclasse = new classe(); 
-
-						Userclasse.setIdclasse(resultatclasse.getString("id"));
-						Userclasse.setClasse(resultatclasse.getString("libelle"));
-						comboBoxclasse.addItem(Userclasse);
+						
 
 
 					}
@@ -240,7 +232,7 @@ public class adminuserprofil {
 						Monuser.setDate_naissance(""+fieldDatenaissance.getText());
 						Monuser.setPseudomodif(""+FieldPseudo.getText());
 						Monuser.setPasswordmodif(""+fieldpassword.getText());
-						Monuser.setClassemodif(((classe) comboBoxclasse.getSelectedItem()).getIdclasse());
+						
 						Monuser.setRolemodif(comboBoxrole.getSelectedItem().toString());
 						Monuser.setValidationmodif(comboboxvalidation.getSelectedItem().toString());
 
@@ -304,7 +296,7 @@ public class adminuserprofil {
 		JButton btnRefresh = new JButton("Deselectionner");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				adminuserprofil u=new adminuserprofil(user);
+				rdvprofprincipal u=new rdvprofprincipal(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
@@ -329,7 +321,7 @@ public class adminuserprofil {
 
 	public void run(Utilisateur user) {
 		try {
-			adminuserprofil window = new adminuserprofil(user);
+			rdvprofprincipal window = new rdvprofprincipal(user);
 			window.frame.setVisible(false);
 		} catch (Exception e) {
 			e.printStackTrace();
