@@ -149,7 +149,7 @@ public class Connexion {
 
 
 				}
-				else if((user.getRole()).equals("2")) {
+				else if((user.getRole()).equals("Profprinc")) {
 					 Profprinc v=new Profprinc(user);
 						v.run(user);
 						frame.setVisible(false);
@@ -158,7 +158,7 @@ public class Connexion {
 				}
 
 
-				else if((user.getRole()).equals("3")) {
+				else if((user.getRole()).equals("Prof")) {
 					 Prof v=new Prof(user);
 						v.run(user);
 						frame.setVisible(false);
@@ -166,7 +166,7 @@ public class Connexion {
 
 				}
 
-				else if((user.getRole()).equals("4")) {
+				else if((user.getRole()).equals("Administration")) {
 					 Administration v=new Administration(user);
 						v.run(user);
 						frame.setVisible(false);

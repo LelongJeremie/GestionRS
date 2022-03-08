@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
 import vueprof.Fourniture;
+import vueprof.GestionARS;
 import vueprof.absence;
 import vueprof.gclasse;
 import vueprof.planning;
@@ -173,6 +174,25 @@ public class Prof {
 		btnFourniture.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnFourniture.setBounds(202, 406, 275, 59);
 		frame.getContentPane().add(btnFourniture);
+		
+		JButton btnGestionARS = new JButton("Gestion A/R/S");
+		btnGestionARS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GestionARS v=new GestionARS(user);
+				v.run(user);
+				frame.setVisible(false);
+				this.dispose();
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			
+			}
+		});
+		btnGestionARS.setFont(new Font("Calibri Light", Font.BOLD, 22));
+		btnGestionARS.setBounds(487, 293, 181, 70);
+		frame.getContentPane().add(btnGestionARS);
 	}
 
 	public void run(Utilisateur user) {

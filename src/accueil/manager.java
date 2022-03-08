@@ -400,6 +400,13 @@ public class manager extends Utilisateur {
 		return resultat;
 	}
 
+	public void ajoutretard(Utilisateur monuser) throws SQLException {
+		
+
+		java.sql.Statement stm = cnx.createStatement();
+		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,retard,date_heure_debut) VALUES ('" + user.getIdmodif() +"','"+ user.getDuree() +"',now())");
+	}
+
 
 
 
