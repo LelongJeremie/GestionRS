@@ -149,7 +149,7 @@ public class Connexion {
 
 
 				}
-				else if((user.getRole()).equals("2")) {
+				else if((user.getRole()).equals("Profprinc")) {
 					 Profprinc v=new Profprinc(user);
 						v.run(user);
 						frame.setVisible(false);

@@ -42,7 +42,7 @@ public class manager extends Utilisateur {
 			java.sql.Statement stm = cnx.createStatement();
 
 
-			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
+			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
 
 			while(resultat.next()) {
 				user.setId(resultat.getString("id"));
@@ -53,7 +53,8 @@ public class manager extends Utilisateur {
 				user.setPassword(resultat.getString("Password"));
 				user.setDate_naissance(resultat.getString("date_naissance"));
 				user.setValidation(resultat.getString("validation"));
-				user.setClasse(resultat.getString("classe"));
+				user.setClasse(resultat.getString("libelle"));
+				user.setClasseid(resultat.getString("classe.id"));
 
 
 
@@ -353,7 +354,7 @@ public class manager extends Utilisateur {
 			java.sql.Statement stm = cnx.createStatement();
 
 
-			resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id ");
+			resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'eleve' AND maclasse.idclasse = "+user.getClasseid());
 
 
 

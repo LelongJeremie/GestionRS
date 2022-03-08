@@ -25,6 +25,25 @@ public class Utilisateur {
 	protected String Token;
 	protected String popup;
 	protected String idmodif;
+	protected String classeid;
+	protected String classeidmodif;
+	public String getClasseid() {
+		return classeid;
+	}
+
+	public void setClasseid(String classeid) {
+		this.classeid = classeid;
+	}
+
+	public String getClasseidmodif() {
+		return classeidmodif;
+	}
+
+	public void setClasseidmodif(String classeidmodif) {
+		this.classeidmodif = classeidmodif;
+	}
+
+
 	protected String classemodif;
 	public String getValidationmodif() {
 		return validationmodif;
@@ -326,5 +345,7 @@ public Utilisateur() {
 		//System.out.println("Le nombre est "+ nombre*ombre);
 		*/
 	}
+
+
 
 }

@@ -21,6 +21,7 @@ import javax.swing.JCheckBox;
 import accueil.Administrateur;
 import accueil.Utilisateur;
 import accueil.manager;
+import vueadmin.PopupAdmin;
 
 
 public class rdvprofprincipal {
@@ -35,7 +36,7 @@ public class rdvprofprincipal {
 	private JTextField FieldPseudo;
 	private int i;
 	private Utilisateur Monuser= new Utilisateur();
-	private Rendez vous = new Rendez(); 
+	private Utilisateur vous = new Utilisateur(); 
 	private JComboBox comboboxvalidation;
 	private JComboBox comboBoxrole;
 	private JLabel lblRole;
@@ -77,7 +78,7 @@ public class rdvprofprincipal {
 
 		manager man = new manager();
 
-		resultat = man.eleveclasse();
+		resultat = man.eleveclasse(user);
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 909, 601);
