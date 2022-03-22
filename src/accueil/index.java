@@ -117,7 +117,7 @@ public class index {
 			}
 		});
 		btnmdpoublie.setForeground(Color.WHITE);
-		btnmdpoublie.setBackground(Color.GRAY);
+		btnmdpoublie.setBackground(new Color(204, 0, 51));
 		btnmdpoublie.setFont(new Font("Calibri Light", Font.PLAIN, 11));
 		btnmdpoublie.setBounds(451, 476, 147, 34);
 		frame.getContentPane().add(btnmdpoublie);

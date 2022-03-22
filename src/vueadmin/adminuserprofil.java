@@ -325,7 +325,7 @@ public class adminuserprofil {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(Color.GRAY);
-		lblNewLabel.setBounds(0, 0, 995, 37);
+		lblNewLabel.setBounds(0, 0, 995, 43);
 		frame.getContentPane().add(lblNewLabel);
 
 

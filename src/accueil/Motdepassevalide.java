@@ -49,7 +49,7 @@ public class Motdepassevalide {
 		frame.setBounds(100, 100, 738, 602);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		btnretour = new JButton("Retour");
+		JButton btnretour = new JButton("Retour");
 		btnretour.setFont(new Font("Calibri Light", Font.PLAIN, 14));
 		btnretour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
