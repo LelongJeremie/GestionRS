@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Motdepasse {
 
@@ -47,10 +48,30 @@ public class Motdepasse {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 679, 572);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		JButton btnretour = new JButton("Retour");
+		btnretour.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		btnretour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			index u=new index();
+				u.run();
+				frame.setVisible(false);
+				this.dispose();
 
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+
+			}
+
+
+		});
+		btnretour.setBounds(10, 11, 113, 38);
+		frame.getContentPane().add(btnretour);
 		JButton btnNewButton = new JButton("valider");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

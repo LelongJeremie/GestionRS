@@ -1,9 +1,11 @@
 package vueprof;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import accueil.Administrateur;
 import accueil.Prof;
@@ -58,8 +60,12 @@ public class gclasse {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Classe");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(276, 11, 90, 52);
+		lblNewLabel.setBounds(0, 0, 658, 59);
 		frame.getContentPane().add(lblNewLabel);
 		JButton btnRetour = new JButton("Retour");
 		btnRetour.addActionListener(new ActionListener() {

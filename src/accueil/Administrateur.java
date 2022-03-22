@@ -12,6 +12,7 @@ import vueadmin.adminuserprofil;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Administrateur {
 
@@ -57,14 +58,18 @@ public class Administrateur {
 	private void initialize(Utilisateur user) {
 		
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 770, 640);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Administrateur");
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setOpaque(true);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.BOLD, 24));
-		lblNewLabel.setBounds(216, 31, 303, 69);
+		lblNewLabel.setBounds(0, 0, 756, 110);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Gerer utilisateurs");
@@ -144,6 +149,13 @@ public class Administrateur {
 		});
 		btnNewButton_1.setBounds(586, 526, 160, 52);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setOpaque(true);
+		lblNewLabel_1.setForeground(Color.GRAY);
+		lblNewLabel_1.setBackground(Color.GRAY);
+		lblNewLabel_1.setBounds(0, 495, 756, 108);
+		frame.getContentPane().add(lblNewLabel_1);
 	}
 
 	public void run(Utilisateur user) {

@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JSpinner;
 
 
 public class Connexion {
@@ -61,15 +62,30 @@ public class Connexion {
 
 
 		frame = new JFrame();
+		frame.setBackground(Color.WHITE);
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setForeground(Color.WHITE);
+		frame.getContentPane().setForeground(Color.WHITE);
 		frame.setBounds(100, 100, 700, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblConnexion = new JLabel("Connexion");
-		lblConnexion.setBounds(247, 38, 227, 95);
+		JLabel lblConnexion = new JLabel("");
+		lblConnexion.setForeground(Color.WHITE);
+		lblConnexion.setOpaque(true);
+		lblConnexion.setBackground(Color.GRAY);
+		lblConnexion.setBounds(0, 528, 686, 135);
 		lblConnexion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConnexion.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		frame.getContentPane().add(lblConnexion);
+		JLabel lblConnexion2 = new JLabel("Connexion");
+		lblConnexion2.setForeground(Color.WHITE);
+		lblConnexion2.setOpaque(true);
+		lblConnexion2.setBackground(Color.GRAY);
+		lblConnexion2.setBounds(0, 0, 686, 135);
+		lblConnexion2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConnexion2.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		frame.getContentPane().add(lblConnexion2);
 
 		Component verticalStrut = Box.createVerticalStrut(20);
 		verticalStrut.setBounds(350, 0, 20, 182);
@@ -87,6 +103,7 @@ public class Connexion {
 		emailField.setColumns(10);
 
 		btnretour = new JButton("Retour");
+		btnretour.setFont(new Font("Calibri Light", Font.PLAIN, 14));
 		btnretour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			index u=new index();
@@ -118,6 +135,8 @@ public class Connexion {
 		frame.getContentPane().add(lblMotDePasse);
 
 		JButton btnSeConnecter = new JButton("Connexion");
+		btnSeConnecter.setOpaque(true);
+
 		btnSeConnecter.addActionListener(new ActionListener() {
 			private String role;
 			private String res;
@@ -158,7 +177,7 @@ public class Connexion {
 				}
 
 
-				else if((user.getRole()).equals("3")) {
+				else if((user.getRole()).equals("Prof")) {
 					 Prof v=new Prof(user);
 						v.run(user);
 						frame.setVisible(false);
@@ -166,7 +185,7 @@ public class Connexion {
 
 				}
 
-				else if((user.getRole()).equals("4")) {
+				else if((user.getRole()).equals("Administration")) {
 					 Administration v=new Administration(user);
 						v.run(user);
 						frame.setVisible(false);
@@ -200,7 +219,7 @@ public class Connexion {
 
 		});
 		btnSeConnecter.setFont(new Font("Calibri Light", Font.PLAIN, 27));
-		btnSeConnecter.setBounds(257, 456, 227, 55);
+		btnSeConnecter.setBounds(256, 419, 227, 55);
 		frame.getContentPane().add(btnSeConnecter);
 
 
@@ -216,4 +235,5 @@ public class Connexion {
 
 
 		}
-	}}
+	}	
+}

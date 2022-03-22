@@ -1,40 +1,45 @@
-package vueprof;
+package vueprof; 
+
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
-import accueil.Administrateur;
-import accueil.Prof;
+import com.mysql.cj.xdevapi.Statement;
+
+import accueil.Bdd;
 import accueil.Utilisateur;
+
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class planning {
 
-	private JFrame frame;
+	JFrame frame;
+	private JTable table;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run(Utilisateur user) {
-				try {
-					planning window = new planning(user);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+	public static void run(Utilisateur user) {
+		try {
+			planning window = new planning(user);
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -42,48 +47,104 @@ public class planning {
 	 * @param user 
 	 */
 	public planning(Utilisateur user) {
-		initialize(user);
+		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @param user 
 	 */
-	private void initialize(Utilisateur user) {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 694, 535);
+	private void initialize() {
+		frame = new JFrame("Planning");
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setBounds(100, 100, 480, 340);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JButton btnRetour = new JButton("Retour");
-		btnRetour.setBounds(10, 11, 116, 36);
-		btnRetour.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Prof u=new Prof(user);
-				u.run(user);
-				frame.setVisible(false);
-				this.dispose();
-	
-			}
+		frame.getContentPane().setLayout(null);
 
-			private void dispose() {
-				// TODO Auto-generated method stub
-				
+		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
 			}
 		});
-		frame.getContentPane().setLayout(null);
-		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
-		frame.getContentPane().add(btnRetour);
+		btnNewButton.setBounds(30, 264, 89, 23);
+		frame.getContentPane().add(btnNewButton);
 
-	}
+		JLabel lblNewLabel = new JLabel("Planning");
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 16));
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setBounds(0, 0, 466, 51);
+		frame.getContentPane().add(lblNewLabel);
 
-	public void run(Utilisateur user) {
-		try {
-			planning window = new planning(user);
-			window.frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(35, 71, 397, 169);
+		frame.getContentPane().add(scrollPane);
+
+		table = new JTable();
+		table.setFillsViewportHeight(true);
+		table.setCellSelectionEnabled(true);
+		scrollPane.setViewportView(table);
+		ListSelectionModel listMod =  table.getSelectionModel();
+		listMod.addListSelectionListener(table);
+
+		try{
+			Bdd co = new Bdd();
+			Connection co_bdd = co.connexion(); 
+
+			java.sql.Connection cnx = co.connexion();
+			java.sql.Statement stmt1 = cnx.createStatement(
+					ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
+			ResultSet rs1;
+			rs1 = stmt1.executeQuery("SELECT * FROM `planning` INNER JOIN classe on idClasse = classe.id");
+
+			int i=0;
+			int k=0;
+			if(rs1.next()){
+				rs1.last();
+				k=rs1.getRow();
+				rs1.beforeFirst();
+			}
+			Object[][] t=new Object[k][6];
+			//resultat de la requete dans un tableau
+			while (rs1.next()){
+
+				t[i][0]=rs1.getString(2);
+				t[i][1]=rs1.getString(3);
+				t[i][2]=rs1.getString(4);
+				t[i][3]=rs1.getString(5);
+				t[i][4]=rs1.getString(8);
+
+				i++;
+
+			}
+			System.out.println(i);
+			String[][] ligne=new String[18-8][6];//12
+			for(int heure = 8; heure < 17 ;heure++) {
+				ligne[heure-8][0] = String.valueOf(heure) +" - " +String.valueOf(heure+1);
+				for (int planning = 0 ; planning < i ; planning ++) {
+					int jour = Integer.parseInt(String.valueOf(t[planning][0]));
+					if(heure >= Integer.parseInt(String.valueOf(t[planning][1])) && Integer.parseInt(String.valueOf(t[planning][1]))+Integer.parseInt(String.valueOf(t[planning][2])) > heure  )
+						ligne[heure-8][jour] = String.valueOf(t[planning][4]);
+
+				}
+			}
+
+			rs1.close();
+			// affiche le tableau dans le jtable
+			final String columnNames[] = {"Heure","lundi","mardi","mercredi","jeudi","vendredi"};
+			listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			table.setModel(new DefaultTableModel(ligne,columnNames));
+
+
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
 		}
 		
 	}
-
+	
+	
 }

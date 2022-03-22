@@ -45,6 +45,16 @@ public class Utilisateur {
 
 
 	protected String classemodif;
+	protected String Duree;
+	
+	public String getDuree() {
+		return Duree;
+	}
+
+	public void setDuree(String duree) {
+		Duree = duree;
+	}
+
 	public String getValidationmodif() {
 		return validationmodif;
 	}

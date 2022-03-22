@@ -1,21 +1,17 @@
 package vueprof;
+
+import java.awt.Color;
 import java.awt.EventQueue;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
-import accueil.Administrateur;
-import accueil.Prof;
 import accueil.Utilisateur;
-
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class sanction {
+import java.awt.Font;
+
+public class GestionARS {
 
 	private JFrame frame;
 
@@ -26,7 +22,7 @@ public class sanction {
 		EventQueue.invokeLater(new Runnable() {
 			public void run(Utilisateur user) {
 				try {
-					sanction window = new sanction(user);
+					GestionARS window = new GestionARS(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,9 +39,8 @@ public class sanction {
 
 	/**
 	 * Create the application.
-	 * @param user 
 	 */
-	public sanction(Utilisateur user) {
+	public GestionARS(Utilisateur user) {
 		initialize(user);
 	}
 
@@ -54,49 +49,26 @@ public class sanction {
 	 */
 	private void initialize(Utilisateur user) {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 676, 570);
+		frame.setBounds(100, 100, 685, 726);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Sanction");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.WHITE);
+		JLabel lblNewLabel = new JLabel("Gestion Absence Retard Sanction");
 		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(0, 0, 662, 78);
+		lblNewLabel.setBounds(0, 0, 671, 59);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Prof u=new Prof(user);
-				u.run(user);
-				frame.setVisible(false);
-				this.dispose();
-	
-			}
-
-			private void dispose() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
-		btnRetour.setBounds(10, 11, 107, 36);
-		frame.getContentPane().add(btnRetour);
-
 	}
 
 	public void run(Utilisateur user) {
 		try {
-			sanction window = new sanction(user);
+			GestionARS window = new GestionARS(user);
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-
 }
