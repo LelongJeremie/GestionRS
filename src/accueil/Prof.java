@@ -95,8 +95,8 @@ public class Prof {
 		JButton btnAbsence = new JButton("Absence et retard");
 		btnAbsence.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				absence v=new absence(user);
-				v.run(user);
+				absence vi=new absence(user);
+				vi.run(user);
 				frame.setVisible(false);
 				this.dispose();
 			}
