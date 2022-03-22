@@ -42,7 +42,7 @@ public class manager extends Utilisateur {
 			java.sql.Statement stm = cnx.createStatement();
 
 
-			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
+			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
 
 			while(resultat.next()) {
 				user.setId(resultat.getString("id"));
@@ -53,7 +53,8 @@ public class manager extends Utilisateur {
 				user.setPassword(resultat.getString("Password"));
 				user.setDate_naissance(resultat.getString("date_naissance"));
 				user.setValidation(resultat.getString("validation"));
-				user.setClasse(resultat.getString("classe"));
+				user.setClasse(resultat.getString("libelle"));
+				user.setClasseid(resultat.getString("classe.id"));
 
 
 
@@ -69,7 +70,7 @@ public class manager extends Utilisateur {
 		}
 		return user;
 
-		}
+	}
 
 	public void envoyermail(String mail) {
 
@@ -218,33 +219,33 @@ public class manager extends Utilisateur {
 				user.getPrenom() + "', username ='" + user.getPseudo() + "' ,password ='" +
 				user.getPassword() + "', mail ='" + user.getMail() + "', date_naissance ='" +
 				user.getDate_naissance() + "' WHERE id ='" + user.getId() + "'";
-		
+
 		stmp =  cnx.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-		
-			
 
-			System.out.println(user.getNommodif());
-			System.out.println(user);
-			stmp.executeUpdate();
-			ResultSet rs = stmp.getGeneratedKeys();
-			 if(rs.next())
-	            {
-	                int last_inserted_id = rs.getInt(1);
-	                user.setIdmodif(Integer.toString(last_inserted_id));
-	            }
 
-		
-			
-			
-			System.out.println("Utilisateur mis � jour");
 
-			user.setPopup("modificationprofil");
+		System.out.println(user.getNommodif());
+		System.out.println(user);
+		stmp.executeUpdate();
+		ResultSet rs = stmp.getGeneratedKeys();
+		if(rs.next())
+		{
+			int last_inserted_id = rs.getInt(1);
+			user.setIdmodif(Integer.toString(last_inserted_id));
+		}
 
-			System.out.println(user.toString());
-			
-		
-		
-	return user;
+
+
+
+		System.out.println("Utilisateur mis � jour");
+
+		user.setPopup("modificationprofil");
+
+		System.out.println(user.toString());
+
+
+
+		return user;
 
 	}
 
@@ -315,7 +316,7 @@ public class manager extends Utilisateur {
 		return result;
 	}
 
-	public ResultSet test () {
+	public ResultSet toutlessusers () {
 
 
 		System.out.println(user.getMail());
@@ -325,7 +326,35 @@ public class manager extends Utilisateur {
 			java.sql.Statement stm = cnx.createStatement();
 
 
-			resultat = stm.executeQuery("SELECT * FROM utilisateur ");
+			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+
+
+
+		}
+
+
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}
+
+	public ResultSet eleveclasse(Utilisateur user) {
+
+
+
+
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'eleve' AND maclasse.idclasse = "+user.getClasseid());
 
 
 
@@ -350,14 +379,20 @@ public class manager extends Utilisateur {
 		try {
 			java.sql.Statement stm = cnx.createStatement();
 
-			System.out.println(user.getNommodif());
-			System.out.println(user);
+			System.out.println("testclasse"+user.getClassemodif());
+			System.out.println("test"+user);
 
 			int resultat1 = stm.executeUpdate("UPDATE utilisateur SET nom ='" + user.getNommodif() + "',  prenom ='" +
 					user.getPrenommodif() + "', username ='" + user.getPseudomodif() + "' ,password ='" +
 					user.getPasswordmodif() + "', mail ='" + user.getMailmodif() + "', date_naissance ='" +
-					user.getDate_naissancemodif() + "',  validation = '"+user.getValidationmodif()+"', role ='"+user.getRolemodif()+
-					"', classe= (select id from classe where id ="+user.getClassemodif()+") WHERE id ='" + user.getIdmodif() + "'");
+					user.getDate_naissancemodif() + "',  validation = '"+user.getValidationmodif()+"', "
+					+ "role ='"+user.getRolemodif()+"'  "
+					+ "WHERE id ='" + user.getIdmodif() + "'");
+
+
+			int resultat11 = stm.executeUpdate("INSERT INTO maclasse (idclasse,iduser) VALUES ((select id from classe where id ='"+user.getClassemodif()+"'),(select id from utilisateur where id ='"+user.getIdmodif()+"'))");
+
+
 			System.out.println("Utilisateur mis � jour");
 
 			user.setPopup("modificationprofil");

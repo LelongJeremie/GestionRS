@@ -77,7 +77,7 @@ public class adminuserprofil {
 
 		manager man = new manager();
 
-		resultat = man.test();
+		resultat = man.toutlessusers();
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 909, 601);
@@ -92,25 +92,24 @@ public class adminuserprofil {
 
 
 		try {
-			i=0;
+			
 			while(resultat.next()){
 
 				Utilisateur Monuser= new Utilisateur();
 
 
-				Monuser.setIdmodif(resultat.getString("id"));
+				Monuser.setIdmodif(resultat.getString("utilisateur.id"));
 				Monuser.setNommodif(resultat.getString("nom"));
 				Monuser.setPrenommodif(resultat.getString("prenom"));
 				Monuser.setMailmodif(resultat.getString("mail"));
 				Monuser.setPasswordmodif(resultat.getString("password"));
 				Monuser.setRolemodif(resultat.getString("role"));
-				Monuser.setClassemodif(resultat.getString("classe"));
+				Monuser.setClassemodif(resultat.getString("libelle"));
 				Monuser.setDate_naissancemodif(resultat.getString("date_naissance"));
 				Monuser.setPseudomodif(resultat.getString("username"));
 				Monuser.setValidationmodif(resultat.getString("Validation"));
 
-				System.out.println("ID = "+Monuser.getIdmodif()+"i= "+i);
-				i=i+1;
+				
 				comboBox.addItem(Monuser);  
 
 

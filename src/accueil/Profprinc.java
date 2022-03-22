@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import vueprofprincipal.rdvprofprincipal;
+
 public class Profprinc {
 
 	private JFrame frame;
@@ -18,12 +20,8 @@ public class Profprinc {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run(Utilisateur user) {
-				try {
-					Profprinc window = new Profprinc(user);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				// TODO Auto-generated method stub
+				
 			}
 
 			@Override
@@ -39,13 +37,14 @@ public class Profprinc {
 	 * @param user 
 	 */
 	public Profprinc(Utilisateur user) {
-		initialize();
+		initialize(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param user 
 	 */
-	private void initialize() {
+	private void initialize(Utilisateur user) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 660, 555);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,15 +76,26 @@ public class Profprinc {
 		btnNewButton.setBounds(236, 197, 206, 59);
 		frame.getContentPane().add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("Professeur");
+		JLabel lblNewLabel = new JLabel("Professeur Principal");
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		lblNewLabel.setBounds(265, 51, 142, 35);
 		frame.getContentPane().add(lblNewLabel);
 		
 		
-		JButton btnNewButton_11 = new JButton("Absence et retard");
+		JButton btnNewButton_11 = new JButton("Rendez-vous");
 		btnNewButton_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				rdvprofprincipal v=new rdvprofprincipal(user);
+				v.run(user);
+				frame.setVisible(false);
+				this.dispose();
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		btnNewButton_11.setFont(new Font("Calibri Light", Font.PLAIN, 31));
