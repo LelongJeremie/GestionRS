@@ -46,14 +46,18 @@ public class index {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 700, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Bienvenue");
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setOpaque(true);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 41));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(133, 40, 457, 103);
+		lblNewLabel.setBounds(0, 0, 686, 119);
 		frame.getContentPane().add(lblNewLabel);
 
 		JButton btnInscription = new JButton("Inscription");
@@ -113,9 +117,9 @@ public class index {
 			}
 		});
 		btnmdpoublie.setForeground(Color.WHITE);
-		btnmdpoublie.setBackground(Color.BLUE);
+		btnmdpoublie.setBackground(Color.GRAY);
 		btnmdpoublie.setFont(new Font("Calibri Light", Font.PLAIN, 11));
-		btnmdpoublie.setBounds(469, 475, 144, 34);
+		btnmdpoublie.setBounds(451, 476, 147, 34);
 		frame.getContentPane().add(btnmdpoublie);
 
 		JLabel lblmdpoublie = new JLabel("Mot de passe oubli\u00E9? Cliquer ici :");
@@ -126,6 +130,13 @@ public class index {
 		Component verticalStrut = Box.createVerticalStrut(20);
 		verticalStrut.setBounds(350, 0, 20, 182);
 		frame.getContentPane().add(verticalStrut);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBackground(Color.GRAY);
+		lblNewLabel_1.setForeground(Color.GRAY);
+		lblNewLabel_1.setOpaque(true);
+		lblNewLabel_1.setBounds(0, 574, 686, 89);
+		frame.getContentPane().add(lblNewLabel_1);
 	}
 
 	public void run() {

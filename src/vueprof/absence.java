@@ -25,6 +25,7 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class absence {
 
@@ -71,7 +72,7 @@ public class absence {
 
 		manager man = new manager();
 
-		resultat = man.test();
+		
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 677, 684);
@@ -79,11 +80,17 @@ public class absence {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Absence et retard");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(223, 11, 239, 47);
+		lblNewLabel.setBounds(0, 0, 663, 59);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
+
 		comboBox.setBounds(51, 124, 578, 32);
 		frame.getContentPane().add(comboBox);
 

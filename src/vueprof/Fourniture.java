@@ -1,8 +1,12 @@
 package vueprof;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import accueil.Prof;
 import accueil.Utilisateur;
@@ -52,7 +56,14 @@ public class Fourniture {
 		frame.setBounds(100, 100, 709, 595);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		JLabel lblNewLabel = new JLabel("Fourniture");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		lblNewLabel.setBounds(0, 0, 695, 60);
+		frame.getContentPane().add(lblNewLabel);
 		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

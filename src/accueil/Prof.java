@@ -17,6 +17,8 @@ import vueprof.sanction;
 import java.awt.Font;
 import java.awt.Component;
 import javax.swing.Box;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class Prof {
 
@@ -58,6 +60,7 @@ public class Prof {
 	 */
 	private void initialize(Utilisateur user) {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 692, 585);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -81,8 +84,12 @@ public class Prof {
 		frame.getContentPane().add(btnPlanning);
 		
 		JLabel lblNewLabel = new JLabel("Professeur");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setOpaque(true);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(265, 51, 142, 35);
+		lblNewLabel.setBounds(0, 0, 678, 86);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnAbsence = new JButton("Absence et retard");
@@ -193,6 +200,12 @@ public class Prof {
 		btnGestionARS.setFont(new Font("Calibri Light", Font.BOLD, 22));
 		btnGestionARS.setBounds(487, 293, 181, 70);
 		frame.getContentPane().add(btnGestionARS);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setOpaque(true);
+		lblNewLabel_1.setBackground(Color.GRAY);
+		lblNewLabel_1.setBounds(0, 478, 678, 70);
+		frame.getContentPane().add(lblNewLabel_1);
 	}
 
 	public void run(Utilisateur user) {

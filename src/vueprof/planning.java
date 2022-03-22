@@ -23,6 +23,7 @@ import accueil.Utilisateur;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class planning {
 
@@ -69,9 +70,12 @@ public class planning {
 		frame.getContentPane().add(btnNewButton);
 
 		JLabel lblNewLabel = new JLabel("Planning");
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setOpaque(true);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 16));
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBounds(173, 37, 94, 23);
+		lblNewLabel.setBounds(0, 0, 466, 51);
 		frame.getContentPane().add(lblNewLabel);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -133,11 +137,6 @@ public class planning {
 			final String columnNames[] = {"Heure","lundi","mardi","mercredi","jeudi","vendredi"};
 			listMod.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.setModel(new DefaultTableModel(ligne,columnNames));
-
-			JLabel lblNewLabel_2 = new JLabel("LprsNote");
-			lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			lblNewLabel_2.setBounds(10, 10, 153, 51);
-			frame.getContentPane().add(lblNewLabel_2);
 
 
 		}

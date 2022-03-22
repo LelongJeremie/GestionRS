@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Motdepassevalide {
 
@@ -44,10 +45,30 @@ public class Motdepassevalide {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 738, 602);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		btnretour = new JButton("Retour");
+		btnretour.setFont(new Font("Calibri Light", Font.PLAIN, 14));
+		btnretour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			index u=new index();
+				u.run();
+				frame.setVisible(false);
+				this.dispose();
+
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+
+			}
+
+
+		});
+		btnretour.setBounds(10, 11, 113, 38);
+		frame.getContentPane().add(btnretour);
 		JLabel lblEntrezcode = new JLabel("Entrez le code obtenu par le mail : ");
 		lblEntrezcode.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEntrezcode.setFont(new Font("Calibri Light", Font.PLAIN, 17));

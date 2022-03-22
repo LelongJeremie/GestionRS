@@ -12,6 +12,8 @@ import accueil.Utilisateur;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class sanction {
 
@@ -57,8 +59,12 @@ public class sanction {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Sanction");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(Color.GRAY);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(267, 11, 123, 67);
+		lblNewLabel.setBounds(0, 0, 662, 78);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnRetour = new JButton("Retour");

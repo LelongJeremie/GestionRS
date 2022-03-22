@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Inscription {
 
@@ -65,13 +66,17 @@ public class Inscription {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.getContentPane().setFont(new Font("Calibri", Font.PLAIN, 14));
 		frame.setBounds(100, 100, 850, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblInscription = new JLabel("Inscription");
-		lblInscription.setBounds(325, 40, 227, 95);
+		lblInscription.setForeground(Color.WHITE);
+		lblInscription.setBackground(Color.GRAY);
+		lblInscription.setOpaque(true);
+		lblInscription.setBounds(0, 0, 836, 132);
 		lblInscription.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInscription.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		frame.getContentPane().add(lblInscription);
@@ -153,7 +158,9 @@ public class Inscription {
 		frame.getContentPane().add(lblrole);
 		
 		JRadioButton rdbtnProfesseur = new JRadioButton("Professeur");
+		rdbtnProfesseur.setBackground(Color.WHITE);
 		JRadioButton rdbtnadministratif = new JRadioButton("Administratif");
+		rdbtnadministratif.setBackground(Color.WHITE);
 		
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnadministratif);
@@ -180,6 +187,7 @@ public class Inscription {
 		frame.getContentPane().add(rdbtnProfesseur);
 
 		JButton btnValidezinscription = new JButton("Validez");
+		btnValidezinscription.setForeground(Color.BLACK);
 		btnValidezinscription.addActionListener(new ActionListener() {
 			private int tests;
 			private String res;
@@ -266,6 +274,12 @@ public class Inscription {
 		});
 		btnretour.setBounds(10, 11, 113, 38);
 		frame.getContentPane().add(btnretour);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setBounds(0, 598, 836, 65);
+		frame.getContentPane().add(lblNewLabel);
 	}
 
 	public void run() {

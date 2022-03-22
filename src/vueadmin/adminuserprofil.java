@@ -21,6 +21,7 @@ import javax.swing.JCheckBox;
 import accueil.Administrateur;
 import accueil.Utilisateur;
 import accueil.manager;
+import java.awt.Color;
 
 
 public class adminuserprofil {
@@ -85,6 +86,7 @@ public class adminuserprofil {
 		frame.getContentPane().setLayout(null);
 
 		JComboBox<Utilisateur> comboBox = new JComboBox();
+		comboBox.setBackground(Color.WHITE);
 		comboBox.setBounds(10, 49, 975, 54);
 		frame.getContentPane().add(comboBox);
 
@@ -319,6 +321,12 @@ public class adminuserprofil {
 		});
 		btnRefresh.setBounds(331, 114, 147, 38);
 		frame.getContentPane().add(btnRefresh);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setBounds(0, 0, 995, 37);
+		frame.getContentPane().add(lblNewLabel);
 
 
 

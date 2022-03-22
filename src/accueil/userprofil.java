@@ -76,6 +76,7 @@ public class userprofil {
 	private void initialize(Utilisateur user) {
 		manager man = new manager();
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 625, 395);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

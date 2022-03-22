@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import vueprofprincipal.rdvprofprincipal;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class Profprinc {
 
@@ -43,9 +45,11 @@ public class Profprinc {
 	/**
 	 * Initialize the contents of the frame.
 	 * @param user 
+	 * @wbp.parser.entryPoint
 	 */
 	private void initialize(Utilisateur user) {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 660, 555);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -77,8 +81,12 @@ public class Profprinc {
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Professeur Principal");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(265, 51, 142, 35);
+		lblNewLabel.setBounds(0, 0, 646, 86);
 		frame.getContentPane().add(lblNewLabel);
 		
 		
@@ -119,6 +127,12 @@ public class Profprinc {
 		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnNewButton_3.setBounds(265, 337, 153, 59);
 		frame.getContentPane().add(btnNewButton_3);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setOpaque(true);
+		lblNewLabel_1.setBackground(Color.GRAY);
+		lblNewLabel_1.setBounds(0, 443, 646, 75);
+		frame.getContentPane().add(lblNewLabel_1);
 		
 	}
 	

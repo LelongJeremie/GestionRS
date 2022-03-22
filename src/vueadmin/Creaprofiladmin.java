@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
+import java.awt.Color;
 
 public class Creaprofiladmin {
 
@@ -70,11 +71,14 @@ public class Creaprofiladmin {
 	 */
 	private void initialize(Utilisateur user) {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 863, 725);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		JLabel lblcreaadmin = new JLabel("Creer un utilisateur");
-		lblcreaadmin.setBounds(250, 40, 367, 95);
+		lblcreaadmin.setOpaque(true);
+		lblcreaadmin.setBackground(Color.GRAY);
+		lblcreaadmin.setBounds(0, 0, 849, 115);
 		lblcreaadmin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcreaadmin.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		frame.getContentPane().add(lblcreaadmin);
@@ -172,11 +176,17 @@ public class Creaprofiladmin {
 		frame.getContentPane().add(lblrole);
 		
 		JRadioButton rdbtnadmin = new JRadioButton("Admin");
+		rdbtnadmin.setBackground(Color.WHITE);
 		JRadioButton rdbtnprofesseurprincipal = new JRadioButton("Professeur Principal");
+		rdbtnprofesseurprincipal.setBackground(Color.WHITE);
 		JRadioButton rdbtnetudiant = new JRadioButton("Etudiant");
+		rdbtnetudiant.setBackground(Color.WHITE);
 		JRadioButton rdbtnparent = new JRadioButton("Parent");
+		rdbtnparent.setBackground(Color.WHITE);
 		JRadioButton rdbtnprofesseur = new JRadioButton("Professeur");
+		rdbtnprofesseur.setBackground(Color.WHITE);
 		JRadioButton rdbtnadministratif = new JRadioButton("administratif");
+		rdbtnadministratif.setBackground(Color.WHITE);
 		
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnadmin);
@@ -341,6 +351,12 @@ public class Creaprofiladmin {
 		btnValidercrea.setFont(new Font("Calibri Light", Font.PLAIN, 15));
 		btnValidercrea.setBounds(547, 506, 189, 33);
 		frame.getContentPane().add(btnValidercrea);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBounds(0, 617, 849, 71);
+		frame.getContentPane().add(lblNewLabel);
 		
 		
 	}

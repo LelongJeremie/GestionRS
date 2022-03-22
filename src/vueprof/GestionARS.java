@@ -1,11 +1,14 @@
 package vueprof;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
 import accueil.Utilisateur;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import java.awt.Font;
 
 public class GestionARS {
@@ -49,11 +52,15 @@ public class GestionARS {
 		frame.setBounds(100, 100, 685, 726);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		JLabel lblNewLabel = new JLabel("Gestion Absence Retard Sanction");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		lblNewLabel.setBounds(0, 0, 671, 59);
+		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblgestionARS = new JLabel("Gestion Absence Retard Sanction");
-		lblgestionARS.setFont(new Font("Calibri Light", Font.BOLD, 27));
-		lblgestionARS.setBounds(157, 26, 412, 48);
-		frame.getContentPane().add(lblgestionARS);
 	}
 
 	public void run(Utilisateur user) {
