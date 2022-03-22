@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.Container; 
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -169,6 +169,7 @@ public class rdvprofprincipal extends JPanel {
 	    labs = new JButton[6][7]; // first row is days
 	 
 	    bp.add(b0 = new JButton("D"));
+	    b0.setForeground(Color.BLACK);
 	    bp.add(new JButton("L"));
 	    JButton button = new JButton("M");
 	    button.addActionListener(new ActionListener() {
@@ -432,9 +433,10 @@ public class rdvprofprincipal extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				resultatclasse = man.afficherclasse();
 
-				man.selectmodifprofiladmin(Monuser);
+			
 
 				Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+				Monuser.setClassemodif(((Utilisateur) comboBox.getSelectedItem()).getClassemodif());
 				Monuser.setNommodif(((Utilisateur) comboBox.getSelectedItem()).getNommodif());
 				Monuser.setPrenommodif(((Utilisateur) comboBox.getSelectedItem()).getPrenommodif());
 				Monuser.setMailmodif(((Utilisateur) comboBox.getSelectedItem()).getMailmodif());
@@ -442,7 +444,7 @@ public class rdvprofprincipal extends JPanel {
 				Monuser.setRolemodif(((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
 				Monuser.setDate_naissancemodif(((Utilisateur) comboBox.getSelectedItem()).getDate_naissancemodif());
 				Monuser.setPseudomodif(((Utilisateur) comboBox.getSelectedItem()).getPseudomodif());
-
+				man.selectmodifprofiladmin(Monuser);
 				 JFrame f = new JFrame("Mon Calendrier");
 				    Container c = f.getContentPane();
 				    c.setLayout(new FlowLayout());

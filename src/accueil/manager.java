@@ -389,7 +389,7 @@ public class manager extends Utilisateur {
 					+ "role ='"+user.getRolemodif()+"'  "
 					+ "WHERE id ='" + user.getIdmodif() + "'");
 
-
+			System.out.println("aaaa"+user.getClassemodif());
 			int resultat11 = stm.executeUpdate("INSERT INTO maclasse (idclasse,iduser) VALUES ((select id from classe where id ='"+user.getClassemodif()+"'),(select id from utilisateur where id ='"+user.getIdmodif()+"'))");
 
 

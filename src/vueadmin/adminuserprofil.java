@@ -145,7 +145,7 @@ public class adminuserprofil {
 			public void actionPerformed(ActionEvent e) {
 				resultatclasse = man.afficherclasse();
 
-				man.selectmodifprofiladmin(Monuser);
+
 
 				Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
 				Monuser.setNommodif(((Utilisateur) comboBox.getSelectedItem()).getNommodif());
@@ -156,7 +156,7 @@ public class adminuserprofil {
 				Monuser.setDate_naissancemodif(((Utilisateur) comboBox.getSelectedItem()).getDate_naissancemodif());
 				Monuser.setPseudomodif(((Utilisateur) comboBox.getSelectedItem()).getPseudomodif());
 
-
+				man.selectmodifprofiladmin(Monuser);
 
 
 				JComboBox<classe> comboBoxclasse = new JComboBox();
