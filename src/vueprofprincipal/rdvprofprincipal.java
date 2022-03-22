@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 
 import accueil.Administrateur;
+import accueil.Profprinc;
 import accueil.Utilisateur;
 import accueil.manager;
 import vueadmin.PopupAdmin;
@@ -278,7 +279,7 @@ public class rdvprofprincipal {
 		JButton btnretour = new JButton("retour");
 		btnretour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Administrateur u=new Administrateur(user);
+				Profprinc u=new Profprinc(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
@@ -313,6 +314,10 @@ public class rdvprofprincipal {
 		});
 		btnRefresh.setBounds(331, 114, 147, 38);
 		frame.getContentPane().add(btnRefresh);
+		
+		JLabel lblNewLabel = new JLabel("New label"+Monuser);
+		lblNewLabel.setBounds(126, 12, 550, 14);
+		frame.getContentPane().add(lblNewLabel);
 
 
 
