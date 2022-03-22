@@ -92,7 +92,7 @@ public class adminuserprofil {
 
 
 		try {
-			i=0;
+			
 			while(resultat.next()){
 
 				Utilisateur Monuser= new Utilisateur();
@@ -109,8 +109,7 @@ public class adminuserprofil {
 				Monuser.setPseudomodif(resultat.getString("username"));
 				Monuser.setValidationmodif(resultat.getString("Validation"));
 
-				System.out.println("ID = "+Monuser.getIdmodif()+"i= "+i);
-				i=i+1;
+				
 				comboBox.addItem(Monuser);  
 
 
