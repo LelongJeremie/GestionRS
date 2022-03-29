@@ -165,9 +165,13 @@ public class absence {
 						JButton btnConfirmerretard = new JButton("Confirmer");
 						btnConfirmerretard.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								System.out.println(Monuser);
+								 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
+							     System.out.println("yyyy/MM/dd hh:mm:ss-> "+dtf5.format(LocalDateTime.now()));
+							
 								Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
 								Monuser.setDuree(""+textField.getText());
+								Monuser.setDate(dtf5.format(LocalDateTime.now()));
+								System.out.println(Monuser);
 								try {
 									man.ajoutretard(Monuser);
 								} catch (SQLException e1) {
@@ -201,7 +205,14 @@ public class absence {
 						JButton btnValiderabsence = new JButton("Valider");
 						btnValiderabsence.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-						
+								Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+								Monuser.setDate(dtf5.format(LocalDateTime.now()));
+								try {
+									man.ajoutabsence(Monuser);
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								
 							}
 						});

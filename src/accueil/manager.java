@@ -436,13 +436,18 @@ public class manager extends Utilisateur {
 	}
 
 	public void ajoutretard(Utilisateur monuser) throws SQLException {
-		
-
+		System.out.println(monuser.getIdmodif());
+		System.out.println(monuser.getDuree());
 		java.sql.Statement stm = cnx.createStatement();
-		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,retard,date_heure_debut) VALUES ('" + user.getIdmodif() +"','"+ user.getDuree() +"',now())");
+		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,absence,date_heure,duree) VALUES ('" + monuser.getIdmodif() +"','"+ 1 +"','"+monuser.getDate()+"','"+monuser.getDuree()+"')");
 	}
 
-
+	public void ajoutabsence(Utilisateur monuser) throws SQLException {
+		System.out.println(monuser.getIdmodif());
+		System.out.println(monuser.getDuree());
+		java.sql.Statement stm = cnx.createStatement();
+		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,absence,date_heure) VALUES ('" + monuser.getIdmodif() +"','"+ 2 +"','"+monuser.getDate()+"')");
+	}
 
 
 

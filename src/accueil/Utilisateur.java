@@ -27,6 +27,9 @@ public class Utilisateur {
 	protected String idmodif;
 	protected String classeid;
 	protected String classeidmodif;
+	protected String duree;
+	protected String date;
+	
 	public String getClasseid() {
 		return classeid;
 	}
@@ -308,7 +311,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Nom : " + nommodif + " || Prenom : " + prenommodif + " || Mail : "
+		return "idmodif : "+ idmodif +" || Nom : " + nommodif + " || Prenom : " + prenommodif + " || Mail : "
 				+ mailmodif + " || Classe : " + classemodif + " || Role : " + rolemodif
 				+ " || Pseudo : " + pseudomodif + " || date de naissance : " + date_naissancemodif + " || validation :"+validationmodif;
 	}
@@ -355,6 +358,14 @@ public Utilisateur() {
 		//System.out.println("Le nombre est "+ nombre*ombre);
 		*/
 	}
+
+public String getDate() {
+	return date;
+}
+
+public void setDate(String date) {
+	this.date = date;
+}
 
 
 
