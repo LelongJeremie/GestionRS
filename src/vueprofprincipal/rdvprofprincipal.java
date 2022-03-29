@@ -50,7 +50,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
- 
+
 /**
  * Bean to display a month calendar in a JPanel. Only works for the Western
  * calendar.
@@ -118,7 +118,7 @@ public class rdvprofprincipal extends JPanel {
 	    recompute();
 	  }
 	 
-	  private void setYYMMDD(int year, int month, int today) {
+	  public void setYYMMDD(int year, int month, int today) {
 	    yy = year;
 	    mm = month;
 	    dd = today;
@@ -127,7 +127,7 @@ public class rdvprofprincipal extends JPanel {
 	  String[] months = { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
 	      "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre" };
 
-	public String date;
+	public static String date;
 	 
 	  /** Build the GUI. Assumes that setYYMMDD has been called. */
 	  private void buildGUI() {
@@ -209,8 +209,10 @@ public class rdvprofprincipal extends JPanel {
 	          man.Date(date);
 	          Monuser.setDate(date);
 	          Monuser.getDate();
+	        
 	        }
 	      }
+	    
 	    };
 	    
 	    System.out.println(date);
@@ -292,6 +294,10 @@ public class rdvprofprincipal extends JPanel {
 	    this.mm = mm; // starts at 0, like Date
 	    this.dd = dd;
 	    recompute();
+	  }
+	  
+	  public static String getDate() {
+		  return date;
 	  }
 	 
 	  /** Unset any previously highlighted day */
@@ -442,11 +448,12 @@ public class rdvprofprincipal extends JPanel {
 
 	JButton btnSelect = new JButton("Selectionner");
 		btnSelect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				resultatclasse = man.afficherclasse();
-
 			
 
+			public void actionPerformed(ActionEvent e) {
+				resultatclasse = man.afficherclasse();
+				rdvprofprincipal.getDate();
+				
 				Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
 				Monuser.setClassemodif(((Utilisateur) comboBox.getSelectedItem()).getClassemodif());
 				Monuser.setNommodif(((Utilisateur) comboBox.getSelectedItem()).getNommodif());
@@ -462,7 +469,7 @@ public class rdvprofprincipal extends JPanel {
 				    c.setLayout(new FlowLayout());
 				 
 				  
-				 
+					
 				    // and beside it, the current month.
 				    c.add(new rdvprofprincipal());
 				 
