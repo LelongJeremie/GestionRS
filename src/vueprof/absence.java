@@ -24,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class absence {
 
@@ -63,14 +64,20 @@ public class absence {
 
 		resultat = man.toutlessusers();
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.getContentPane().setForeground(Color.WHITE);
 		frame.setBounds(100, 100, 677, 568);
 		frame.setBounds(100, 100, 677, 684);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Absence et retard");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(223, 11, 239, 47);
+		lblNewLabel.setBounds(0, 0, 663, 64);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JComboBox comboBox = new JComboBox();
@@ -139,7 +146,7 @@ public class absence {
 		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
 		btnRetour.setBounds(10, 11, 107, 36);
 		frame.getContentPane().add(btnRetour);
-		ButtonGroup group = new ButtonGroup();
+
 		
 		JButton btnSelect = new JButton("Selectionner");
 		btnSelect.addActionListener(new ActionListener() {

@@ -32,7 +32,23 @@ public class Utilisateur {
 	protected String classeid;
 	protected String classeidmodif;
 	protected String duree;
-	protected String date;
+	protected String sanction;
+
+public String getSanction() {
+		return sanction;
+	}
+
+	public void setSanction(String sanction) {
+		this.sanction = sanction;
+	}
+
+public String getDate() {
+	return date;
+}
+
+public void setDate(String date) {
+	this.date = date;
+}
 
 	public String getClasseid() {
 		return classeid;
@@ -362,14 +378,6 @@ public Utilisateur() {
 		//System.out.println("Le nombre est "+ nombre*ombre);
 		*/
 	}
-
-public String getDate() {
-	return date;
-}
-
-public void setDate(String date) {
-	this.date = date;
-}
 
 
 

@@ -449,6 +449,12 @@ public class manager extends Utilisateur {
 		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,date_heure) VALUES ('" + monuser.getIdmodif() +"','"+ 2 +"','"+monuser.getDate()+"')");
 	}
 
+	public void ajoutsanction(Utilisateur monuser) throws SQLException {
+		java.sql.Statement stm = cnx.createStatement();
+		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getSanction()+"')");
+		
+	}	
+
 
 
 

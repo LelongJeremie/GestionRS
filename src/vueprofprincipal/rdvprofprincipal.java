@@ -206,7 +206,7 @@ public class rdvprofprincipal extends JPanel {
 	          System.out.println(num+"  "+mm+"  "+yy);
 	          date = num+"-"+mm+"-"+yy;
 	          
-	          man.Date(date);
+	         
 	          Monuser.setDate(date);
 	          Monuser.getDate();
 	        
