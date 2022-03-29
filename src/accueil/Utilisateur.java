@@ -1,13 +1,24 @@
 package accueil;
 
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class Utilisateur {
 
 	protected String nom;
+	protected Date datee;
 	protected String date;
 
+
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 
 	protected String prenom;
@@ -32,7 +43,7 @@ public class Utilisateur {
 	protected String classeid;
 	protected String classeidmodif;
 	protected String duree;
-	protected String date;
+
 
 	public String getClasseid() {
 		return classeid;
@@ -101,6 +112,10 @@ public class Utilisateur {
 		this.password = password;
 	}
 
+
+	public Utilisateur() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public String getIdclasse() {
 		return idclasse;
@@ -350,26 +365,18 @@ public class Utilisateur {
 	}
 
 
-public Utilisateur() {
 
-
-		//this.hydrate(donnees);
-		/*
-		//user.ville();
-		this.setadresse();
-		this.getpersonne(tableau);
-		//user.getpersonne(tableau1);
-		//System.out.println("Le nombre est "+ nombre*ombre);
-		*/
-	}
-
-public String getDate() {
+public String getDatee() {
 	return date;
 }
 
-public void setDate(String date) {
-	this.date = date;
+public void setDatee(Date datee) {
+	this.datee = datee;
 }
+
+
+
+
 
 
 

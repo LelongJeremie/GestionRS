@@ -448,6 +448,13 @@ public class manager extends Utilisateur {
 		java.sql.Statement stm = cnx.createStatement();
 		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,date_heure) VALUES ('" + monuser.getIdmodif() +"','"+ 2 +"','"+monuser.getDate()+"')");
 	}
+	
+	
+	public void ajoutrdvprofprinc(Utilisateur monuser) throws SQLException {
+		System.out.println(monuser.getDatee());
+		java.sql.Statement stm = cnx.createStatement();
+		int insert = stm.executeUpdate("INSERT INTO `rdv` (`date_rdv`, `id_participant`, `id_organisateur`) VALUES ('" + monuser.getDatee() +"','"+ monuser.getId() +"','"+ monuser.getIdmodif() +"')");
+	}
 
 
 

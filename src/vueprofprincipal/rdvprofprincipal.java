@@ -206,7 +206,7 @@ public class rdvprofprincipal extends JPanel {
 	          System.out.println(num+"  "+mm+"  "+yy);
 	          date = num+"-"+mm+"-"+yy;
 	          
-	          man.Date(date);
+	          
 	          Monuser.setDate(date);
 	          Monuser.getDate();
 	        
@@ -451,8 +451,8 @@ public class rdvprofprincipal extends JPanel {
 			
 
 			public void actionPerformed(ActionEvent e) {
-				resultatclasse = man.afficherclasse();
-				rdvprofprincipal.getDate();
+				
+			
 				
 				Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
 				Monuser.setClassemodif(((Utilisateur) comboBox.getSelectedItem()).getClassemodif());
@@ -463,7 +463,7 @@ public class rdvprofprincipal extends JPanel {
 				Monuser.setRolemodif(((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
 				Monuser.setDate_naissancemodif(((Utilisateur) comboBox.getSelectedItem()).getDate_naissancemodif());
 				Monuser.setPseudomodif(((Utilisateur) comboBox.getSelectedItem()).getPseudomodif());
-				man.selectmodifprofiladmin(Monuser);
+			
 				 JFrame f = new JFrame("Mon Calendrier");
 				    Container c = f.getContentPane();
 				    c.setLayout(new FlowLayout());
@@ -480,23 +480,16 @@ public class rdvprofprincipal extends JPanel {
 
 				
 
-				try {
-
-					while(resultatclasse.next()){ 
-						
-
-
-					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			
 
 				JButton btnModificationadmin = new JButton("Prendre rendez-vous");
 				btnModificationadmin.addActionListener(new ActionListener() {
 					
 
+					private String daterdv;
+
 					public void actionPerformed(ActionEvent e) {
+						daterdv = rdvprofprincipal.getDate();
 						 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
 						dateajd ="yyyy/MM/dd hh:mm:ss-> "+dtf5.format(LocalDateTime.now());
 						  try {
@@ -504,19 +497,26 @@ public class rdvprofprincipal extends JPanel {
 					                SimpleDateFormat ("yyyy-MM-dd");
 					            System.out.println(date);
 					            date = man.getDate();
-					            Date date1 = dateFormat.parse(date);
+					            Date date1 = dateFormat.parse(daterdv);
 					            Date date2 = dateFormat.parse(dateajd);
 					            System.out.println("Date-1: " + 
 					                               dateFormat.format(date1));
 					            System.out.println("Date-2: " +
-					                               dateFormat.format(dateajd));
+					                               dateFormat.format(date2));
 					            if(date1.before(date2)){
 					                System.out.println(
 					                    "Date-1 is before Date-2");
 					            } 
 					            
 					            else {
-					            	man.selectmodifprofiladmin(Monuser);
+					            	Monuser.setDatee(date1);
+					            	
+					            	try {
+										man.ajoutrdvprofprinc(Monuser);
+									} catch (SQLException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
 								}
 					        } catch (ParseException ex) {
 					        }
