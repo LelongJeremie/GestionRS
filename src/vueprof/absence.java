@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 
 import accueil.Administrateur;
+import accueil.Prof;
 import accueil.Utilisateur;
 import accueil.manager;
 import vueadmin.PopupAdmin;
@@ -293,7 +294,7 @@ public class absence {
 		JButton btnretour = new JButton("retour");
 		btnretour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Administrateur u=new Administrateur(user);
+				Prof u=new Prof(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();

@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import com.mysql.cj.xdevapi.Statement;
 
 import accueil.Bdd;
+import accueil.Prof;
 import accueil.Utilisateur;
 
 import java.awt.Color;
@@ -47,13 +48,13 @@ public class planning {
 	 * @param user 
 	 */
 	public planning(Utilisateur user) {
-		initialize();
+		initialize(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Utilisateur user) {
 		frame = new JFrame("Planning");
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 480, 340);
@@ -63,7 +64,16 @@ public class planning {
 		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				Prof u=new Prof(user);
+				u.run(user);
 				frame.setVisible(false);
+				this.dispose();
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		btnNewButton.setBounds(30, 264, 89, 23);
