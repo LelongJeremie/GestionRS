@@ -439,14 +439,14 @@ public class manager extends Utilisateur {
 		System.out.println(monuser.getIdmodif());
 		System.out.println(monuser.getDuree());
 		java.sql.Statement stm = cnx.createStatement();
-		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,absence,date_heure,duree) VALUES ('" + monuser.getIdmodif() +"','"+ 1 +"','"+monuser.getDate()+"','"+monuser.getDuree()+"')");
+		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,date_heure,duree) VALUES ('" + monuser.getIdmodif() +"','"+ 1 +"','"+monuser.getDate()+"','"+monuser.getDuree()+"')");
 	}
 
 	public void ajoutabsence(Utilisateur monuser) throws SQLException {
 		System.out.println(monuser.getIdmodif());
 		System.out.println(monuser.getDuree());
 		java.sql.Statement stm = cnx.createStatement();
-		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,absence,date_heure) VALUES ('" + monuser.getIdmodif() +"','"+ 2 +"','"+monuser.getDate()+"')");
+		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,date_heure) VALUES ('" + monuser.getIdmodif() +"','"+ 2 +"','"+monuser.getDate()+"')");
 	}
 
 
