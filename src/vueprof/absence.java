@@ -1,15 +1,13 @@
 package vueprof;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import accueil.Administrateur;
 import accueil.Prof;
 import accueil.Utilisateur;
 import accueil.manager;
 import vueadmin.adminuserprofil;
 
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,10 +20,10 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import java.awt.Color;
 
 public class absence {
 
@@ -35,9 +33,6 @@ public class absence {
 	private JTextField textField;
 	private Utilisateur Monuser= new Utilisateur();
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run(Utilisateur user) {
@@ -57,40 +52,29 @@ public class absence {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 * @param user 
-	 */
 	public absence(Utilisateur user) {
 		initialize(user);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize(Utilisateur user) {
 
 		manager man = new manager();
 
-		
-
+		resultat = man.toutlessusers();
 		frame = new JFrame();
+		frame.setBounds(100, 100, 677, 568);
 		frame.setBounds(100, 100, 677, 684);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Absence et retard");
-		lblNewLabel.setOpaque(true);
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBackground(Color.GRAY);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(0, 0, 663, 59);
+		lblNewLabel.setBounds(223, 11, 239, 47);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(Color.WHITE);
-
+		comboBox.setBounds(223, 169, 223, 32);
 		comboBox.setBounds(51, 124, 578, 32);
 		frame.getContentPane().add(comboBox);
 
@@ -215,6 +199,12 @@ public class absence {
 						frame.getContentPane().add(lbldtdujour);
 						
 						JButton btnValiderabsence = new JButton("Valider");
+						btnValiderabsence.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+						
+								
+							}
+						});
 						btnValiderabsence.setFont(new Font("Calibri Light", Font.PLAIN, 18));
 						btnValiderabsence.setBounds(264, 475, 152, 36);
 						frame.getContentPane().add(btnValiderabsence);
@@ -266,3 +256,4 @@ public class absence {
 		
 	}
 }
+
