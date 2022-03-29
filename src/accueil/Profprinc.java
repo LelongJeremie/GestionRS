@@ -77,7 +77,7 @@ public class Profprinc {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(236, 197, 206, 59);
+		btnNewButton.setBounds(201, 197, 275, 59);
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Professeur Principal");
@@ -116,7 +116,7 @@ public class Profprinc {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(255, 267, 170, 59);
+		btnNewButton_2.setBounds(201, 267, 275, 59);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Sanction ");
@@ -125,7 +125,7 @@ public class Profprinc {
 			}
 		});
 		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnNewButton_3.setBounds(265, 337, 153, 59);
+		btnNewButton_3.setBounds(201, 337, 275, 59);
 		frame.getContentPane().add(btnNewButton_3);
 		
 		JLabel lblNewLabel_1 = new JLabel("");

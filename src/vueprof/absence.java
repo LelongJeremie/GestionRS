@@ -188,6 +188,8 @@ public class absence {
 				
 				JButton btnAbsence = new JButton("Absence");
 				btnAbsence.addActionListener(new ActionListener() {
+					private String date;
+
 					public void actionPerformed(ActionEvent e) {
 						 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
 					     System.out.println("yyyy/MM/dd hh:mm:ss-> "+dtf5.format(LocalDateTime.now()));

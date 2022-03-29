@@ -7,6 +7,12 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import java.awt.BorderLayout;
@@ -53,7 +59,9 @@ import javax.swing.JPanel;
  * @version $Id: Cal.java,v 1.5 2004/02/09 03:33:45 ian Exp $
  */
 public class rdvprofprincipal extends JPanel {
- 
+	public Utilisateur Monuser= new Utilisateur();
+	manager man = new manager();
+
 	 /** The currently-interesting year (not modulo 1900!) */
 	  protected int yy;
 	 
@@ -62,6 +70,8 @@ public class rdvprofprincipal extends JPanel {
 	 
 	  /** The buttons to be displayed */
 	  protected JButton labs[][];
+	  public String date2;
+	  public String dateajd;
 	 
 	  /** The number of day squares to leave blank at the start of this month */
 	  protected int leadGap = 0;
@@ -116,6 +126,8 @@ public class rdvprofprincipal extends JPanel {
 	 
 	  String[] months = { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
 	      "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre" };
+
+	public String date;
 	 
 	  /** Build the GUI. Assumes that setYYMMDD has been called. */
 	  private void buildGUI() {
@@ -192,9 +204,16 @@ public class rdvprofprincipal extends JPanel {
 	          // fire some kind of DateChanged event here.
 	          // Also, build a similar daySetter for day-of-week btns.
 	          System.out.println(num+"  "+mm+"  "+yy);
+	          date = num+"-"+mm+"-"+yy;
+	          
+	          man.Date(date);
+	          Monuser.setDate(date);
+	          Monuser.getDate();
 	        }
 	      }
 	    };
+	    
+	    System.out.println(date);
 	 
 	    // Construct all the buttons, and add them.
 	    for (int i = 0; i < 6; i++)
@@ -305,6 +324,9 @@ public class rdvprofprincipal extends JPanel {
 	    square.setBackground(Color.red);
 	    square.repaint();
 	    activeDay = newDay;
+	    
+	    
+	
 	  }
 	 
 	 
@@ -313,18 +335,9 @@ public class rdvprofprincipal extends JPanel {
 	private JFrame frame;
 	private ResultSet resultat;
 	private ResultSet resultatclasse;
-	private JTextField FieldPrenom;
-	private JTextField FieldMail;
-	private JTextField fieldDatenaissance;
-	private JTextField fieldpassword;
-	private JTextField FieldPseudo;
 	private int i;
-	private Utilisateur Monuser= new Utilisateur();
-	private Utilisateur vous = new Utilisateur(); 
-	private JComboBox comboboxvalidation;
-	private JComboBox comboBoxrole;
-	private JLabel lblRole;
-	private JTextField Fieldnom;
+
+ 
 
 	/**
 	 * Launch the application.
@@ -384,8 +397,7 @@ public class rdvprofprincipal extends JPanel {
 			i=0;
 			while(resultat.next()){
 
-				Utilisateur Monuser= new Utilisateur();
-
+				
 
 				Monuser.setIdmodif(resultat.getString("id"));
 				Monuser.setNommodif(resultat.getString("nom"));
@@ -428,7 +440,7 @@ public class rdvprofprincipal extends JPanel {
 		frame.show();
 
 
-		JButton btnSelect = new JButton("Selectionner");
+	JButton btnSelect = new JButton("Selectionner");
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				resultatclasse = man.afficherclasse();
@@ -471,74 +483,38 @@ public class rdvprofprincipal extends JPanel {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} 
+				}
 
-
-
-
-				FieldPrenom = new JTextField(Monuser.getPrenommodif());
-				FieldPrenom.setBounds(286, 165, 115, 27);
-				frame.getContentPane().add(FieldPrenom);
-				FieldPrenom.setColumns(10);
-
-				Fieldnom = new JTextField(Monuser.getNommodif());
-				Fieldnom.setColumns(10);
-				Fieldnom.setBounds(481, 168, 115, 27);
-				frame.getContentPane().add(Fieldnom);
-
-				FieldMail = new JTextField(Monuser.getMailmodif());
-				FieldMail.setColumns(10);
-				FieldMail.setBounds(662, 168, 115, 27);
-				frame.getContentPane().add(FieldMail);
-
-				fieldDatenaissance = new JTextField(Monuser.getPrenommodif());
-				fieldDatenaissance.setColumns(10);
-				fieldDatenaissance.setBounds(286, 221, 115, 27);
-				frame.getContentPane().add(fieldDatenaissance);
-
-				fieldpassword = new JTextField(Monuser.getPasswordmodif());
-				fieldpassword.setColumns(10);
-				fieldpassword.setBounds(481, 221, 115, 27);
-				frame.getContentPane().add(fieldpassword);
-
-				FieldPseudo = new JTextField(Monuser.getPseudomodif());
-				FieldPseudo.setColumns(10);
-				FieldPseudo.setBounds(662, 221, 115, 27);
-				frame.getContentPane().add(FieldPseudo);
-
-				comboboxvalidation = new JComboBox();
-				comboboxvalidation.setModel(new DefaultComboBoxModel(new String[] {"Desactive", "En cours d'activation", "Active"}));
-				comboboxvalidation.setBounds(662, 281, 115, 22);
-				frame.getContentPane().add(comboboxvalidation);
-
-				JLabel lblValidation = new JLabel("Validation: "+((Utilisateur) comboBox.getSelectedItem()).getValidationmodif());
-				lblValidation.setBounds(661, 259, 93, 14);
-				frame.getContentPane().add(lblValidation);
-
-				comboBoxrole = new JComboBox();
-				comboBoxrole.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Prof. Principal", "Prof.", "Administration", "Parent", "Eleve"}));
-				comboBoxrole.setBounds(241, 281, 160, 22);
-				frame.getContentPane().add(comboBoxrole);
-
-				lblRole = new JLabel("Role: "+((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
-				lblRole.setBounds(241, 259, 147, 14);
-				frame.getContentPane().add(lblRole);
-
-				JButton btnModificationadmin = new JButton("Modification");
+				JButton btnModificationadmin = new JButton("Prendre rendez-vous");
 				btnModificationadmin.addActionListener(new ActionListener() {
+					
+
 					public void actionPerformed(ActionEvent e) {
-
-						Monuser.setNommodif(""+Fieldnom.getText());
-						Monuser.setPrenommodif(""+FieldPrenom.getText());
-						Monuser.setMailmodif(""+FieldMail.getText());
-						Monuser.setDate_naissance(""+fieldDatenaissance.getText());
-						Monuser.setPseudomodif(""+FieldPseudo.getText());
-						Monuser.setPasswordmodif(""+fieldpassword.getText());
+						 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
+						dateajd ="yyyy/MM/dd hh:mm:ss-> "+dtf5.format(LocalDateTime.now());
+						  try {
+					            SimpleDateFormat dateFormat = new
+					                SimpleDateFormat ("yyyy-MM-dd");
+					            System.out.println(date);
+					            date = man.getDate();
+					            Date date1 = dateFormat.parse(date);
+					            Date date2 = dateFormat.parse(dateajd);
+					            System.out.println("Date-1: " + 
+					                               dateFormat.format(date1));
+					            System.out.println("Date-2: " +
+					                               dateFormat.format(dateajd));
+					            if(date1.before(date2)){
+					                System.out.println(
+					                    "Date-1 is before Date-2");
+					            } 
+					            
+					            else {
+					            	man.selectmodifprofiladmin(Monuser);
+								}
+					        } catch (ParseException ex) {
+					        }
+						  
 						
-						Monuser.setRolemodif(comboBoxrole.getSelectedItem().toString());
-						Monuser.setValidationmodif(comboboxvalidation.getSelectedItem().toString());
-
-						man.selectmodifprofiladmin(Monuser);
 
 
 
@@ -562,12 +538,8 @@ public class rdvprofprincipal extends JPanel {
 
 
 				});
-				btnModificationadmin.setBounds(488, 337, 108, 37);
+				btnModificationadmin.setBounds(331, 231, 147, 37);
 				frame.getContentPane().add(btnModificationadmin);
-
-				JLabel lblclasse = new JLabel("Classe : "+((Utilisateur) comboBox.getSelectedItem()).getClassemodif());
-				lblclasse.setBounds(453, 259, 160, 14);
-				frame.getContentPane().add(lblclasse);
 
 				frame.repaint();
 
@@ -577,7 +549,7 @@ public class rdvprofprincipal extends JPanel {
 		frame.getContentPane().add(btnSelect);
 
 		JButton btnretour = new JButton("retour");
-		btnretour.addActionListener(new ActionListener() {
+	btnretour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Profprinc u=new Profprinc(user);
 				u.run(user);

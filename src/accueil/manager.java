@@ -442,6 +442,11 @@ public class manager extends Utilisateur {
 		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,retard,date_heure_debut) VALUES ('" + user.getIdmodif() +"','"+ user.getDuree() +"',now())");
 	}
 
+	public void Date(String date) {
+		
+		
+	}
+
 
 
 

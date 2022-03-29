@@ -6,6 +6,10 @@ import java.util.Scanner;
 public class Utilisateur {
 
 	protected String nom;
+	protected String date;
+	
+
+
 	protected String prenom;
 	protected String mail;
 	protected String password;
@@ -27,6 +31,17 @@ public class Utilisateur {
 	protected String idmodif;
 	protected String classeid;
 	protected String classeidmodif;
+	
+	
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	public String getClasseid() {
 		return classeid;
 	}
@@ -355,6 +370,8 @@ public Utilisateur() {
 		//System.out.println("Le nombre est "+ nombre*ombre);
 		*/
 	}
+
+
 
 
 
