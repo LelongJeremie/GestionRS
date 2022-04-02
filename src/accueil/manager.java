@@ -42,7 +42,7 @@ public class manager extends Utilisateur {
 			java.sql.Statement stm = cnx.createStatement();
 
 
-			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
+			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
 
 			while(resultat.next()) {
 				user.setId(resultat.getString("id"));
