@@ -203,8 +203,8 @@ public class rdvprofprincipal extends JPanel {
 	          // When this becomes a Bean, you can
 	          // fire some kind of DateChanged event here.
 	          // Also, build a similar daySetter for day-of-week btns.
-	          System.out.println(num+"  "+mm+"  "+yy);
-	          date = num+"-"+mm+"-"+yy;
+	          System.out.println(yy+"  "+mm+"  "+dd);
+	          date = yy+"-"+mm+"-"+dd;
 	          
 	          
 	          Monuser.setDate(date);
@@ -338,7 +338,7 @@ public class rdvprofprincipal extends JPanel {
 	 
 
 
-	private JFrame frame;
+	JFrame frame;
 	private ResultSet resultat;
 	private ResultSet resultatclasse;
 	private int i;
@@ -485,21 +485,23 @@ public class rdvprofprincipal extends JPanel {
 				JButton btnModificationadmin = new JButton("Prendre rendez-vous");
 				btnModificationadmin.addActionListener(new ActionListener() {
 					
-
-					private String daterdv;
-
 					public void actionPerformed(ActionEvent e) {
-						daterdv = rdvprofprincipal.getDate();
-						 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
-						dateajd ="yyyy/MM/dd hh:mm:ss-> "+dtf5.format(LocalDateTime.now());
+					
+						System.out.println("rentre");
+						
+						 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("YYYY-MM-DD");
+						dateajd = dtf5.format(LocalDateTime.now());
 						  try {
 					            SimpleDateFormat dateFormat = new
 					                SimpleDateFormat ("yyyy-MM-dd");
 					            System.out.println(date);
-					            date = man.getDate();
-					            Date date1 = dateFormat.parse(daterdv);
+					            System.out.println("rentre2");
+					            Date date1 = dateFormat.parse(date);
+					            System.out.println("rentre3");
 					            Date date2 = dateFormat.parse(dateajd);
+					            System.out.println("rentre4");
 					            System.out.println("Date-1: " + 
+					            
 					                               dateFormat.format(date1));
 					            System.out.println("Date-2: " +
 					                               dateFormat.format(date2));
@@ -509,30 +511,42 @@ public class rdvprofprincipal extends JPanel {
 					            } 
 					            
 					            else {
-					            	Monuser.setDatee(date1);
+					            	Monuser.setDate(date);
+					            	Monuser.setId( user.getId());
 					            	
 					            	try {
 										man.ajoutrdvprofprinc(Monuser);
+										PopupProfprinc u=new PopupProfprinc(user);
+										u.run(user);
+										frame.setVisible(true);
+										
+										
+										rdvprofprincipal u1=new rdvprofprincipal(user);
+										u1.run(user);
+										frame.setVisible(false);
+										f.setVisible(false);
+										this.dispose();
 									} catch (SQLException e1) {
+										System.out.println("erreur");
 										// TODO Auto-generated catch block
 										e1.printStackTrace();
 									}
+					            	
+					            	
+									
+									
+								
+									
+									
 								}
 					        } catch (ParseException ex) {
 					        }
 						  
 						
 
-
-
-
-
-						PopupAdmin u=new PopupAdmin(user);
-						u.run(user);
-						frame.setVisible(false);
-						this.dispose();
-
 					}
+
+					
 
 					private void dispose() {
 						// TODO Auto-generated method stub
