@@ -143,6 +143,15 @@ public void setDate(String date) {
 	protected String mailmodif;
 	protected String passwordmodif;
 	protected String classe;
+	protected String disponibilite;
+
+	public String getDisponibilite() {
+		return disponibilite;
+	}
+
+	public void setDisponibilite(String disponibilite) {
+		this.disponibilite = disponibilite;
+	}
 
 	public Utilisateur(String mail,String password) {
 		this.mail = mail;
@@ -367,7 +376,14 @@ public void setDate(String date) {
 
 	@Override
 	public String toString() {
-		return "Date : "+date+"|| Nom : "+nommodif+" || Prenom : "+prenommodif+" || Classe : "+classelibellemodif+" || Role : "+rolemodif;
+		if(disponibilite == null) {
+		return "Date : "+date+"|| Nom : "+nommodif+" || Prenom : "+prenommodif+" || Classe : "+classelibellemodif+" || Role : "+rolemodif;}
+		if(disponibilite != null && disponibilite == "1") {
+			return "Date : "+date+"|| Nom : "+nommodif+" || Prenom : "+prenommodif+" || Classe : "+classelibellemodif+" || Role : "+rolemodif+" || Disponibilité : Disponible";
+		}
+		else {
+			return "Date : "+date+"|| Nom : "+nommodif+" || Prenom : "+prenommodif+" || Classe : "+classelibellemodif+" || Role : "+rolemodif+" || Disponibilité : non Disponible";
+		}
 	}
 
 //Liste des getters

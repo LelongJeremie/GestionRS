@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import vueprofprincipal.disponibiliteprof;
 import vueprofprincipal.rdvprofprincipal;
 import vueprofprincipal.recapitulatifsanction;
 import vueprofprincipal.sanctionprofprinc;
@@ -74,10 +75,22 @@ public class Profprinc {
 		btnNewButton_1.setBounds(476, 455, 160, 52);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton = new JButton("Planning");
+		JButton btnNewButton = new JButton("Professeur");
 		btnNewButton.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				disponibiliteprof v=new disponibiliteprof(user);
+				v.run(user);
+				frame.setVisible(false);
+				this.dispose();
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			
+				
 			}
 		});
 		btnNewButton.setBounds(201, 197, 275, 59);

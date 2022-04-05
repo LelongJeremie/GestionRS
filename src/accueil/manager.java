@@ -373,6 +373,34 @@ public class manager extends Utilisateur {
 		return resultat;
 	}
 	
+	public ResultSet userprof (Utilisateur user) {
+
+
+		System.out.println(user.getMail());
+
+		try {
+			// Prï¿½paration de la requï¿½te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			
+			resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'prof' AND maclasse.idclasse ="+user.getClasseid());
+
+
+		}
+
+
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}
+	
 	public ResultSet usersanction (Utilisateur user) {
 
 
@@ -607,7 +635,7 @@ public class manager extends Utilisateur {
 		return resultat;
 	}
 	
-	public ResultSet recapitulatif(Utilisateur monuser) {
+public ResultSet recapitulatif(Utilisateur monuser) {
 		
 
 		try {
@@ -628,6 +656,27 @@ public class manager extends Utilisateur {
 
 		return resultat;
 	}
+public ResultSet disponibilité(Utilisateur monuser) {
+	
+
+	try {
+		// Prï¿½paration de la requï¿½te
+		java.sql.Statement stm = cnx.createStatement();
+
+		resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN absence ON absence.`id_eleve` = utilisateur.id where `ars`= 3 and utilisateur.id ="+monuser.getIdmodif());
+		
+
+	}
+
+
+	catch (SQLException e) {
+		// TODO Auto-generated catch block
+
+		e.printStackTrace();
+	}
+
+	return resultat;
+}
 	
 	
 	public ResultSet touslesretards(Utilisateur monuser) {
