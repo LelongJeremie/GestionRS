@@ -166,6 +166,11 @@ public class sanction {
 						frame.setVisible(false);
 						this.dispose();
 					}
+
+					private void dispose() {
+						// TODO Auto-generated method stub
+						
+					}
 				});
 				btnsanctionner.setBounds(245, 420, 176, 32);
 				frame.getContentPane().add(btnsanctionner);

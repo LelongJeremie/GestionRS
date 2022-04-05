@@ -78,7 +78,7 @@ public class manager extends Utilisateur {
 					user.setPassword(resultat1.getString("Password"));
 					user.setDate_naissance(resultat1.getString("date_naissance"));
 					user.setValidation(resultat1.getString("validation"));
-					
+
 
 
 
@@ -345,7 +345,7 @@ public class manager extends Utilisateur {
 		return result;
 	}
 
-	public ResultSet toutlessusers () {
+	public ResultSet toutlessusers() {
 
 
 		System.out.println(user.getMail());
@@ -491,7 +491,67 @@ public class manager extends Utilisateur {
 
 	}
 
+	public ResultSet touteslessanctions(Utilisateur monuser) {
+		System.out.println(user.getMail());
 
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}
+	public ResultSet touslesretards(Utilisateur monuser) {
+		System.out.println(user.getMail());
+
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}
+
+	public ResultSet touteslesabsences(Utilisateur monuser) {
+		System.out.println(user.getMail());
+
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}
 
 
 
