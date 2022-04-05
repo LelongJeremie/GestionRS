@@ -47,9 +47,9 @@ public class gererutil{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("gerer les utilisateurs");
+		JLabel lblNewLabel = new JLabel("gerer les \u00E9l\u00E8ves");
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(219, 11, 261, 38);
+		lblNewLabel.setBounds(226, 11, 203, 38);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("modifier");
@@ -81,5 +81,16 @@ public class gererutil{
 		});
 		btnNewButton_2.setBounds(378, 129, 105, 23);
 		frame.getContentPane().add(btnNewButton_2);
+		
+		JButton btnReturn = new JButton("page pr\u00E9cedente");
+		btnReturn.setBounds(10, 480, 129, 38);
+		frame.getContentPane().add(btnReturn);
 	}
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

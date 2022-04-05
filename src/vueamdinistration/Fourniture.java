@@ -7,11 +7,13 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JTree;
+import javax.swing.JButton;
 
 public class Fourniture {
 
 	private JFrame frame;
 	private JTable table;
+	private JButton btnReturn;
 
 	/**
 	 * Launch the application.
@@ -53,5 +55,14 @@ public class Fourniture {
 		table = new JTable();
 		table.setBounds(85, 63, 847, 470);
 		frame.getContentPane().add(table);
+		
+		btnReturn = new JButton("page pr\u00E9c\u00E9dente");
+		btnReturn.setBounds(10, 565, 170, 41);
+		frame.getContentPane().add(btnReturn);
+	}
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

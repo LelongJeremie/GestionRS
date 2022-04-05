@@ -4,13 +4,19 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import accueil.Utilisateur;
+import vueprofprincipal.rdvprofprincipal;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-public class classe {
+public class ClasseA {
 
 	private JFrame frame;
+	
+
 
 	/**
 	 * Launch the application.
@@ -19,7 +25,7 @@ public class classe {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					classe window = new classe();
+					ClasseA window = new ClasseA();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +37,7 @@ public class classe {
 	/**
 	 * Create the application.
 	 */
-	public classe() {
+	public ClasseA() {
 		initialize();
 	}
 
@@ -64,5 +70,14 @@ public class classe {
 		JButton btnNewButton_2 = new JButton("ajouter une classe");
 		btnNewButton_2.setBounds(535, 144, 121, 23);
 		frame.getContentPane().add(btnNewButton_2);
+		
+		JButton btnReturn = new JButton("page pr\u00E9cedente");
+		btnReturn.setBounds(10, 587, 139, 41);
+		frame.getContentPane().add(btnReturn);
+	}
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }
