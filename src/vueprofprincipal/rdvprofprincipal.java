@@ -16,7 +16,7 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import java.awt.BorderLayout;
-import java.awt.Container; 
+import java.awt.Container;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -44,7 +44,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
- 
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -64,36 +64,36 @@ public class rdvprofprincipal extends JPanel {
 
 	 /** The currently-interesting year (not modulo 1900!) */
 	  protected int yy;
-	 
+
 	  /** Currently-interesting month and day */
 	  protected int mm, dd;
-	 
+
 	  /** The buttons to be displayed */
 	  protected JButton labs[][];
 	  public String date2;
 	  public String dateajd;
-	 
+
 	  /** The number of day squares to leave blank at the start of this month */
 	  protected int leadGap = 0;
-	 
+
 	  /** A Calendar object used throughout */
 	  Calendar calendar = new GregorianCalendar();
-	 
+
 	  /** Today's year */
 	  protected final int thisYear = calendar.get(Calendar.YEAR);
-	 
+
 	  /** Today's month */
 	  protected final int thisMonth = calendar.get(Calendar.MONTH);
-	 
+
 	  /** One of the buttons. We just keep its reference for getBackground(). */
 	  private JButton b0;
-	 
+
 	  /** The month choice */
 	  private JComboBox monthChoice;
-	 
+
 	  /** The year choice */
 	  private JComboBox yearChoice;
-	 
+
 	  /**
 	   * Construct a Cal, starting with today.
 	   */
@@ -104,7 +104,7 @@ public class rdvprofprincipal extends JPanel {
 	    buildGUI();
 	    recompute();
 	  }
-	 
+
 	  /**
 	   * Construct a Cal, given the leading days and the total days
 	   *
@@ -117,26 +117,26 @@ public class rdvprofprincipal extends JPanel {
 	    buildGUI();
 	    recompute();
 	  }
-	 
+
 	  public void setYYMMDD(int year, int month, int today) {
 	    yy = year;
 	    mm = month;
 	    dd = today;
 	  }
-	 
+
 	  String[] months = { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
 	      "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre" };
 
 	public static String date;
-	 
+
 	  /** Build the GUI. Assumes that setYYMMDD has been called. */
 	  private void buildGUI() {
 	    getAccessibleContext().setAccessibleDescription(
 	        "Calendar not accessible yet. Sorry!");
 	    setBorder(BorderFactory.createEtchedBorder());
-	 
+
 	    setLayout(new BorderLayout());
-	 
+
 	    JPanel tp = new JPanel();
 	    tp.setBackground(Color.WHITE);
 	    tp.add(monthChoice = new JComboBox());
@@ -156,7 +156,7 @@ public class rdvprofprincipal extends JPanel {
 	    monthChoice.getAccessibleContext().setAccessibleName("Months");
 	    monthChoice.getAccessibleContext().setAccessibleDescription(
 	        "Choose a month of the year");
-	 
+
 	    tp.add(yearChoice = new JComboBox());
 	    yearChoice.setEditable(true);
 	    for (int i = yy - 5; i < yy + 5; i++)
@@ -174,12 +174,12 @@ public class rdvprofprincipal extends JPanel {
 	      }
 	    });
 	    add(BorderLayout.CENTER, tp);
-	 
+
 	    JPanel bp = new JPanel();
 	    bp.setBackground(Color.WHITE);
 	    bp.setLayout(new GridLayout(7, 7));
 	    labs = new JButton[6][7]; // first row is days
-	 
+
 	    bp.add(b0 = new JButton("D"));
 	    b0.setForeground(Color.BLACK);
 	    bp.add(new JButton("L"));
@@ -193,7 +193,7 @@ public class rdvprofprincipal extends JPanel {
 	    bp.add(new JButton("J"));
 	    bp.add(new JButton("V"));
 	    bp.add(new JButton("S"));
-	 
+
 	    ActionListener dateSetter = new ActionListener() {
 	      public void actionPerformed(ActionEvent e) {
 	        String num = e.getActionCommand();
@@ -203,35 +203,36 @@ public class rdvprofprincipal extends JPanel {
 	          // When this becomes a Bean, you can
 	          // fire some kind of DateChanged event here.
 	          // Also, build a similar daySetter for day-of-week btns.
-	          System.out.println(num+"  "+mm+"  "+yy);
-	          date = num+"-"+mm+"-"+yy;
-	          
-	         
+	          System.out.println(yy+"  "+mm+"  "+dd);
+	          date = yy+"-"+mm+"-"+dd;
+
+
+
 	          Monuser.setDate(date);
 	          Monuser.getDate();
-	        
+
 	        }
 	      }
-	    
+
 	    };
-	    
+
 	    System.out.println(date);
-	 
+
 	    // Construct all the buttons, and add them.
 	    for (int i = 0; i < 6; i++)
 	      for (int j = 0; j < 7; j++) {
 	        bp.add(labs[i][j] = new JButton(""));
 	        labs[i][j].addActionListener(dateSetter);
 	      }
-	 
+
 	    add(BorderLayout.SOUTH, bp);
 	  }
-	 
+
 	  public final static int dom[] = { 31, 28, 31, 30, /* jan feb mar apr */
 	  31, 30, 31, 31, /* may jun jul aug */
 	  30, 31, 30, 31 /* sep oct nov dec */
 	  };
-	 
+
 	  /** Compute which days to put where, in the Cal panel */
 	  protected void recompute() {
 	    // System.out.println("Cal::recompute: " + yy + ":" + mm + ":" + dd);
@@ -240,40 +241,40 @@ public class rdvprofprincipal extends JPanel {
 	          + " bad, must be 0-11");
 	    clearDayActive();
 	    calendar = new GregorianCalendar(yy, mm, dd);
-	 
+
 	    // Compute how much to leave before the first.
 	    // getDay() returns 0 for Sunday, which is just right.
 	    leadGap = new GregorianCalendar(yy, mm, 1).get(Calendar.DAY_OF_WEEK) - 1;
 	    // System.out.println("leadGap = " + leadGap);
-	 
+
 	    int daysInMonth = dom[mm];
 	    if (isLeap(calendar.get(Calendar.YEAR)) && mm > 1)
 	      ++daysInMonth;
-	 
+
 	    // Blank out the labels before 1st day of month
 	    for (int i = 0; i < leadGap; i++) {
 	      labs[0][i].setText("");
 	    }
-	 
+
 	    // Fill in numbers for the day of month.
 	    for (int i = 1; i <= daysInMonth; i++) {
 	      JButton b = labs[(leadGap + i - 1) / 7][(leadGap + i - 1) % 7];
 	      b.setText(Integer.toString(i));
 	    }
-	 
+
 	    // 7 days/week * up to 6 rows
 	    for (int i = leadGap + 1 + daysInMonth; i < 6 * 7; i++) {
 	      labs[(i) / 7][(i) % 7].setText("");
 	    }
-	 
+
 	    // Shade current day, only if current month
 	    if (thisYear == yy && mm == thisMonth)
 	      setDayActive(dd); // shade the box for today
-	 
+
 	    // Say we need to be drawn on the screen
 	    repaint();
 	  }
-	 
+
 	  /**
 	   * isLeap() returns true if the given year is a Leap Year.
 	   *
@@ -286,7 +287,7 @@ public class rdvprofprincipal extends JPanel {
 	      return true;
 	    return false;
 	  }
-	 
+
 	  /** Set the year, month, and day */
 	  public void setDate(int yy, int mm, int dd) {
 	    // System.out.println("Cal::setDate");
@@ -295,15 +296,15 @@ public class rdvprofprincipal extends JPanel {
 	    this.dd = dd;
 	    recompute();
 	  }
-	  
+
 	  public static String getDate() {
 		  return date;
 	  }
-	 
+
 	  /** Unset any previously highlighted day */
 	  private void clearDayActive() {
 	    JButton b;
-	 
+
 	    // First un-shade the previously-selected square, if any
 	    if (activeDay > 0) {
 	      b = labs[(leadGap + activeDay - 1) / 7][(leadGap + activeDay - 1) % 7];
@@ -312,14 +313,14 @@ public class rdvprofprincipal extends JPanel {
 	      activeDay = -1;
 	    }
 	  }
-	 
+
 	  private int activeDay = -1;
-	 
+
 	  /** Set just the day, on the current month */
 	  public void setDayActive(int newDay) {
-	 
+
 	    clearDayActive();
-	 
+
 	    // Set the new one
 	    if (newDay <= 0)
 	      dd = new GregorianCalendar().get(Calendar.DAY_OF_MONTH);
@@ -330,20 +331,20 @@ public class rdvprofprincipal extends JPanel {
 	    square.setBackground(Color.red);
 	    square.repaint();
 	    activeDay = newDay;
-	    
-	    
-	
+
+
+
 	  }
-	 
-	 
 
 
-	private JFrame frame;
+
+
+	JFrame frame;
 	private ResultSet resultat;
 	private ResultSet resultatclasse;
 	private int i;
 
- 
+
 
 	/**
 	 * Launch the application.
@@ -367,7 +368,7 @@ public class rdvprofprincipal extends JPanel {
 
 	/**
 	 * Create the application.
-	 * @param user 
+	 * @param user
 	 */
 	public rdvprofprincipal(Utilisateur user) {
 		initialize(user);
@@ -375,12 +376,12 @@ public class rdvprofprincipal extends JPanel {
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @param user 
+	 * @param user
 	 */
 	private void initialize(Utilisateur user) {
 
-		
-		
+
+
 		manager man = new manager();
 
 		resultat = man.eleveclasse(user);
@@ -397,13 +398,13 @@ public class rdvprofprincipal extends JPanel {
 		comboBox.setBounds(10, 49, 975, 54);
 		frame.getContentPane().add(comboBox);
 
-		
+
 
 		try {
 			i=0;
 			while(resultat.next()){
 
-				
+
 
 				Monuser.setIdmodif(resultat.getString("id"));
 				Monuser.setNommodif(resultat.getString("nom"));
@@ -418,7 +419,7 @@ public class rdvprofprincipal extends JPanel {
 
 				System.out.println("ID = "+Monuser.getIdmodif()+"i= "+i);
 				i=i+1;
-				comboBox.addItem(Monuser);  
+				comboBox.addItem(Monuser);
 
 
 
@@ -433,27 +434,27 @@ public class rdvprofprincipal extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		comboBox.addActionListener(new ActionListener() {     
+		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				System.out.println("Valeur: " + comboBox.getSelectedItem().toString());      
+				System.out.println("Valeur: " + comboBox.getSelectedItem().toString());
 			}
 		});
 
 
-		frame.getContentPane().add(comboBox); 
-		frame.setSize(1009, 450); 
+		frame.getContentPane().add(comboBox);
+		frame.setSize(1009, 450);
 		frame.show();
 
 
 	JButton btnSelect = new JButton("Selectionner");
 		btnSelect.addActionListener(new ActionListener() {
-			
+
 
 			public void actionPerformed(ActionEvent e) {
-				resultatclasse = man.afficherclasse();
-				rdvprofprincipal.getDate();
-				
+
+
+
 				Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
 				Monuser.setClassemodif(((Utilisateur) comboBox.getSelectedItem()).getClassemodif());
 				Monuser.setNommodif(((Utilisateur) comboBox.getSelectedItem()).getNommodif());
@@ -463,76 +464,90 @@ public class rdvprofprincipal extends JPanel {
 				Monuser.setRolemodif(((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
 				Monuser.setDate_naissancemodif(((Utilisateur) comboBox.getSelectedItem()).getDate_naissancemodif());
 				Monuser.setPseudomodif(((Utilisateur) comboBox.getSelectedItem()).getPseudomodif());
-				man.selectmodifprofiladmin(Monuser);
+
 				 JFrame f = new JFrame("Mon Calendrier");
 				    Container c = f.getContentPane();
 				    c.setLayout(new FlowLayout());
-				 
-				  
-					
+
+
+
 				    // and beside it, the current month.
 				    c.add(new rdvprofprincipal());
-				 
+
 				    f.pack();
 				    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				    f.setVisible(true);
 
 
-				
-
-				try {
-
-					while(resultatclasse.next()){ 
-						
 
 
-					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+
 
 				JButton btnModificationadmin = new JButton("Prendre rendez-vous");
 				btnModificationadmin.addActionListener(new ActionListener() {
-					
 
 					public void actionPerformed(ActionEvent e) {
-						 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
-						dateajd ="yyyy/MM/dd hh:mm:ss-> "+dtf5.format(LocalDateTime.now());
+
+						System.out.println("rentre");
+
+						 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("YYYY-MM-DD");
+						dateajd = dtf5.format(LocalDateTime.now());
 						  try {
 					            SimpleDateFormat dateFormat = new
 					                SimpleDateFormat ("yyyy-MM-dd");
 					            System.out.println(date);
-					            date = man.getDate();
+					            System.out.println("rentre2");
 					            Date date1 = dateFormat.parse(date);
+					            System.out.println("rentre3");
 					            Date date2 = dateFormat.parse(dateajd);
-					            System.out.println("Date-1: " + 
+					            System.out.println("rentre4");
+					            System.out.println("Date-1: " +
+
 					                               dateFormat.format(date1));
 					            System.out.println("Date-2: " +
-					                               dateFormat.format(dateajd));
+					                               dateFormat.format(date2));
 					            if(date1.before(date2)){
 					                System.out.println(
 					                    "Date-1 is before Date-2");
-					            } 
-					            
+					            }
+
 					            else {
-					            	man.selectmodifprofiladmin(Monuser);
+					            	Monuser.setDate(date);
+					            	Monuser.setId( user.getId());
+
+					            	try {
+										man.ajoutrdvprofprinc(Monuser);
+										PopupProfprinc u=new PopupProfprinc(user);
+										u.run(user);
+										frame.setVisible(true);
+
+
+										rdvprofprincipal u1=new rdvprofprincipal(user);
+										u1.run(user);
+										frame.setVisible(false);
+										f.setVisible(false);
+										this.dispose();
+									} catch (SQLException e1) {
+										System.out.println("erreur");
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+
+
+
+
+
+
+
 								}
 					        } catch (ParseException ex) {
 					        }
-						  
-						
 
 
-
-
-
-						PopupAdmin u=new PopupAdmin(user);
-						u.run(user);
-						frame.setVisible(false);
-						this.dispose();
 
 					}
+
+
 
 					private void dispose() {
 						// TODO Auto-generated method stub
@@ -573,7 +588,7 @@ public class rdvprofprincipal extends JPanel {
 		});
 		btnretour.setBounds(0, 0, 89, 38);
 		frame.getContentPane().add(btnretour);
-		
+
 		JButton btnRefresh = new JButton("Deselectionner");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -581,23 +596,23 @@ public class rdvprofprincipal extends JPanel {
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
-				
-				
-				
+
+
+
 			}
 
 			private void dispose() {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		btnRefresh.setBounds(331, 114, 147, 38);
 		frame.getContentPane().add(btnRefresh);
-		
+
 		JLabel lblNewLabel = new JLabel("New label"+Monuser);
 		lblNewLabel.setBounds(126, 12, 550, 14);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setBackground(Color.GRAY);
 		lblNewLabel_1.setOpaque(true);

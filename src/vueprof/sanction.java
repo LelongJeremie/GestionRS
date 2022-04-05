@@ -161,7 +161,10 @@ public class sanction {
 							e1.printStackTrace();
 						}
 						
-						
+						sanction u=new sanction(user);
+						u.run(user);
+						frame.setVisible(false);
+						this.dispose();
 					}
 				});
 				btnsanctionner.setBounds(245, 420, 176, 32);

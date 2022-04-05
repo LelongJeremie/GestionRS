@@ -223,7 +223,7 @@ public class adminuserprofil {
 				frame.getContentPane().add(lblValidation);
 
 				comboBoxrole = new JComboBox();
-				comboBoxrole.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Prof. Principal", "Prof.", "Administration", "Parent", "Eleve"}));
+				comboBoxrole.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Profprinc", "Prof", "Administration", "Parent", "Eleve"}));
 				comboBoxrole.setBounds(241, 281, 160, 22);
 				frame.getContentPane().add(comboBoxrole);
 
