@@ -46,6 +46,15 @@ public class Utilisateur {
 	protected String classeidmodif;
 	protected String duree;
 	protected String sanction;
+	protected String commentaire;
+
+public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
 
 public String getSanction() {
 		return sanction;
@@ -348,7 +357,7 @@ public void setDate(String date) {
 
 	@Override
 	public String toString() {
-		return "Nom : "+nommodif+" || Prenom : "+prenommodif+" || Classe : "+classelibellemodif+" || Role : "+rolemodif;
+		return "Date : "+date+"|| Nom : "+nommodif+" || Prenom : "+prenommodif+" || Classe : "+classelibellemodif+" || Role : "+rolemodif;
 	}
 
 //Liste des getters

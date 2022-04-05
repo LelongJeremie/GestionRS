@@ -23,6 +23,7 @@ public class gestionabs {
 
 	private JFrame frame;
 	private ResultSet resultat;
+	private Utilisateur Monuser= new Utilisateur();
 
 	/**
 	 * Launch the application.
@@ -147,7 +148,7 @@ public class gestionabs {
 
 
 		frame.getContentPane().add(comboBox); 
-		frame.setSize(1009, 450); 
+		frame.setSize(1009, 591); 
 		frame.show();
 		
 		
@@ -155,7 +156,7 @@ public class gestionabs {
 		JButton btnRefresh = new JButton("Deselectionner");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				absence u=new absence(user);
+				gestionabs u=new gestionabs(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
@@ -175,47 +176,39 @@ public class gestionabs {
 		
 		JButton btnNewButton = new JButton("Selectionner");
 		btnNewButton.addActionListener(new ActionListener() {
+			private ResultSet resultat2;
+
 			public void actionPerformed(ActionEvent e) {
+
+
+				JLabel lblNewLabel_1 = new JLabel("Supprimer l'absence :");
+				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel_1.setBounds(366, 261, 299, 13);
+				frame.getContentPane().add(lblNewLabel_1);
 				
 				
 
-				resultat = man.touteslessanctions(user);
-				
-				JComboBox<Utilisateur> comboBox = new JComboBox();
-				comboBox.setBackground(Color.WHITE);
-				comboBox.setBounds(10, 200, 975, 54);
-				frame.getContentPane().add(comboBox);
-
-
+				Utilisateur Monuser= new Utilisateur();
+				Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+				resultat2 = man.touteslesabsences(Monuser);
+				System.out.println(Monuser.getIdmodif()+"deijfz");
+				JComboBox<Utilisateur> comboBox2 = new JComboBox();
+				comboBox2.setBackground(Color.WHITE);
+				comboBox2.setBounds(10, 200, 975, 54);
+				frame.getContentPane().add(comboBox2);
 				try {
 					
-					while(resultat.next()){
+					while(resultat2.next()){
 
-						Utilisateur Monuser= new Utilisateur();
-
-						Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
-						Monuser.setNommodif(((Utilisateur) comboBox.getSelectedItem()).getNommodif());
-						Monuser.setPrenommodif(((Utilisateur) comboBox.getSelectedItem()).getPrenommodif());
-						Monuser.setMailmodif(((Utilisateur) comboBox.getSelectedItem()).getMailmodif());
-						Monuser.setPasswordmodif(((Utilisateur) comboBox.getSelectedItem()).getPasswordmodif());
-						Monuser.setRolemodif(((Utilisateur) comboBox.getSelectedItem()).getRolemodif());
-						Monuser.setDate_naissancemodif(((Utilisateur) comboBox.getSelectedItem()).getDate_naissancemodif());
-						Monuser.setPseudomodif(((Utilisateur) comboBox.getSelectedItem()).getPseudomodif());
-
-
-						Monuser.setIdmodif(resultat.getString("utilisateur.id"));
-						Monuser.setNommodif(resultat.getString("nom"));
-						Monuser.setPrenommodif(resultat.getString("prenom"));
-						Monuser.setMailmodif(resultat.getString("mail"));
-						Monuser.setPasswordmodif(resultat.getString("password"));
-						Monuser.setRolemodif(resultat.getString("role"));
-						Monuser.setClassemodif(resultat.getString("libelle"));
-						Monuser.setDate_naissancemodif(resultat.getString("date_naissance"));
-						Monuser.setPseudomodif(resultat.getString("username"));
-						Monuser.setValidationmodif(resultat.getString("Validation"));
+						Utilisateur Monuser2= new Utilisateur();
+						Monuser2.setIdmodif(resultat2.getString("id"));
+						Monuser2.setSanction(resultat2.getString("ars"));
+						Monuser2.setDate(resultat2.getString("date_heure"));
+						Monuser2.setDuree(resultat2.getString("duree"));
+						Monuser2.setCommentaire(resultat2.getString("commentaire"));
 
 						
-						comboBox.addItem(Monuser);  
+						comboBox2.addItem(Monuser2);  
 
 
 
@@ -225,29 +218,52 @@ public class gestionabs {
 					e1.printStackTrace();
 				}
 				try {
-					resultat.close();
+					resultat2.close();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				comboBox.addActionListener(new ActionListener() {     
+				comboBox2.addActionListener(new ActionListener() {     
 					public void actionPerformed(ActionEvent e) {
 
-						System.out.println("Valeur: " + comboBox.getSelectedItem().toString());      
+						System.out.println("Valeur: " + comboBox2.getSelectedItem().toString());      
 					}
 				});
 
 
-				frame.getContentPane().add(comboBox); 
+				frame.getContentPane().add(comboBox2); 
 				frame.setSize(1009, 450); 
 				frame.show();
 				
+				JButton btnNewButton_1 = new JButton("Supprimer");
+				btnNewButton_1.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+						Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+						Monuser.setDate(((Utilisateur) comboBox2.getSelectedItem()).getDate());
+						man.supplesabsences(Monuser);
+						GestionARS u=new GestionARS(user);
+						u.run(user);
+						frame.setVisible(false);
+						this.dispose();
+					}
+
+					private void dispose() {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				btnNewButton_1.setBounds(404, 454, 251, 21);
+				frame.getContentPane().add(btnNewButton_1);
 				
+			
 				
 			}
 		});
 		btnNewButton.setBounds(365, 160, 127, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+
 
 	}
 
@@ -259,5 +275,4 @@ public class gestionabs {
 			e.printStackTrace();
 		}
 	}
-
 }

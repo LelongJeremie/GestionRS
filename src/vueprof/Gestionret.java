@@ -17,11 +17,13 @@ import javax.swing.SwingConstants;
 import accueil.Utilisateur;
 import accueil.manager;
 import vueadmin.classe;
+import javax.swing.JTextField;
 
 public class Gestionret {
 
 	private JFrame frame;
 	private ResultSet resultat;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -126,7 +128,6 @@ public class Gestionret {
 				comboBox.addItem(Monuser);  
 
 
-
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -147,14 +148,15 @@ public class Gestionret {
 
 
 		frame.getContentPane().add(comboBox); 
-		frame.setSize(1009, 450); 
+		frame.setSize(1009, 591); 
 		frame.show();
+		
 		
 
 		JButton btnRefresh = new JButton("Deselectionner");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				absence u=new absence(user);
+				gestionabs u=new gestionabs(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
@@ -169,9 +171,122 @@ public class Gestionret {
 							
 			}
 		});
-		btnRefresh.setBounds(528, 179, 127, 23);
+		btnRefresh.setBounds(534, 175, 127, 23);
 		frame.getContentPane().add(btnRefresh);
+		
+		JButton btnNewButton = new JButton("Selectionner");
+		btnNewButton.addActionListener(new ActionListener() {
+			private ResultSet resultat2;
 
+			public void actionPerformed(ActionEvent e) {
+
+				
+				
+				JLabel lblNewLabel_1 = new JLabel("Modifier le retard, ou le supprimer :");
+				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel_1.setBounds(366, 261, 299, 13);
+				frame.getContentPane().add(lblNewLabel_1);
+
+				Utilisateur Monuser= new Utilisateur();
+				Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+				resultat2 = man.touslesretards(Monuser);
+				System.out.println(Monuser.getIdmodif()+"deijfz");
+				JComboBox<Utilisateur> comboBox2 = new JComboBox();
+				comboBox2.setBackground(Color.WHITE);
+				comboBox2.setBounds(10, 200, 975, 54);
+				frame.getContentPane().add(comboBox2);
+				try {
+					
+					while(resultat2.next()){
+
+						Utilisateur Monuser2= new Utilisateur();
+						Monuser2.setIdmodif(resultat2.getString("id"));
+						Monuser2.setSanction(resultat2.getString("ars"));
+						Monuser2.setDate(resultat2.getString("date_heure"));
+						Monuser2.setDuree(resultat2.getString("duree"));
+						Monuser2.setCommentaire(resultat2.getString("commentaire"));
+
+						
+						comboBox2.addItem(Monuser2);  
+
+
+
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					resultat2.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				comboBox2.addActionListener(new ActionListener() {     
+					public void actionPerformed(ActionEvent e) {
+
+						System.out.println("Valeur: " + comboBox2.getSelectedItem().toString());      
+					}
+				});
+
+
+				frame.getContentPane().add(comboBox2); 
+				frame.setSize(1009, 450); 
+				frame.show();
+				textField = new JTextField();
+				textField.setBounds(365, 333, 296, 19);
+				frame.getContentPane().add(textField);
+				textField.setColumns(10);
+				JButton btnNewButton_1 = new JButton("Supprimer");
+				btnNewButton_1.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+						Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+						Monuser.setDate(((Utilisateur) comboBox2.getSelectedItem()).getDate());
+						man.supplesretards(Monuser);
+						GestionARS u=new GestionARS(user);
+						u.run(user);
+						frame.setVisible(false);
+						this.dispose();
+					}
+
+					private void dispose() {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				btnNewButton_1.setBounds(404, 454, 251, 21);
+				frame.getContentPane().add(btnNewButton_1);
+				
+				JButton btnNewButton_2 = new JButton("Modifier");
+				btnNewButton_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+						Monuser.setDate(((Utilisateur) comboBox2.getSelectedItem()).getDate());
+						Monuser.setSanction(""+textField.getText());
+						man.modifret(Monuser);
+						GestionARS u=new GestionARS(user);
+						u.run(user);
+						frame.setVisible(false);
+						this.dispose();
+					}
+
+					private void dispose() {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				btnNewButton_2.setBounds(404, 409, 251, 21);
+				frame.getContentPane().add(btnNewButton_2);
+				
+			}
+		});
+		btnNewButton.setBounds(365, 175, 127, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+	
+		
+		
 
 	}
 	public void run(Utilisateur user) {
@@ -182,5 +297,4 @@ public class Gestionret {
 			e.printStackTrace();
 		}
 	}
-
 }

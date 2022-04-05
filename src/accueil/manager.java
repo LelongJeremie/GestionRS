@@ -26,6 +26,7 @@ public class manager extends Utilisateur {
 	Utilisateur user = new Utilisateur();
 
 	private ResultSet resultat;
+	private ResultSet resultat2;
 
 
 
@@ -514,18 +515,17 @@ public class manager extends Utilisateur {
 
 	public void ajoutsanction(Utilisateur monuser) throws SQLException {
 		java.sql.Statement stm = cnx.createStatement();
-		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getSanction()+"')");
+		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,date_heure,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getDate()+"','"+monuser.getSanction()+"')");
 
 	}
 
 	public ResultSet touteslessanctions(Utilisateur monuser) {
-		System.out.println(user.getMail());
 
 		try {
 			// Pr�paration de la requ�te
 			java.sql.Statement stm = cnx.createStatement();
 
-			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+			resultat2 = stm.executeQuery("SELECT * FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND ars = '"+3+"'");
 
 		}
 
@@ -536,16 +536,15 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 		}
 
-		return resultat;
+		return resultat2;
 	}
 	public ResultSet touslesretards(Utilisateur monuser) {
-		System.out.println(user.getMail());
 
 		try {
 			// Pr�paration de la requ�te
 			java.sql.Statement stm = cnx.createStatement();
 
-			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+			resultat2 = stm.executeQuery("SELECT * FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND ars = '"+1+"'");
 
 		}
 
@@ -556,17 +555,17 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 		}
 
-		return resultat;
+		return resultat2;
 	}
 
 	public ResultSet touteslesabsences(Utilisateur monuser) {
-		System.out.println(user.getMail());
+		System.out.println(monuser.getIdmodif());
 
 		try {
 			// Pr�paration de la requ�te
 			java.sql.Statement stm = cnx.createStatement();
 
-			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+			resultat2 = stm.executeQuery("SELECT * FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND ars = '"+2+"'");
 
 		}
 
@@ -577,9 +576,86 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 		}
 
-		return resultat;
+		return resultat2;
 	}
 
+	public void supplesabsences(Utilisateur monuser) {
+
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+			int insert = stm.executeUpdate("DELETE FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND date_heure = '"+monuser.getDate()+"'");
+
+		}
 
 
-}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		
+	}
+
+	public void supplesretards(Utilisateur monuser) {
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+			int insert = stm.executeUpdate("DELETE FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND date_heure = '"+monuser.getDate()+"'");
+
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		
+		
+	}
+	
+	public void supplessanctions(Utilisateur monuser) {
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+			int insert = stm.executeUpdate("DELETE FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND date_heure = '"+monuser.getDate()+"'");
+
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		
+	}
+
+	public void modifret(Utilisateur monuser) {
+		try {
+			java.sql.Statement stm = cnx.createStatement();
+			int resultat1 = stm.executeUpdate("UPDATE absence SET commentaire = '"+monuser.getSanction()+"' where id_eleve = '"+monuser.getIdmodif()+"' AND date_heure = '"+monuser.getDate()+"'");
+		
+	}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
+	public void modifsanction(Utilisateur monuser) {
+		try {
+			java.sql.Statement stm = cnx.createStatement();
+			int resultat1 = stm.executeUpdate("UPDATE absence SET commentaire = '"+monuser.getSanction()+"' where id_eleve = '"+monuser.getIdmodif()+"' AND date_heure = '"+monuser.getDate()+"'");
+		
+	}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	}

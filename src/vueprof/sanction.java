@@ -152,7 +152,10 @@ public class sanction {
 				btnsanctionner.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String sanct = textFieldsanction.getText();
+						 DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
+					     System.out.println("yyyy/MM/dd hh:mm:ss-> "+dtf5.format(LocalDateTime.now()));
 						Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
+						Monuser.setDate(dtf5.format(LocalDateTime.now()));
 						Monuser.setSanction(sanct);
 						try {
 							man.ajoutsanction(Monuser);
