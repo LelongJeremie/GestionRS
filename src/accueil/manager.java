@@ -316,7 +316,7 @@ public class manager extends Utilisateur {
 		return result;
 	}
 
-	public ResultSet toutlessusers () {
+	public ResultSet toutlessusers() {
 
 
 		System.out.println(user.getMail());
@@ -453,9 +453,69 @@ public class manager extends Utilisateur {
 		java.sql.Statement stm = cnx.createStatement();
 		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getSanction()+"')");
 		
+	}
+
+	public ResultSet touteslessanctions(Utilisateur monuser) {
+		System.out.println(user.getMail());
+
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}	
+	public ResultSet touslesretards(Utilisateur monuser) {
+		System.out.println(user.getMail());
+
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
 	}	
 
+	public ResultSet touteslesabsences(Utilisateur monuser) {
+		System.out.println(user.getMail());
 
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
+
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}	
 
 
 
