@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 05 avr. 2022 à 19:36
+-- Généré le : mar. 05 avr. 2022 à 20:51
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -37,19 +37,19 @@ CREATE TABLE IF NOT EXISTS `absence` (
   `commentaire` text,
   PRIMARY KEY (`id`),
   KEY `id_eleve` (`id_eleve`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `absence`
 --
 
 INSERT INTO `absence` (`id`, `id_eleve`, `ars`, `date_heure`, `duree`, `commentaire`) VALUES
-(1, 3, 3, '2022-04-06 20:23:23', 10, NULL),
-(2, 3, 1, '2022-03-29 09:29:00', 10, NULL),
-(3, 2, 2, '2022-03-29 09:37:00', NULL, NULL),
-(4, 3, 3, NULL, NULL, 'Sanction1'),
-(5, 3, 3, NULL, NULL, 'Sanction2'),
-(6, 3, 3, NULL, NULL, 'Sanction');
+(1, 3, 1, NULL, 10, NULL),
+(4, 3, 3, NULL, NULL, 'zifhzedihzfopha'),
+(5, 3, 3, NULL, NULL, 'eiopfjzepijfzpi'),
+(6, 3, 1, '2022-04-05 06:34:00', 5, NULL),
+(9, 3, 1, '2022-04-05 10:25:00', 1, NULL),
+(10, 3, 2, '2022-04-05 10:25:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,31 @@ CREATE TABLE IF NOT EXISTS `fourniture` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `joursemaine`
+--
+
+DROP TABLE IF EXISTS `joursemaine`;
+CREATE TABLE IF NOT EXISTS `joursemaine` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jour` varchar(22) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `joursemaine`
+--
+
+INSERT INTO `joursemaine` (`id`, `jour`) VALUES
+(1, 'lundi'),
+(2, 'mardi'),
+(3, 'mercredi'),
+(4, 'jeudi'),
+(5, 'vendredi'),
+(6, 'samedi');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `maclasse`
 --
 
@@ -99,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `maclasse` (
   PRIMARY KEY (`id`),
   KEY `fk_iduser` (`iduser`),
   KEY `fk_classe` (`idclasse`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `maclasse`
@@ -108,9 +133,7 @@ CREATE TABLE IF NOT EXISTS `maclasse` (
 INSERT INTO `maclasse` (`id`, `iduser`, `idclasse`) VALUES
 (1, 3, 3),
 (3, 4, 3),
-(31, 4, 3),
-(32, 2, 3),
-(33, 20, 3);
+(9, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -132,6 +155,33 @@ CREATE TABLE IF NOT EXISTS `mots` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `planning`
+--
+
+DROP TABLE IF EXISTS `planning`;
+CREATE TABLE IF NOT EXISTS `planning` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jour` int(11) NOT NULL,
+  `HeureDebut` int(11) NOT NULL,
+  `duree` int(11) NOT NULL,
+  `idUtilisateur` smallint(6) DEFAULT NULL,
+  `idClasse` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_Utilisateur` (`idUtilisateur`),
+  KEY `fk_classse` (`idClasse`),
+  KEY `fk_jour` (`jour`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `planning`
+--
+
+INSERT INTO `planning` (`id`, `jour`, `HeureDebut`, `duree`, `idUtilisateur`, `idClasse`) VALUES
+(9, 1, 13, 1, 18, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `rdv`
 --
 
@@ -141,22 +191,21 @@ CREATE TABLE IF NOT EXISTS `rdv` (
   `date_rdv` date NOT NULL,
   `id_participant` smallint(6) NOT NULL,
   `id_organisateur` smallint(6) NOT NULL,
+  `validationrdv` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_participantrdv` (`id_participant`),
   KEY `fk_organisateurrdv` (`id_organisateur`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `rdv`
 --
 
-INSERT INTO `rdv` (`id`, `date_rdv`, `id_participant`, `id_organisateur`) VALUES
-(1, '2021-11-02', 4, 4),
-(13, '2021-12-07', 1, 4),
-(14, '2021-12-01', 1, 4),
-(15, '2021-12-01', 1, 4),
-(16, '2021-11-17', 1, 2),
-(17, '2021-11-09', 2, 4);
+INSERT INTO `rdv` (`id`, `date_rdv`, `id_participant`, `id_organisateur`, `validationrdv`) VALUES
+(1, '2021-11-02', 4, 4, 0),
+(13, '2021-12-07', 1, 4, 1),
+(14, '2021-12-01', 1, 4, 1),
+(15, '2021-12-01', 1, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -219,24 +268,32 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `Disponible` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_classeid` (`classe`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `date_naissance`, `role`, `classe`, `id_famille`, `mail`, `username`, `password`, `validation`, `token`, `Disponible`) VALUES
-(1, 'admin', 'admin', '2021-12-07', 'Admin', NULL, NULL, 'admin', 'admin', 'admin', 'Active', NULL, NULL),
-(2, 'prof', 'prof', '2021-12-07', 'Profprinc', 3, NULL, 'prof', 'prof', 'prof', 'Active', NULL, NULL),
-(3, 'eleve', 'eleve', '2021-12-07', 'Eleve', 3, NULL, 'eleve@lprs.com', 'eleve', 'rl82WIilKGnoo', 'Desactive', NULL, NULL),
-(4, 'vide', 'vide', '2021-12-04', 'Prof. Principal', 3, NULL, 'vide', 'vide', 'vide', 'Active', NULL, '1'),
-(18, 'yacine', 'yacine', '2021-12-02', 'Admin', NULL, NULL, 'y.tabti@lprs.fr', 'CRYPTO', 'rlHUEapGXz2k2', 'Active', NULL, NULL),
+(1, 'admin', 'admin', '2021-12-07', 'Admin', NULL, NULL, 'Admin', 'admin', 'admin', 'Desactive', NULL, NULL),
+(2, 'prof', 'prof', '2021-12-07', 'Profprinc', 3, NULL, 'Profprinc', 'prof', 'Profprinc', 'null', NULL, NULL),
+(3, 'eleve', 'eleve', '2021-12-07', 'Eleve', 3, NULL, 'eleve@lprs.com', 'eleve', 'rl82WIilKGnoo', 'null', NULL, NULL),
+(4, 'vide', 'videe', '2021-12-04', 'Prof', NULL, NULL, 'Prof', 'vide', 'Prof', 'Desactive', '78551', NULL),
+(18, 'yacine', 'yacine', '2021-12-02', 'Admin', NULL, NULL, 'y.tabti@lprs.fr', 'CRYPTO', 'rlHUEapGXz2k2', 'Active', '35459', NULL),
 (19, 'yacine', 'yacine', '2021-12-25', 'Admin', NULL, NULL, 'jejesuisjeje@gmail.com', 'yacine', 'rlAwrzznCTytM', 'Desactive', NULL, NULL),
-(20, 'prof1', 'prof1', '2021-12-06', 'Prof', 3, NULL, 'adminaa@admin.com', 'prof1', 'prof1', 'Active', NULL, '0');
+(20, 'test', 'test', 'test', '3', NULL, NULL, 'test', 'test', 'test', '0', NULL, NULL),
+(27, 'testcm', 'testcm', 'testcm', 'Admin', NULL, NULL, 'testcm', 'testcm', 'testcm', 'Active', NULL, NULL),
+(28, 'testi', 'testi', 'testi', 'Prof', NULL, NULL, 'testi', 'testi', 'testi', '0', NULL, NULL);
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `absence`
+--
+ALTER TABLE `absence`
+  ADD CONSTRAINT `absence_ibfk_1` FOREIGN KEY (`id_eleve`) REFERENCES `utilisateur` (`id`);
 
 --
 -- Contraintes pour la table `maclasse`
@@ -251,6 +308,14 @@ ALTER TABLE `maclasse`
 ALTER TABLE `mots`
   ADD CONSTRAINT `fk_idelevemots` FOREIGN KEY (`id_eleve`) REFERENCES `utilisateur` (`id`),
   ADD CONSTRAINT `fk_idprofmots` FOREIGN KEY (`id_prof`) REFERENCES `utilisateur` (`id`);
+
+--
+-- Contraintes pour la table `planning`
+--
+ALTER TABLE `planning`
+  ADD CONSTRAINT `planning_ibfk_1` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`id`),
+  ADD CONSTRAINT `planning_ibfk_2` FOREIGN KEY (`jour`) REFERENCES `joursemaine` (`id`),
+  ADD CONSTRAINT `planning_ibfk_3` FOREIGN KEY (`idClasse`) REFERENCES `classe` (`id`);
 
 --
 -- Contraintes pour la table `rdv`
