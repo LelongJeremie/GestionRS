@@ -1,32 +1,42 @@
 package vueamdinistration;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTable;
-import javax.swing.JTree;
+import javax.swing.SwingConstants;
+
+import accueil.Prof;
+import accueil.Utilisateur;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Fourniture {
 
 	private JFrame frame;
-	private JTable table;
-	private JButton btnReturn;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run(Utilisateur user) {
 				try {
-					Fourniture window = new Fourniture();
+					Fourniture window = new Fourniture(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
@@ -34,35 +44,52 @@ public class Fourniture {
 	/**
 	 * Create the application.
 	 */
-	public Fourniture() {
-		initialize();
+	public Fourniture(Utilisateur user) {
+		initialize(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Utilisateur user) {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1039, 672);
+		frame.setBounds(100, 100, 709, 595);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("GERER LES FOURNITURES");
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 28));
-		lblNewLabel.setBounds(367, 11, 297, 41);
+		JLabel lblNewLabel = new JLabel("Fourniture");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
+		lblNewLabel.setBounds(0, 0, 695, 60);
 		frame.getContentPane().add(lblNewLabel);
-		
-		table = new JTable();
-		table.setBounds(85, 63, 847, 470);
-		frame.getContentPane().add(table);
-		
-		btnReturn = new JButton("page pr\u00E9c\u00E9dente");
-		btnReturn.setBounds(10, 565, 170, 41);
-		frame.getContentPane().add(btnReturn);
+		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Prof u=new Prof(user);
+				u.run(user);
+				frame.setVisible(false);
+				this.dispose();
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btnNewButton.setBounds(10, 11, 107, 36);
+		frame.getContentPane().add(btnNewButton);
 	}
 
-	public void run() {
-		// TODO Auto-generated method stub
+	public void run(Utilisateur user) {
+		try {
+			Fourniture window = new Fourniture(user);
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
+
 }

@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 import vueamdinistration.ClasseA;
 import vueamdinistration.Fourniture;
-import vueamdinistration.gererutil;
+import vueadmin.adminuserprofil;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -113,7 +113,7 @@ public class Administration {
 		btnEleve.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				gererutil v=new gererutil ();
+				adminuserprofil v=new adminuserprofil(user);
 				v.run();
 				frame.setVisible(false);
 				this.dispose();
@@ -180,18 +180,11 @@ public class Administration {
 				
 			}
 		});
-		
-<<<<<<< Updated upstream
-		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnNewButton_3.setBounds(178, 245, 309, 55);
-		frame.getContentPane().add(btnNewButton_3);
-		
+	
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.setBounds(178, 311, 309, 57);
 		frame.getContentPane().add(btnNewButton_2);
-=======
->>>>>>> Stashed changes
-	}
+}
 	
 	
 	
