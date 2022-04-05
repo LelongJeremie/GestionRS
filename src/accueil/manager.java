@@ -66,7 +66,6 @@ public class manager extends Utilisateur {
 
 
 
-
 				ResultSet resultat1 = stm.executeQuery("SELECT * FROM utilisateur where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
 
 				while(resultat1.next()) {
@@ -357,6 +356,34 @@ public class manager extends Utilisateur {
 
 			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN maclasse ON maclasse.idclasse = utilisateur.id LEFT JOIN classe ON maclasse.idclasse = classe.id");
 
+
+
+		}
+
+
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}
+	
+	public ResultSet usersanction () {
+
+
+		System.out.println(user.getMail());
+
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			System.out.println("idmodif"+user.getIdmodif()+"aa"+user.getClasseid());
+			resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'eleve' AND (SELECT COUNT(id) FROM `absence` WHERE `ars` = 3 and id_eleve ="+user.getIdmodif()+") > 2 AND maclasse.idclasse = "+user.getClasseid());
 
 
 		}

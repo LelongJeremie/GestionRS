@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import vueprofprincipal.rdvprofprincipal;
+import vueprofprincipal.sanctionprofprinc;
+
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
@@ -122,7 +124,19 @@ public class Profprinc {
 		JButton btnNewButton_3 = new JButton("Sanction ");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				sanctionprofprinc v=new sanctionprofprinc(user);
+				v.run(user);
+				frame.setVisible(false);
+				this.dispose();
 			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+			
 		});
 		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnNewButton_3.setBounds(201, 337, 275, 59);

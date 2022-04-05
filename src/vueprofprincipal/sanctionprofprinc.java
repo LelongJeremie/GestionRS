@@ -1,4 +1,4 @@
-package vueprof;
+package vueprofprincipal;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
-public class sanction {
+public class sanctionprofprinc {
 
 	private JFrame frame;
 	private ResultSet resultat;
@@ -37,7 +37,7 @@ public class sanction {
 		EventQueue.invokeLater(new Runnable() {
 			public void run(Utilisateur user) {
 				try {
-					sanction window = new sanction(user);
+					sanctionprofprinc window = new sanctionprofprinc(user);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +57,7 @@ public class sanction {
 	 * Create the application.
 	 * @param user 
 	 */
-	public sanction(Utilisateur user) {
+	public sanctionprofprinc(Utilisateur user) {
 		initialize(user);
 	}
 
@@ -72,7 +72,7 @@ public class sanction {
 		frame.getContentPane().setLayout(null);
 		manager man = new manager();
 
-		resultat = man.toutlessusers();
+		resultat = man.usersanction();
 	
 		
 		JComboBox comboBox = new JComboBox();
@@ -161,7 +161,7 @@ public class sanction {
 							e1.printStackTrace();
 						}
 						
-						sanction u=new sanction(user);
+						sanctionprofprinc u=new sanctionprofprinc(user);
 						u.run(user);
 						frame.setVisible(false);
 						this.dispose();
@@ -185,7 +185,7 @@ public class sanction {
 		JButton btnRefresh = new JButton("Deselectionner");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sanction u=new sanction(user);
+				sanctionprofprinc u=new sanctionprofprinc(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
@@ -216,7 +216,7 @@ public class sanction {
 	}
 	public void run(Utilisateur user) {
 		try {
-			sanction window = new sanction(user);
+			sanctionprofprinc window = new sanctionprofprinc(user);
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
