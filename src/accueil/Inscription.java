@@ -214,13 +214,14 @@ public class Inscription {
 					user.setPseudo(pseudo);
 
 					if(rdbtnadministratif.isSelected()) {
-						String role = "4";
+						String role = "Administratif";
 						user.setRole(role);
 						
 					}
 					else if(rdbtnProfesseur.isSelected()) {
-						String role = "3";
+						String role = "Prof";
 						user.setRole(role);
+						System.out.println(user.getRole());
 					}
 
 					

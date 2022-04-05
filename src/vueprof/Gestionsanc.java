@@ -12,18 +12,18 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import accueil.Utilisateur;
 import accueil.manager;
 import vueadmin.classe;
+import javax.swing.JTextField;
 
 public class Gestionsanc {
 
 	private JFrame frame;
 	private ResultSet resultat;
-	protected JTextField textField;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -60,18 +60,17 @@ public class Gestionsanc {
 	private void initialize(Utilisateur user) {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 702, 701);
+		frame.setBounds(100, 100, 702, 690);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		JLabel lblNewLabel = new JLabel("Gestion Sanction");
+		lblNewLabel.setBounds(0, 0, 995, 85);
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBackground(Color.GRAY);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		lblNewLabel.setBounds(0, 0, 995, 76);
 		frame.getContentPane().add(lblNewLabel);
-		
 		JButton btnretour = new JButton("Retour");
 		btnretour.setFont(new Font("Calibri Light", Font.PLAIN, 14));
 		btnretour.addActionListener(new ActionListener() {
@@ -94,13 +93,14 @@ public class Gestionsanc {
 		frame.getContentPane().add(btnretour);
 		
 		
+		
 		manager man = new manager();
 
 		resultat = man.toutlessusers();
 		
 		JComboBox<Utilisateur> comboBox = new JComboBox();
 		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(10, 115, 975, 54);
+		comboBox.setBounds(10, 114, 975, 54);
 		frame.getContentPane().add(comboBox);
 
 		JComboBox<classe> comboBoxclasse = new JComboBox();
@@ -126,7 +126,6 @@ public class Gestionsanc {
 
 				
 				comboBox.addItem(Monuser);  
-
 
 
 			}
@@ -157,7 +156,7 @@ public class Gestionsanc {
 		JButton btnRefresh = new JButton("Deselectionner");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gestionabs u=new gestionabs(user);
+				Gestionsanc u=new Gestionsanc(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
@@ -172,7 +171,7 @@ public class Gestionsanc {
 							
 			}
 		});
-		btnRefresh.setBounds(534, 177, 127, 23);
+		btnRefresh.setBounds(534, 175, 127, 23);
 		frame.getContentPane().add(btnRefresh);
 		
 		JButton btnNewButton = new JButton("Selectionner");
@@ -180,13 +179,13 @@ public class Gestionsanc {
 			private ResultSet resultat2;
 
 			public void actionPerformed(ActionEvent e) {
-				JLabel lblNewLabel_1 = new JLabel("Modifier la sanction ou la supprimer :");
+
+				
+				
+				JLabel lblNewLabel_1 = new JLabel("Modifier le retard, ou le supprimer :");
 				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 				lblNewLabel_1.setBounds(366, 261, 299, 13);
 				frame.getContentPane().add(lblNewLabel_1);
-				
-				
-				
 
 				Utilisateur Monuser= new Utilisateur();
 				Monuser.setIdmodif(((Utilisateur) comboBox.getSelectedItem()).getIdmodif());
@@ -282,13 +281,14 @@ public class Gestionsanc {
 				
 			}
 		});
-		btnNewButton.setBounds(366, 177, 127, 23);
+		btnNewButton.setBounds(365, 175, 127, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-
+	
+		
+		
 
 	}
-
 	public void run(Utilisateur user) {
 		try {
 			Gestionsanc window = new Gestionsanc(user);

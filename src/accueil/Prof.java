@@ -110,24 +110,7 @@ public class Prof {
 		btnAbsence.setBounds(202, 255, 275, 70);
 		frame.getContentPane().add(btnAbsence);
 		
-		JButton btnClasse = new JButton("Classe");
-		btnClasse.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnClasse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 gclasse v=new gclasse(user);
-					v.run(user);
-					frame.setVisible(false);
-					this.dispose();
-		
-			}
 
-			private void dispose() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		btnClasse.setBounds(202, 185, 275, 59);
-		frame.getContentPane().add(btnClasse);
 		
 		JButton btnSanction = new JButton("Sanction");
 		btnSanction.addActionListener(new ActionListener() {
@@ -164,23 +147,7 @@ public class Prof {
 		btnNewButton_1.setBounds(508, 485, 160, 52);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JButton btnFourniture = new JButton("Fourniture");
-		btnFourniture.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Fourniture v=new Fourniture(user);
-				v.run(user);
-				frame.setVisible(false);
-				this.dispose();
-			}
-
-			private void dispose() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		btnFourniture.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnFourniture.setBounds(202, 406, 275, 59);
-		frame.getContentPane().add(btnFourniture);
+	
 		
 		JButton btnGestionARS = new JButton("Gestion A/R/S");
 		btnGestionARS.addActionListener(new ActionListener() {

@@ -156,7 +156,7 @@ public class Gestionret {
 		JButton btnRefresh = new JButton("Deselectionner");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gestionabs u=new gestionabs(user);
+				Gestionret u=new Gestionret(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();

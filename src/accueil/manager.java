@@ -310,16 +310,16 @@ public class manager extends Utilisateur {
 		}
 	}
 
-	public String admincreaprofil(Utilisateur user2) {
+	public String admincreaprofil(Utilisateur monuser) {
 		try {
 			// Prï¿½paration de la requï¿½te
 			java.sql.Statement stm = cnx.createStatement();
 
 
-			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where nom='" + user.getNom() +"' AND prenom='" + user.getPrenom() +"'");
+			ResultSet resultat = stm.executeQuery("SELECT * FROM utilisateur where nom='" + monuser.getNom() +"' AND prenom='" + monuser.getPrenom() +"'");
 
 			while(resultat.next()) {
-				user.setId(this.id = resultat.getString("id"));
+				monuser.setId(this.id = resultat.getString("id"));
 				System.out.println("Erreur votre utilisateur est dï¿½jï¿½ existant");
 			}
 		}
@@ -328,11 +328,10 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 		}
 
-		if(user.getId() == null) {
+		if(monuser.getId() == null) {
 			try {
-				System.out.println(user);
 				java.sql.Statement stm = cnx.createStatement();
-				int insert = stm.executeUpdate("INSERT INTO utilisateur(nom,prenom,date_naissance, role, mail, username, password, validation) VALUES ('" + user.getNom() +"','" + user.getPrenom() +"','" + user.getDate_naissance() +"','" + user.getRole() +"', '" + user.getMail() + "','" + user.getPseudo() + "','" + user.getPassword() + "','" + "0" + "')");
+				int insert = stm.executeUpdate("INSERT INTO utilisateur(nom,prenom,date_naissance, role, mail, username, password, validation) VALUES ('" + monuser.getNom() +"','" + monuser.getPrenom() +"','" + monuser.getDate_naissance() +"','" + monuser.getRole() +"', '" + monuser.getMail() + "','" + monuser.getPseudo() + "','" + monuser.getPassword() + "','" + "Active" + "')");
 				System.out.println("Utilisateur ajoutï¿½");
 			}
 
@@ -593,27 +592,7 @@ public class manager extends Utilisateur {
 		}
 	}
 
-	public ResultSet touteslessanctions(Utilisateur monuser) {
 
-		try {
-			// Prï¿½paration de la requï¿½te
-			java.sql.Statement stm = cnx.createStatement();
-
-
-			resultat2 = stm.executeQuery("SELECT * FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND ars = '"+3+"'");
-
-			
-		}
-
-
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-
-			e.printStackTrace();
-		}
-
-		return resultat;
-	}
 	
 	public ResultSet usertouteslessanctions(Utilisateur monuser) {
 
@@ -719,7 +698,27 @@ public ResultSet disponibilité(Utilisateur monuser) {
 
 		return resultat2;
 	}
+	public ResultSet touteslessanctions(Utilisateur monuser) {
 
+		try {
+			// Prï¿½paration de la requï¿½te
+			java.sql.Statement stm = cnx.createStatement();
+
+
+			resultat2 = stm.executeQuery("SELECT * FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND ars = '"+3+"'");
+			
+			
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat2;
+	}
 	public void supplesabsences(Utilisateur monuser) {
 
 		try {

@@ -281,42 +281,42 @@ public class Creaprofiladmin {
 					String date_naissance = textFieldentreznaissance.getText();
 					String pseudo = textFieldpseudo.getText();
 					String confirmation = textFieldconfirmation.getText();
-					
-					user.setMail(mail);
-					user.setPassword(mdp);
-					user.setNom(nom);
-					user.setPrenom(prenom);
-					user.setDate_naissance(date_naissance);
-					user.setPseudo(pseudo);
+					Utilisateur monuser = new Utilisateur();
+					monuser.setMail(mail);
+					monuser.setPassword(mdp);
+					monuser.setNom(nom);
+					monuser.setPrenom(prenom);
+					monuser.setDate_naissance(date_naissance);
+					monuser.setPseudo(pseudo);
 
 					if(rdbtnadmin.isSelected()) {
-						String role = "1";
-						user.setRole(role);
+						String role = "Admin";
+						monuser.setRole(role);
 						
 					}
 					else if(rdbtnprofesseurprincipal.isSelected()) {
-						String role = "2";
-						user.setRole(role);
+						String role = "Profprinc";
+						monuser.setRole(role);
 					}
 					
 					else if(rdbtnprofesseur.isSelected()) {
-						String role = "3";
-						user.setRole(role);
+						String role = "Prof";
+						monuser.setRole(role);
 					}
 					
 					else if(rdbtnadministratif.isSelected()) {
-						String role = "4";
-						user.setRole(role);
+						String role = "Administratif";
+						monuser.setRole(role);
 					}
 					
 					else if(rdbtnparent.isSelected()) {
-						String role = "5";
-						user.setRole(role);
+						String role = "Parent";
+						monuser.setRole(role);
 					}
 					
 					else if(rdbtnetudiant.isSelected()) {
-						String role = "6";
-						user.setRole(role);
+						String role = "Eleve";
+						monuser.setRole(role);
 					}
 
 					
@@ -329,7 +329,7 @@ public class Creaprofiladmin {
 					System.out.println(tests);
 					if(tests == 1) {
 					
-					res = man.admincreaprofil(user);
+					res = man.admincreaprofil(monuser);
 
 
 					Popup_inscription g=new Popup_inscription();
