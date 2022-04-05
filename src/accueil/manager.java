@@ -383,7 +383,7 @@ public class manager extends Utilisateur {
 			java.sql.Statement stm = cnx.createStatement();
 
 
-			System.out.println("idmodif"+user.getIdmodif()+"aa"+user.getClasseid());
+			
 			resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'eleve' AND (SELECT COUNT(id) FROM `absence` WHERE `ars` = 3 ) > 2 AND maclasse.idclasse = "+user.getClasseid());
 
 
@@ -446,7 +446,7 @@ public class manager extends Utilisateur {
 					+ "role ='"+user.getRolemodif()+"'  "
 					+ "WHERE id ='" + user.getIdmodif() + "'");
 
-			System.out.println("aaaa"+user.getClassemodif());
+		
 			int resultat11 = stm.executeUpdate("INSERT INTO maclasse (idclasse,iduser) VALUES ((select id from classe where id ='"+user.getClassemodif()+"'),(select id from utilisateur where id ='"+user.getIdmodif()+"'))");
 
 
@@ -515,8 +515,54 @@ public class manager extends Utilisateur {
 
 	public void ajoutsanction(Utilisateur monuser) throws SQLException {
 		java.sql.Statement stm = cnx.createStatement();
+<<<<<<< Updated upstream
 		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,date_heure,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getDate()+"','"+monuser.getSanction()+"')");
+=======
+		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getSanction()+"')");
+		
+		resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'eleve' AND (SELECT COUNT(id) FROM `absence` WHERE `ars` = 3 ) > 2 AND maclasse.idclasse = "+user.getClasseid());
+		
+		while(resultat.next()) {
+		
+		mail=resultat.getString("mail");
+		
+		
+		
+		//Creation de session
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
 
+		Session session = Session.getInstance(props,
+				new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username,password);
+			}
+		});
+>>>>>>> Stashed changes
+
+		System.out.println(session);
+		try {
+			Message message = new MimeMessage(session);
+
+			message.setFrom(new InternetAddress("phpmailerdugny@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
+			message.setSubject("Sanction pour votre enfant");
+			message.setText("Bonjour,Votre enfant à reçu plus de 3 mots. Bien cordialement,");
+
+			Transport.send(message);
+			System.out.println("Message envoyï¿½");
+
+
+
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+
+
+		}
 	}
 
 	public ResultSet touteslessanctions(Utilisateur monuser) {
@@ -525,7 +571,32 @@ public class manager extends Utilisateur {
 			// Prï¿½paration de la requï¿½te
 			java.sql.Statement stm = cnx.createStatement();
 
+<<<<<<< Updated upstream
 			resultat2 = stm.executeQuery("SELECT * FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND ars = '"+3+"'");
+=======
+			resultat = stm.executeQuery("SELECT DISTINCT `nom`,`prenom`,utilisateur.id FROM utilisateur LEFT JOIN absence ON absence.`id_eleve` = utilisateur.id where `ars`= 3");
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}
+	
+	public ResultSet recapitulatif(Utilisateur monuser) {
+		
+
+		try {
+			// Prï¿½paration de la requï¿½te
+			java.sql.Statement stm = cnx.createStatement();
+
+			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN absence ON absence.`id_eleve` = utilisateur.id where `ars`= 3 and utilisateur.id ="+monuser.getIdmodif());
+			
+>>>>>>> Stashed changes
 
 		}
 
@@ -538,6 +609,8 @@ public class manager extends Utilisateur {
 
 		return resultat2;
 	}
+	
+	
 	public ResultSet touslesretards(Utilisateur monuser) {
 
 		try {

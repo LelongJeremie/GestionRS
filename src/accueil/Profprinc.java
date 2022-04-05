@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import vueprofprincipal.rdvprofprincipal;
+import vueprofprincipal.recapitulatifsanction;
 import vueprofprincipal.sanctionprofprinc;
 
 import javax.swing.SwingConstants;
@@ -112,10 +113,23 @@ public class Profprinc {
 		btnNewButton_11.setBounds(201, 116, 275, 70);
 		frame.getContentPane().add(btnNewButton_11);
 		
-		JButton btnNewButton_2 = new JButton("Classee");
+		JButton btnNewButton_2 = new JButton("Recapitulatif");
 		btnNewButton_2.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				recapitulatifsanction v=new recapitulatifsanction(user);
+				v.run(user);
+				frame.setVisible(false);
+				this.dispose();
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			
+				
+				
 			}
 		});
 		btnNewButton_2.setBounds(201, 267, 275, 59);

@@ -41,7 +41,11 @@ public class Sanction {
 	public String toString() {
 		
 		if(duree !=  null) {
+<<<<<<< Updated upstream
 		return " Description de la sanction : " + commentaire + ", \n duree de la sanction : " + duree + " Date de la sanction : "+date;
+=======
+		return " Description de la sanction : " + commentaire + ", \n                     duree de la sanction : " + duree + " Date de la sanction : "+date;
+>>>>>>> Stashed changes
 		}
 		else {
 		return " Description de la sanction : " + commentaire;

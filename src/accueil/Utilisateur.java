@@ -22,7 +22,17 @@ public class Utilisateur {
 	protected String date;
 
 
+	protected String description;
+	
+	public String getDescription() {
+		return description;
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	
 	protected String prenom;
 	protected String mail;
 	protected String password;
