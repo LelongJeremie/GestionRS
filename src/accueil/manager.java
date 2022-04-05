@@ -62,6 +62,37 @@ public class manager extends Utilisateur {
 
 			}
 
+			if(user.getId()==null) {
+
+
+
+
+				ResultSet resultat1 = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id  where mail='" + user.getMail() +"' AND password='" + user.getPassword() +"'");
+
+				while(resultat1.next()) {
+					user.setId(resultat1.getString("id"));
+					user.setNom(resultat1.getString("Nom"));
+					user.setPrenom(resultat1.getString("Prenom"));
+					user.setRole(resultat1.getString("role"));
+					user.setPseudo(resultat1.getString("username"));
+					user.setPassword(resultat1.getString("Password"));
+					user.setDate_naissance(resultat1.getString("date_naissance"));
+					user.setValidation(resultat1.getString("validation"));
+					user.setClasse(resultat1.getString("libelle"));
+					user.setClasseid(resultat1.getString("classe.id"));
+
+
+
+
+
+				}
+
+
+			}
+
+
+
+
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -449,11 +480,18 @@ public class manager extends Utilisateur {
 		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,date_heure) VALUES ('" + monuser.getIdmodif() +"','"+ 2 +"','"+monuser.getDate()+"')");
 	}
 
+
+	public void ajoutrdvprofprinc(Utilisateur monuser) throws SQLException {
+		System.out.println(monuser.getDatee());
+		java.sql.Statement stm = cnx.createStatement();
+		int insert = stm.executeUpdate("INSERT INTO `rdv` (`date_rdv`, `id_participant`, `id_organisateur`) VALUES ('" + monuser.getDatee() +"','"+ monuser.getId() +"','"+ monuser.getIdmodif() +"')");
+	}
+
 	public void ajoutsanction(Utilisateur monuser) throws SQLException {
 		java.sql.Statement stm = cnx.createStatement();
 		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getSanction()+"')");
-		
-	}	
+
+	}
 
 
 
