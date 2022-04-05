@@ -8,17 +8,19 @@ public class Utilisateur {
 
 	protected String nom;
 	protected Date datee;
+	protected String classelibellemodif;
+	
+	public String getClasselibellemodif() {
+		return classelibellemodif;
+	}
+
+	public void setClasselibellemodif(String classelibellemodif) {
+		this.classelibellemodif = classelibellemodif;
+	}
+
+
 	protected String date;
 
-
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
 
 
 	protected String prenom;
@@ -346,9 +348,7 @@ public void setDate(String date) {
 
 	@Override
 	public String toString() {
-		return "idmodif : "+ idmodif +" || Nom : " + nommodif + " || Prenom : " + prenommodif + " || Mail : "
-				+ mailmodif + " || Classe : " + classemodif + " || Role : " + rolemodif
-				+ " || Pseudo : " + pseudomodif + " || date de naissance : " + date_naissancemodif + " || validation :"+validationmodif;
+		return "Nom : "+nommodif+" || Prenom : "+prenommodif+" || Classe : "+classelibellemodif+" || Role : "+rolemodif;
 	}
 
 //Liste des getters

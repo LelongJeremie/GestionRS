@@ -372,7 +372,7 @@ public class manager extends Utilisateur {
 		return resultat;
 	}
 	
-	public ResultSet usersanction () {
+	public ResultSet usersanction (Utilisateur user) {
 
 
 		System.out.println(user.getMail());
@@ -383,7 +383,7 @@ public class manager extends Utilisateur {
 
 
 			System.out.println("idmodif"+user.getIdmodif()+"aa"+user.getClasseid());
-			resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'eleve' AND (SELECT COUNT(id) FROM `absence` WHERE `ars` = 3 and id_eleve ="+user.getIdmodif()+") > 2 AND maclasse.idclasse = "+user.getClasseid());
+			resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'eleve' AND (SELECT COUNT(id) FROM `absence` WHERE `ars` = 3 ) > 2 AND maclasse.idclasse = "+user.getClasseid());
 
 
 		}

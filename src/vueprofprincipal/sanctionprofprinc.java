@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import accueil.Administrateur;
 import accueil.Prof;
+import accueil.Profprinc;
 import accueil.Utilisateur;
 import accueil.manager;
 
@@ -72,7 +73,7 @@ public class sanctionprofprinc {
 		frame.getContentPane().setLayout(null);
 		manager man = new manager();
 
-		resultat = man.usersanction();
+		resultat = man.usersanction(user);
 	
 		
 		JComboBox comboBox = new JComboBox();
@@ -94,6 +95,7 @@ public class sanctionprofprinc {
 				Monuser.setPasswordmodif(resultat.getString("password"));
 				Monuser.setRolemodif(resultat.getString("role"));
 				Monuser.setClassemodif(resultat.getString("classe"));
+				Monuser.setClasselibellemodif(resultat.getString("libelle"));
 				Monuser.setDate_naissancemodif(resultat.getString("date_naissance"));
 				Monuser.setPseudomodif(resultat.getString("username"));
 				Monuser.setValidationmodif(resultat.getString("Validation"));
@@ -125,7 +127,7 @@ public class sanctionprofprinc {
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Prof u=new Prof(user);
+				Profprinc u=new Profprinc(user);
 				u.run(user);
 				frame.setVisible(false);
 				this.dispose();
@@ -147,6 +149,10 @@ public class sanctionprofprinc {
 				textFieldsanction.setBounds(51, 314, 570, 64);
 				frame.getContentPane().add(textFieldsanction);
 				textFieldsanction.setColumns(10);
+				JLabel lblNewLabel_1 = new JLabel("D\u00E9crire la sanction : ");
+				lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 16));
+				lblNewLabel_1.setBounds(194, 213, 309, 50);
+				frame.getContentPane().add(lblNewLabel_1);
 				
 				JButton btnsanctionner = new JButton("Sanctionner");
 				btnsanctionner.addActionListener(new ActionListener() {
@@ -211,6 +217,13 @@ public class sanctionprofprinc {
 		lblSanction.setFont(new Font("Calibri Light", Font.PLAIN, 31));
 		lblSanction.setBounds(0, 0, 663, 64);
 		frame.getContentPane().add(lblSanction);
+		
+		JLabel lblNewLabel = new JLabel("\u00E9l\u00E8ve avec plus de 3 sanctions : ");
+		lblNewLabel.setFont(new Font("Calibri Light", Font.PLAIN, 13));
+		lblNewLabel.setBounds(51, 89, 260, 39);
+		frame.getContentPane().add(lblNewLabel);
+		
+		
 		
 
 	}
