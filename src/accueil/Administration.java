@@ -93,8 +93,12 @@ public class Administration {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		btnNewButton_3.setFont(new Font("Calibri Light", Font.PLAIN, 31));
-		btnNewButton_3.setBounds(111, 245, 442, 55);
+		btnNewButton_3.setBounds(178, 245, 309, 55);
 		frame.getContentPane().add(btnNewButton_3);
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		btnNewButton_2.setBounds(178, 311, 309, 57);
+		frame.getContentPane().add(btnNewButton_2);
 	}
 
 	public void run(Utilisateur user) {

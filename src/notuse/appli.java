@@ -1,4 +1,4 @@
-package vueamdinistration;
+package notuse;
 
 public class appli {
 	import java.sql.Connection;
