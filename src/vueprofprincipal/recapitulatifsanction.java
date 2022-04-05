@@ -66,11 +66,33 @@ public class recapitulatifsanction {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Utilisateur user) {
+		
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 676, 570);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Profprinc u=new Profprinc(user);
+				u.run(user);
+				frame.setVisible(false);
+				this.dispose();
+	
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
+		btnRetour.setBounds(10, 11, 107, 36);
 		manager man = new manager();
 		JLabel lblSanction = new JLabel("Recapitulatif");
 		lblSanction.setOpaque(true);
@@ -82,7 +104,7 @@ public class recapitulatifsanction {
 		frame.getContentPane().add(lblSanction);
 		
 
-		resultat = man.touteslessanctions(user);
+		resultat = man.usertouteslessanctions(user);
 	
 		
 		JComboBox comboBox = new JComboBox();
@@ -128,23 +150,7 @@ public class recapitulatifsanction {
 				System.out.println("Valeur: " + comboBox.getSelectedItem().toString());      
 			}
 		});
-		JButton btnRetour = new JButton("Retour");
-		btnRetour.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Profprinc u=new Profprinc(user);
-				u.run(user);
-				frame.setVisible(false);
-				this.dispose();
 	
-			}
-
-			private void dispose() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
 		JButton btnSelect = new JButton("Selectionner");
 		btnSelect.addActionListener(new ActionListener() {
 			private ResultSet resultat1;
@@ -159,9 +165,6 @@ public class recapitulatifsanction {
 				System.out.println(Monuser.getIdmodif());
 				
 				resultat1 = man.recapitulatif(Monuser);
-				
-				
-				
 				
 
 				JComboBox<Sanction> comboBox_1 = new JComboBox<Sanction>();
@@ -193,7 +196,28 @@ public class recapitulatifsanction {
 					e1.printStackTrace();
 				}
 				
-				
+
+				JButton btnRetour_1 = new JButton("Retour");
+				btnRetour_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+
+						Profprinc u=new Profprinc(user);
+						u.run(user);
+						frame.setVisible(false);
+						this.dispose();
+			
+					}
+
+					private void dispose() {
+						// TODO Auto-generated method stub
+						
+					
+						
+					}
+				});
+				btnRetour_1.setFont(new Font("Calibri", Font.PLAIN, 12));
+				btnRetour_1.setBounds(291, 208, 107, 23);
+				frame.getContentPane().add(btnRetour_1);
 				
 				frame.repaint();
 				
@@ -207,8 +231,7 @@ public class recapitulatifsanction {
 		
 		btnSelect.setBounds(184, 174, 127, 23);
 		frame.getContentPane().add(btnSelect);
-		btnRetour.setFont(new Font("Calibri", Font.PLAIN, 12));
-		btnRetour.setBounds(10, 11, 107, 36);
+		
 		frame.getContentPane().add(btnRetour);
 		JButton btnRefresh = new JButton("Deselectionner");
 		btnRefresh.addActionListener(new ActionListener() {
@@ -230,6 +253,7 @@ public class recapitulatifsanction {
 		});
 		btnRefresh.setBounds(372, 174, 127, 23);
 		frame.getContentPane().add(btnRefresh);
+		
 		
 	
 		

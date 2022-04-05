@@ -515,10 +515,10 @@ public class manager extends Utilisateur {
 
 	public void ajoutsanction(Utilisateur monuser) throws SQLException {
 		java.sql.Statement stm = cnx.createStatement();
-<<<<<<< Updated upstream
+
 		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,date_heure,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getDate()+"','"+monuser.getSanction()+"')");
-=======
-		int insert = stm.executeUpdate("INSERT INTO absence(id_eleve,ars,commentaire) VALUES ('" + monuser.getIdmodif() +"','"+ 3 +"','"+monuser.getSanction()+"')");
+
+
 		
 		resultat = stm.executeQuery("SELECT * FROM utilisateur INNER JOIN maclasse ON maclasse.iduser = utilisateur.id INNER JOIN classe ON maclasse.idclasse = classe.id where utilisateur.role = 'eleve' AND (SELECT COUNT(id) FROM `absence` WHERE `ars` = 3 ) > 2 AND maclasse.idclasse = "+user.getClasseid());
 		
@@ -541,7 +541,7 @@ public class manager extends Utilisateur {
 				return new PasswordAuthentication(username,password);
 			}
 		});
->>>>>>> Stashed changes
+
 
 		System.out.println(session);
 		try {
@@ -571,9 +571,29 @@ public class manager extends Utilisateur {
 			// Pr�paration de la requ�te
 			java.sql.Statement stm = cnx.createStatement();
 
-<<<<<<< Updated upstream
+
 			resultat2 = stm.executeQuery("SELECT * FROM absence WHERE id_eleve = '"+monuser.getIdmodif()+"' AND ars = '"+3+"'");
-=======
+
+			
+		}
+
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return resultat;
+	}
+	
+	public ResultSet usertouteslessanctions(Utilisateur monuser) {
+
+		try {
+			// Pr�paration de la requ�te
+			java.sql.Statement stm = cnx.createStatement();
+
+
 			resultat = stm.executeQuery("SELECT DISTINCT `nom`,`prenom`,utilisateur.id FROM utilisateur LEFT JOIN absence ON absence.`id_eleve` = utilisateur.id where `ars`= 3");
 		}
 
@@ -596,7 +616,6 @@ public class manager extends Utilisateur {
 
 			resultat = stm.executeQuery("SELECT * FROM utilisateur LEFT JOIN absence ON absence.`id_eleve` = utilisateur.id where `ars`= 3 and utilisateur.id ="+monuser.getIdmodif());
 			
->>>>>>> Stashed changes
 
 		}
 
@@ -607,7 +626,7 @@ public class manager extends Utilisateur {
 			e.printStackTrace();
 		}
 
-		return resultat2;
+		return resultat;
 	}
 	
 	
